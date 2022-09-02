@@ -21,7 +21,6 @@
                 <td formArrayName="priceItem" *ngFor="let price of AddPriceGet(i).controls; let j = index">
                     <div [formGroupName]="j">
                         <input nbInput type="tel" formControlName="price" placeholder="Enter Price">
-                        <!-- <input nbInput type="tel" formControlName="item"> -->
                     </div>
                 </td>
 

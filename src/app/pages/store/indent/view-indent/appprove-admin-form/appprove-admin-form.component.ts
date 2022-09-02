@@ -55,6 +55,4 @@ export class AppproveAdminFormComponent implements OnInit {
     let result = this.ItemVenderSorce.filter(p => p.itemModelPrice.itemName == p);
     console.warn(result);
   }
-
-
 }
