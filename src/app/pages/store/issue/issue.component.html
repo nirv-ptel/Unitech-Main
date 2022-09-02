@@ -1,0 +1,255 @@
+<div *ngIf="maintanance">
+  <button nbButton status="danger" (click)="createIssue(dialog)">
+    New Issue
+  </button>
+</div>
+
+<nb-card>
+  <nb-card-body>
+    <nb-tabset fullWidth>
+      <nb-tab *ngIf="!admin" tabTitle="PENDING">
+        <ng2-smart-table [settings]="PENDINGsettings" [source]="PENDINGIssueSource"
+          (custom)="onChangeIssueStatus($event.data, dialog1)">
+        </ng2-smart-table>
+      </nb-tab>
+      <nb-tab *ngIf="admin" tabTitle="PENDING">
+        <ng2-smart-table [settings]="OPENsettings" [source]="PENDINGIssueSource">
+        </ng2-smart-table>
+      </nb-tab>
+      <!-- <nb-tab *ngIf="admin || store" tabTitle="OPEN">
+        <ng2-smart-table [settings]="OPENsettings" [source]="OPENIssueSource">
+        </ng2-smart-table>
+      </nb-tab> -->
+      <!-- <nb-tab *ngIf="maintanance" tabTitle="OPEN">
+        <ng2-smart-table [settings]="OPENsettingsMain" [source]="OPENIssueSource"
+          (custom)="onChangeIssueCloseStatus($event.data, dialog2)">
+        </ng2-smart-table>
+      </nb-tab> -->
+      <nb-tab tabTitle="DONE">
+        <ng2-smart-table [settings]="DONEsettings" [source]="DONEIssueSource">
+        </ng2-smart-table>
+      </nb-tab>
+      <nb-tab tabTitle="REJECT">
+        <ng2-smart-table [settings]="REJECTsettings" [source]="REJECTIssueSource">
+        </ng2-smart-table>
+      </nb-tab>
+
+      <nb-tab tabTitle="CANCEL">
+        <ng2-smart-table [settings]="CANCELsettings" [source]="CANCELIssueSource">
+        </ng2-smart-table>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #dialog let-ref="dialogRef">
+  <nb-card class="scroll-bar">
+    <nb-card-header>Create Issue
+      <button type="button" (click)="ref.close()" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="IssueForm" (ngSubmit)="onIssueFormSubmit()">
+        <div class="form-group" formGroupName="storeItemModel">
+          <label for="Select_Item" class="label">Select Item <span class="red">*</span></label>
+          <nb-select placeholder="Select Product Item" fullWidth formControlName="itemId">
+            <nb-option *ngFor="let item of item" value="{{ item.itemId }}">{{ item.itemName }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group">
+          <label for="quantity" class="label">Quantity <span class="red">*</span></label>
+          <input type="text" nbInput fullWidth id="quantity" placeholder="Quantity" formControlName="quantity" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="description" class="label">Description <span class="red">*</span></label>
+          <input type="text" nbInput fullWidth id="description" placeholder="Description"
+            formControlName="description" />
+        </div>
+        <div class="form-group">
+          <label for="requiredDays" class="label">Required Days <span class="red">*</span></label>
+          <input type="tel" nbInput fullWidth id="requiredDays" placeholder="Required Days"
+            formControlName="requiredDays" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="requiredDays" class="label">Demartment <span class="red">*</span></label>
+          <nb-select placeholder="Select Product Item" fullWidth (ngModelChange)="chengeDepartmentName($event)"
+            formControlName="deptName">
+            <nb-option *ngFor="let item of deptName" value="{{ item }}">{{ item }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group">
+          <label for="requiredDays" class="label">Machine <span class="red">*</span></label>
+          <nb-select placeholder="Select Product Item" fullWidth formControlName="machineName">
+            <nb-option *ngFor="let item of MachineName" value="{{ item.id }}">{{ item.name }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <button nbButton status="success" [disabled]="IssueForm.invalid" type="submit">Submit</button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #dialog1 let-ref="dialogRef">
+  <nb-card class="scroll-bar">
+    <nb-card-header>Issue
+      <button type="button" (click)="NbDialogRef1.close()" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="IssueOpenForm">
+        <div class="form-group">
+          <label for="item" class="label">Item Name <span class="red">*</span></label>
+          <input type="tel" nbInput fullWidth id="item" placeholder="Item" readonly
+            [value]="statusChangeIssue.storeItemModel.itemName" />
+        </div>
+        <div class="form-group">
+          <label for="quantity" class="label">Required Quantity <span class="red">*</span></label>
+          <input type="tel" nbInput fullWidth id="quantity" placeholder="Quantity" formControlName="quantity"
+            [value]="statusChangeIssue.quantity" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group" *ngIf="store">
+          <label for="available" class="label">Available Quantity</label>
+          <input type="text" nbInput fullWidth id="available" name="available" placeholder="Available Quantity" readonly
+            [value]="statusChangeIssue.storeItemModel.quantity" />
+        </div>
+
+        <div class="form-group">
+          <label for="description" class="label">Description</label>
+          <input type="tel" nbInput fullWidth id="description" placeholder="Description" readonly
+            [value]="statusChangeIssue.description" />
+        </div>
+
+        <div class="form-group">
+          <label for="coments" class="label">Comments <span class="red">*</span></label>
+          <input type="tel" nbInput fullWidth id="coments" placeholder="Comments" formControlName="coments" />
+        </div>
+        <div class="form-group">
+          <label for="remarks" class="label">Remarks</label>
+          <textarea nbInput fullWidth placeholder="Remarks" formControlName="remarks"></textarea>
+        </div>
+        <button class="cancel" *ngIf="store" nbButton status="success" (click)="issueOpen()" type="button"
+          [disabled]="IssueOpenForm.invalid">
+          Approve
+        </button>
+        <button class="cancel" *ngIf="store" nbButton status="primary" (click)="issueReject()" type="button"
+          [disabled]="IssueOpenForm.invalid">
+          Reject
+        </button>
+        <button class="cancel" *ngIf="
+            store &&
+            IssueOpenForm.get('quantity').value >=
+              statusChangeIssue.storeItemModel.quantity
+          " nbButton status="primary" (click)="IndentCreate(dialog3)" type="button">
+          Indent
+        </button>
+        <button class="cancel" *ngIf="maintanance" nbButton status="success" (click)="issueCancel()" type="button"
+          [disabled]="IssueOpenForm.invalid">
+          Cancel
+        </button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #dialog2 let-ref="dialogRef">
+  <nb-card class="scroll-bar">
+    <nb-card-header>Issue
+      <button type="button" (click)="NbDialogRef2.close()" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="IssueOpenForm">
+        <div class="form-group">
+          <label for="item" class="label">Item Name <span class="red">*</span></label>
+          <input type="tel" nbInput fullWidth id="item" placeholder="Item" readonly
+            [value]="statusChangeIssue.storeItemModel.itemName" />
+        </div>
+        <div class="form-group">
+          <label for="quantity" class="label">Quantity <span class="red">*</span></label>
+          <input type="tel" nbInput fullWidth id="quantity" placeholder="Quantity" formControlName="quantity"
+            [value]="statusChangeIssue.quantity" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="description" class="label">Description</label>
+          <input type="tel" nbInput fullWidth id="description" placeholder="Description" readonly
+            [value]="statusChangeIssue.description" />
+        </div>
+
+        <div class="form-group">
+          <label for="coments" class="label">Comments <span class="red">*</span></label>
+          <input type="tel" nbInput fullWidth id="coments" placeholder="Comments" formControlName="coments" />
+        </div>
+        <div class="form-group">
+          <label for="remarks" class="label">Remarks</label>
+          <textarea nbInput fullWidth placeholder="Remarks" formControlName="remarks"></textarea>
+        </div>
+        <button class="cancel" *ngIf="maintanance" nbButton status="primary" (click)="issueClose()" type="button"
+          [disabled]="IssueOpenForm.invalid">
+          DONE
+        </button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #dialog3 let-ref="dialogRef">
+  <nb-card class="scroll-bar">
+    <nb-card-header>Create Indent
+      <button type="button" (click)="ref.close()" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="IndentForm" (ngSubmit)="onIndentFormSubmit()">
+        <div class="form-group" formGroupName="storeItem">
+          <label for="Select_Item" class="label">Select Item <span class="red">*</span></label>
+          <nb-select placeholder="Select Product Item" fullWidth formControlName="itemId">
+            <nb-option *ngFor="let item of item" [value]="item.itemId" aria-readonly="true">{{ item.itemName }}
+            </nb-option>
+          </nb-select>
+        </div>
+
+        <div class="form-group">
+          <label for="Select_Vender" class="label">Select Vender <span class="red">*</span></label>
+          <nb-select placeholder="Select Product Item" multiple fullWidth formControlName="venderAdd" (selectedChange)="changeVender($event)">
+            <nb-option *ngFor="let item of statusChangeIssue.storeItemModel.vendorDate" [value]="item.id" aria-readonly="true">{{ item.vendorName }}
+            </nb-option>
+          </nb-select>
+        </div>
+
+        <div class="form-group">
+          <label for="quantity" class="label">Quantity <span class="red">*</span></label>
+          <input type="tel" nbInput fullWidth id="quantity" placeholder="quantity" formControlName="quantity"
+            (keyup)="taxToatalQantity($event)" (keydown)="NumberOnly($event)" />
+        </div>
+
+        <div class="form-group">
+          <label for="estimatedPrice" class="label">Estimated Unit Price <span class="red">*</span></label>
+          <input type="tel" nbInput fullWidth id="estimatedPrice" placeholder="Estimated Unit Price"
+            (keyup)="taxToatal($event)" formControlName="estimatedPrice" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="tex" class="label">Tax %</label>
+          <input type="tel" nbInput readonly fullWidth id="tex" placeholder="Tax Price" value="{{ tax }}" />
+        </div>
+        <div class="form-group">
+          <label for="basicAmmount" class="label">Basic Amount</label>
+          <input type="tel" nbInput readonly fullWidth id="basicAmmount" placeholder="Basic Amount"
+            value="{{ basicAmmount }}" />
+        </div>
+        <div class="form-group">
+          <label for="total" class="label">Total Amount</label>
+          <input type="tel" nbInput readonly fullWidth id="total" placeholder="Total Amount" value="{{ total }}" />
+        </div>
+
+        <button nbButton status="success" [disabled]="IndentForm.invalid" type="submit">Submit</button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

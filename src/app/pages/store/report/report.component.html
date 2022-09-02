@@ -1,0 +1,104 @@
+<nb-card>
+  <nb-card-body>
+    <nb-tabset fullWidth>
+      <nb-tab tabTitle="Department Report">
+        <div class="row">
+          <div class="col-md-6">
+            <form [formGroup]="IndentForm">
+              <div class="form-group">
+                <label for="Select_Item" class="label">Select Item</label>
+                <nb-select placeholder="Select Product Item" fullWidth formControlName="departmentName"
+                  (ngModelChange)="chengeDepartmentName($event)">
+                  <nb-option *ngFor="let item of deptName" value="{{ item }}">{{ item }}
+                  </nb-option>
+                </nb-select>
+
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6">
+            <!-- <button nbButton status="danger">
+              Submit
+            </button> -->
+          </div>
+        </div>
+        <ng2-smart-table [settings]="settings" [source]="Source">
+        </ng2-smart-table>
+      </nb-tab>
+      <nb-tab tabTitle="Date & Machine Report">
+        <form [formGroup]="TwoDate" (ngSubmit)="onDateSubmit()">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="Select_Item" class="label">Select Department <span class="red">*</span></label>
+                <nb-select placeholder="Select Department Name" fullWidth formControlName="deptname"
+                  (ngModelChange)="chengeDepartmentName1($event)">
+                  <nb-option *ngFor="let item of deptName" value="{{ item }}">{{ item }}
+                  </nb-option>
+                </nb-select>
+              </div>
+              <div class="form-group">
+                <label for="requiredDays" class="label">Machine</label>
+                <nb-select placeholder="Select Machine Name" fullWidth formControlName="machineName">
+                  <nb-option [value]="">Select Machine</nb-option>
+                  <nb-option *ngFor="let item of MachineName" value="{{ item.id }}">{{ item.name }}
+                  </nb-option>
+                </nb-select>
+              </div>
+              <div class="form-group">
+                <label for="Date" class="label">Select Start Date <span class="red">*</span></label>
+                <input type="date" nbInput fullWidth id="Date" placeholder="Search Start Date" formControlName="start"
+                  [max]="getToday()" />
+              </div>
+              <div class="form-group">
+                <label for="end" class="label">Select End Date <span class="red">*</span></label>
+                <input type="date" nbInput fullWidth id="end" placeholder="Search End Date" formControlName="end"
+                  [max]="getToday()" />
+              </div>
+              <button nbButton status="danger" [disabled]="TwoDate.invalid">
+                Submit
+              </button>
+            </div>
+            <div class="col-md-9">
+              <ng2-smart-table [settings]="settings" [source]="SourceFilter">
+              </ng2-smart-table>
+            </div>
+          </div>
+        </form>
+      </nb-tab>
+      <nb-tab tabTitle="Item Report">
+        <form [formGroup]="TwoDateItem" (ngSubmit)="onDateItemSubmit()">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="Select_Item" class="label">Select Item <span class="red">*</span></label>
+                <nb-select placeholder="Select Item Name" fullWidth formControlName="itemId">
+                  <nb-option *ngFor="let item of item" value="{{ item.itemId }}">{{ item.itemName }}
+                  </nb-option>
+                </nb-select>
+              </div>
+
+              <div class="form-group">
+                <label for="Date" class="label">Select Start Date <span class="red">*</span></label>
+                <input type="date" nbInput fullWidth id="Date" placeholder="Search Start Date" formControlName="start"
+                  [max]="getToday()" />
+              </div>
+              <div class="form-group">
+                <label for="end" class="label">Select End Date <span class="red">*</span></label>
+                <input type="date" nbInput fullWidth id="end" placeholder="Search End Date" formControlName="end"
+                  [max]="getToday()" />
+              </div>
+              <button nbButton status="danger" [disabled]="TwoDateItem.invalid">
+                Submit
+              </button>
+            </div>
+            <div class="col-md-9">
+              <ng2-smart-table [settings]="settingsItemDate" [source]="SourceItemFilter">
+              </ng2-smart-table>
+            </div>
+          </div>
+        </form>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>

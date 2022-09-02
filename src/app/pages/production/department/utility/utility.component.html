@@ -1,0 +1,20 @@
+<p>utility works!</p>
+
+<div class="row">
+  <div class="col-md-3" *ngFor="let cost of demo; let i = index">
+    <nb-card status="warning">
+      <nb-card-header>{{cost.name}}</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-6">
+            <a [routerLink]="['/pages/production/addparameter']" [queryParams]="{type:'Utility',id:cost.id}"><button nbButton fullWidth status="basic">Add Parameter</button></a>
+          </div>
+          <div class="col-6">
+            <a><button nbButton fullWidth status="basic">Admin</button></a>
+          </div>
+         </div>
+      </nb-card-body>
+      <nb-card-footer>By Bloow Room</nb-card-footer>
+    </nb-card>
+  </div>
+</div>

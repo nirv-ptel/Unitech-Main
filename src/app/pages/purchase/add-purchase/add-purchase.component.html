@@ -1,0 +1,70 @@
+
+<nb-card>
+  <nb-card-header>Add Purchase</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="purchase" (ngSubmit)="onPurchaseSubmit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="DatePurchase" class="label">Date Purchase</label>
+            <input type="date" nbInput fullWidth id="DatePurchase" placeholder="Enter Date Purchase" formControlName="datePurchase">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="PartyName" class="label">Party Name</label>
+            <input type="text" nbInput fullWidth id="PartyName" placeholder="Enter Party Name" formControlName="partyName">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="PartyPlotNo" class="label">Party Plot No.</label>
+            <input type="number" nbInput fullWidth id="PartyPlotNo" placeholder="Enter Party Plot No." formControlName="partyPlotNo">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="MiliLotNo" class="label">Mill Lot No</label>
+            <input type="number" nbInput fullWidth id="MiliLotNo" placeholder="Enter Mill Lot No." formControlName="miliLotNo">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="OpeningStock" class="label">Opening Stock</label>
+            <input type="number" nbInput fullWidth id="OpeningStock" placeholder="Enter Opening Stock" formControlName="openingStock">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="PurchaseBales" class="label">Purchase Bales</label>
+            <input type="number" nbInput fullWidth id="PurchaseBales" placeholder="Enter Purchase Bales" formControlName="purchaseBales">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="IssueBales" class="label">Issue Bales</label>
+            <input type="number" nbInput fullWidth id="IssueBales" placeholder="Enter Issue Bales" formControlName="issueBales">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ClosingStock" class="label">Closing Stock</label>
+            <input type="number" nbInput fullWidth id="ClosingStock" placeholder="Enter Closing Stock" formControlName="closingStock">
+          </div>
+        </div>
+      </div>
+
+
+    <button type="submit" nbButton status="danger">Submit</button>
+    </form>
+  </nb-card-body>
+</nb-card>

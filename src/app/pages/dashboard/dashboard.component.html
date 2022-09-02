@@ -1,0 +1,87 @@
+
+<div class="row">
+  <div class="col-xxl-4 col-xl-6 col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <canvas id="canvas" #screen></canvas>
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton (click)="image('#canvas')">image</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+  <div class="col-xxl-4 col-xl-6 col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <canvas id="canvas1"></canvas>
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton (click)="image('#canvas1')">image</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+  <div class="col-xxl-4 col-xl-6 col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <canvas id="canvas2"></canvas>
+      </nb-card-body>
+      <nb-card-footer>
+        <form [formGroup]="SingleDate">
+          <div class="form-group">
+            <input type="date" nbInput fullWidth id="Date" placeholder="Search Date" formControlName="date">
+          </div>
+          <button nbButton (click)="addCol()">image</button>
+        </form>
+       
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td><button type="button" class="btn btn-primary position-relative">
+          Inbox
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            99+
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </button></td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+</table>

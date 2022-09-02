@@ -1,0 +1,82 @@
+<nb-card class="scroll-card-bar">
+    <nb-card-header> Indent Number - {{IndentDetailsName.IndentId}}
+        <button type="button" (click)="dismiss()" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </nb-card-header>
+    <nb-card-body>
+        <!-- <ng2-smart-table [settings]="Itemsettings" [source]="ItemSource">
+        </ng2-smart-table> -->
+        <br>
+
+    </nb-card-body>
+    <nb-card-body>
+        <div class="row">
+            <!-- <div class="col-12 col-xl-4">
+                <p> Basic Ammount - {{IndentDetailsName.IndentTotal}}</p>
+                <p>Total Ammount (with tax) - {{IndentDetailsName.IndentTaxTotal}}</p>
+            </div> -->
+            <div class="col-12 col-xl-12">
+                <nb-card *ngIf="indentFormApprovel">
+                    <nb-card-header>Approvel Indent</nb-card-header>
+                    <nb-card-body>
+                        <form [formGroup]="IndentSatatusChange">
+                            <div class="form-group">
+                                <label for="comment" class="label">Comment</label>
+                                <input type="text" nbInput fullWidth id="comment" placeholder="comment"
+                                    formControlName="comment" />
+                            </div>
+                            <button class="cancel" nbButton status="success" type="button"
+                            [disabled]="IndentSatatusChange.invalid" (click)="ApprovedIndnet()">Approve</button>
+                            <button class="cancel" nbButton status="primary" type="button"
+                                [disabled]="IndentSatatusChange.invalid" (click)="ApprovedReject()">Reject</button>
+                        </form>
+                    </nb-card-body>
+                </nb-card>
+
+                <nb-card *ngIf="indentFormApprovelStore">
+                    <nb-card-header>Approvel Indent Store </nb-card-header>
+                    <nb-card-body>
+                        <ngx-approve-store-form [itemData]="ItemSource" [indentId]="indentId"></ngx-approve-store-form>
+                    </nb-card-body>
+                </nb-card>
+
+                <nb-card *ngIf="indentFormApprovelLast">
+                    <nb-card-header>Approvel Indent Last Admin Coming Soon</nb-card-header>
+                    <nb-card-body>
+                        <ngx-appprove-admin-form [indentId]="indentId"></ngx-appprove-admin-form>
+                        <!-- <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Select Vender</th>
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Item Price</th>
+                                    <th scope="col">Vender Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of ItemVenderSorce">
+                                    <td>
+                                        <nb-checkbox></nb-checkbox>
+                                    </td>
+                                    <td>{{item.itemModelPrice.itemName}}</td>
+                                    <td>{{item.priceItem}}</td>
+                                    <td>{{item.vendorModelData.vendorName}}</td>
+                                </tr>
+                            </tbody>
+                        </table> -->
+                    </nb-card-body>
+                </nb-card>
+            </div>
+
+        </div>
+        <!-- <ng2-smart-table [settings]="Appovelsettings" [source]="ApproveRecord">
+        </ng2-smart-table> -->
+    </nb-card-body>
+    <nb-card-body>
+
+    </nb-card-body>
+    <nb-card-footer ng-controller="datCtrl">
+        Indent Date - {{IndentDetailsName.IndentDate | date : "MMM dd, y - hh:mm:ss a" }}
+    </nb-card-footer>
+</nb-card>

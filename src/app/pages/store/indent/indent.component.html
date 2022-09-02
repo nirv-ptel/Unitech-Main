@@ -1,0 +1,336 @@
+<div class="row" *ngIf="store">
+    <div class="col-md-12">
+        <nb-card>
+            <nb-card-header>
+                <div *ngIf="store" class="float">
+                    <button nbButton status="danger" (click)="createIndent()">New Indent</button>
+                </div>
+            </nb-card-header>
+        </nb-card>
+    </div>
+</div>
+
+<nb-card>
+    <nb-card-header>Indent List</nb-card-header>
+    <nb-card-body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Indent Number</th>
+                    <th scope="col">Basic Ammount</th>
+                    <th scope="col">Total Ammount</th>
+                    <th scope="col">Indent Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of IndentSource | paginate : 
+                {
+                  itemsPerPage: itemsPerPage,
+                  currentPage: page,
+                  totalItems: totalItems
+                }">
+                    <th scope="row"> {{ item.indentId}}</th>
+                    <td>{{item.total}}</td>
+                    <td>{{item.includingTax}}</td>
+                    <td ng-controller="datCtrl">{{item.created | date : "MMM dd, y - hh:mm:ss a"}}</td>
+                    <td>{{item.indentStatus}}
+                       
+                    </td>
+                    <td>
+                        <i class="fa-solid fa-eye" (click)="openIndentDetails(item.indentId,dialog)" title="View"></i>
+                        <i class="fa-solid fa-pen" (click)="openIndentDetails(item.indentId,dialog)" title="Edit"></i>
+                        <i class="fa-solid fa-trash" title="Delete"></i>
+                        <i class="fa-solid fa-download" (click)="downloadAsPo()" title="Download"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls class="pagi" (pageChange)="ViewIndentPage((page = $event))"></pagination-controls>
+        <div class="float">
+            <nb-select class="form-select" [selected]="5" [(ngModel)]="itemsPerPage"
+                (ngModelChange)="refreshCountries()">
+                <nb-option [value]="5">5 items per page</nb-option>
+                <nb-option [value]="10">10 items per page</nb-option>
+                <nb-option [value]="25">25 items per page</nb-option>
+            </nb-select>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<!-- <ng-template #dialog let-ref="dialogRef">
+    <nb-card class="scroll-bar">
+        <nb-card-header>View Indent
+            <button type="button" (click)="ref.close()" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </nb-card-header>
+        <nb-card-body>
+            this is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialog this is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialog this is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialog this is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialogthis is some
+            additional data passed to dialogthis is some additional data passed to dialogthis is some additional data
+            passed to dialogthis is some additional data passed to dialogthis is some additional data passed to
+            dialogthis is some additional data passed to dialogthis is some additional data passed to dialog
+        </nb-card-body>
+    </nb-card>
+</ng-template> -->
+
+<!-- <nb-card>
+    <nb-card-body>
+        <nb-tabset fullWidth>
+            <nb-tab *ngIf="gm" tabTitle="PENDING">
+                <ng2-smart-table [settings]="VPONLYsettings" [source]="VPIndentSource"
+                    (custom)="onChangeIndentStatus($event.data,dialog1)">
+                </ng2-smart-table>
+            </nb-tab>
+            <nb-tab *ngIf="admin" tabTitle="PENDING">
+                <ng2-smart-table [settings]="ADMINONLYsettings" [source]="ADMINIndentSource"
+                    (custom)="onChangeIndentStatus($event.data,dialog1)">
+                </ng2-smart-table>
+            </nb-tab>
+            <nb-tab *ngIf="account" tabTitle="PENDING">
+                <ng2-smart-table [settings]="ACCOUNTONLYsettings" [source]="ACCOUNTIndentSource"
+                    (custom)="onChangeIndentStatus($event.data,dialog1)">
+                </ng2-smart-table>
+            </nb-tab>
+            <nb-tab *ngIf="!gm && (admin || store)" tabTitle="GM">
+                <ng2-smart-table [settings]="VPsettings" [source]="VPIndentSource">
+                </ng2-smart-table>
+            </nb-tab>
+            <nb-tab *ngIf="!admin && (store || gm)" tabTitle="ADMIN">
+                <ng2-smart-table [settings]="ADMINsettings" [source]="ADMINIndentSource">
+                </ng2-smart-table>
+            </nb-tab>
+            <nb-tab *ngIf="!account" tabTitle="ACCOUNT">
+                <ng2-smart-table [settings]="ACCOUNTsettings" [source]="ACCOUNTIndentSource">
+                </ng2-smart-table>
+            </nb-tab>
+            <nb-tab *ngIf="store || admin || gm" tabTitle="REJECT">
+                <ng2-smart-table [settings]="REJECTsettings" [source]="REJECTIndentSource">
+                </ng2-smart-table>
+            </nb-tab>
+            <nb-tab *ngIf="store || admin || account" tabTitle="DONE">
+                <ng2-smart-table [settings]="DONEsettings" [source]="DONEIndentSource">
+                </ng2-smart-table>
+            </nb-tab>
+            <nb-tab *ngIf="store || admin" tabTitle="ALL">
+                <ng2-smart-table [settings]="settings" [source]="IndentSource"
+                    (custom)="onChangeIndentViewStatus($event.data,dialog2)">
+                </ng2-smart-table>
+            </nb-tab>
+
+        </nb-tabset>
+    </nb-card-body>
+</nb-card> -->
+<!-- 
+<ng-template #dialog let-ref="dialogRef">
+    <nb-card class="scroll-bar">
+        <nb-card-header>Create Indent
+            <button type="button" (click)="ref.close()" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="IndentForm" (ngSubmit)="onIndentFormSubmit()">
+                <div class="form-group" formGroupName="storeItem">
+                    <label for="Select_Item" class="label">Select Item <span class="red">*</span></label>
+                    <nb-select placeholder="Select Product Item" fullWidth formControlName="itemId"
+                        (ngModelChange)="ItemPriceTotal($event)">
+                        <nb-option *ngFor="let item of item" value="{{item.itemId}}">{{item.itemName}}
+                        </nb-option>
+                    </nb-select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Select_Vender" class="label">Select Vender <span class="red">*</span></label>
+                    <nb-select placeholder="Select Vender" multiple fullWidth formControlName="venderAdd"
+                        (selectedChange)="changeVender($event)">
+                        <nb-option *ngFor="let item of vendorDate" [value]="item.id" aria-readonly="true">{{
+                            item.vendorName }}
+                        </nb-option>
+                    </nb-select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity" class="label">Quantity <span class="red">*</span></label>
+                    <input type="tel" nbInput fullWidth id="quantity" placeholder="quantity" formControlName="quantity"
+                        (keyup)="taxToatalQantity($event)" (keydown)="NumberOnly($event)">
+                </div>
+
+                <div class="form-group">
+                    <label for="estimatedPrice" class="label">Estimated Unit Price <span class="red">*</span></label>
+                    <input type="tel" nbInput fullWidth id="estimatedPrice" placeholder="Estimated Unit Price"
+                        (keyup)="taxToatal($event)" formControlName="estimatedPrice" (keydown)="NumberOnly($event)">
+                </div>
+                <div class="form-group">
+                    <label for="tex" class="label">Tax %</label>
+                    <input type="tel" nbInput readonly fullWidth id="tex" placeholder="Tax Price" value="{{tax}}">
+                </div>
+                <div class="form-group">
+                    <label for="basicAmmount" class="label">Basic Amount</label>
+                    <input type="tel" nbInput readonly fullWidth id="basicAmmount" placeholder="Basic Amount"
+                        value="{{basicAmmount}}">
+                </div>
+                <div class="form-group">
+                    <label for="total" class="label">Total Amount</label>
+                    <input type="tel" nbInput readonly fullWidth id="total" placeholder="Total Amount"
+                        value="{{total}}">
+                </div>
+                <button nbButton status="success" [disabled]="IndentForm.invalid" type="submit">Submit</button>
+            </form>
+        </nb-card-body>
+    </nb-card>
+</ng-template>
+
+<ng-template #dialog1 let-ref="dialogRef">
+    <nb-card class="scroll-bar">
+        <nb-card-header>Indent
+            <button type="button" (click)="NbDialogRef1.close()" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="IndentOpenForm">
+                <div class="form-group">
+                    <label for="Select_Item" class="label">Select Item</label>
+                    <input type="text" nbInput fullWidth id="item" placeholder="item"
+                        value="{{statuschange.storeItem.itemName}}" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity" class="label">Quantity</label>
+                    <input type="text" nbInput fullWidth id="quantity" placeholder="quantity" formControlName="quantity"
+                        readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="estimatedPrice" class="label">Estimated Unit Price</label>
+                    <input type="text" nbInput fullWidth id="estimatedPrice" placeholder="Estimated Unit Price"
+                        value="{{statuschange.estimatedPrice}}" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="tex" class="label">Tax %</label>
+                    <input type="text" nbInput readonly fullWidth id="tex" placeholder="Tax Price"
+                        value="{{ statuschange.storeItem.paytax }}" />
+                </div>
+                <div class="form-group">
+                    <label for="basicAmmount" class="label">Basic Amount</label>
+                    <input type="text" nbInput readonly fullWidth id="basicAmmount" placeholder="Basic Amount"
+                        value="{{ statuschange.total }}" />
+                </div>
+                <div class="form-group">
+                    <label for="total" class="label">Total Amount</label>
+                    <input type="text" nbInput readonly fullWidth id="total" placeholder="Total Amount"
+                        value="{{ statuschange.includingTax }}" />
+                </div>
+                <div class="row" *ngIf="admin">
+                    <div class="col-md-3">
+                        <button class="view" nbButton status="success" (click)="ViewVendor($event,dialog3)"
+                            type="button">View</button>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label for="Select_Item" class="label">Select Vender <span class="red">*</span></label>
+                            <nb-select placeholder="Select Vender" fullWidth formControlName="vendorSelect"
+                                (ngModelChange)="ViewVendor($event,dialog3)">
+                                <nb-option *ngFor="let item of statuschange.dataVendorAndIndent" value="{{item.id}}">
+                                    {{item.vendorName}}
+                                </nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="coments" class="label">Comments <span class="red">*</span></label>
+                    <input type="tel" nbInput fullWidth id="coments" placeholder="coments" formControlName="coments">
+                </div>
+                <div class="form-group">
+                    <label for="remarks" class="label">Remarks</label>
+                    <textarea nbInput fullWidth placeholder="remarks" formControlName="remarks"></textarea>
+                </div>
+                <button class="cancel" nbButton status="success" (click)="indentOpen()" type="button"
+                    [disabled]="IndentOpenForm.invalid">Approve</button>
+                <button class="cancel" *ngIf="gm || admin" nbButton status="primary" (click)="indentReject()"
+                    type="button" [disabled]="IndentOpenForm.get('coments').invalid">Reject</button>
+            </form>
+        </nb-card-body>
+    </nb-card>
+</ng-template>
+
+<ng-template #dialog2 let-ref="dialogRef">
+    <nb-card class="scroll-bar">
+        <nb-card-header>
+            <button type="button" (click)="NbDialogRef2.close()" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </nb-card-header>
+        <nb-card-body>
+            <ng2-smart-table class="scroll-bar" [settings]="Responcesettings" [source]="ResponceSource">
+            </ng2-smart-table>
+        </nb-card-body>
+    </nb-card>
+</ng-template>
+
+<ng-template #dialog3 let-data let-ref="NbDialogRef3">
+    <nb-card class="lg">
+        <nb-card-header>View Vendor
+            <button type="button" (click)="NbDialogRef3.close()" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-md-4" *ngFor="let item of vendorDetails">
+                    <nb-list>
+                        <nb-list-item> vendor Code:- {{item.vendorcode}}</nb-list-item>
+                        <nb-list-item> vendor Name:- {{item.vendorName}}</nb-list-item>
+                        <nb-list-item> vendor Address:- {{item.vendorAddress}}</nb-list-item>
+                        <nb-list-item> pan no:- {{item.panno}}</nb-list-item>
+                        <nb-list-item> gst no:- {{item.gstno}}</nb-list-item>
+                        <nb-list-item> payment Terms Conditions:- {{item.paymentTermsConditions}}
+                        </nb-list-item>
+                    </nb-list>
+                </div>
+            </div>
+
+        </nb-card-body>
+        <nb-card-footer>
+            <button class="cancel" nbButton status="success" (click)="NbDialogRef3.close()"
+                type="button">Submit</button>
+        </nb-card-footer>
+    </nb-card>
+</ng-template> -->

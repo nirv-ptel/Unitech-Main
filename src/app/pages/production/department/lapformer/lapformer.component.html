@@ -1,0 +1,308 @@
+<div class="row" *ngIf="admin && !MachineNotFounderror">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>lapformer</nb-card-header>
+      <nb-card-body>
+        <canvas id="canvas"></canvas>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row" *ngIf="admin">
+  <div *ngIf="MachineNotFounderror">
+    <nb-card class="text-center">
+      <nb-card-body>
+        <h2>Lap Former Machine Not Found</h2>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-12" *ngIf="!MachineNotFounderror">
+    <nb-card>
+      <nb-card-body>
+        <nb-tabset fullWidth>
+          <nb-tab tabTitle="All Machine">
+            <div class="row">
+              <div class="col-md-3" *ngFor="let cost of demo; let i = index">
+                <nb-card status="danger">
+                  <nb-card-header>{{cost.name}}</nb-card-header>
+                  <nb-card-body>
+                  </nb-card-body>
+                  <nb-card-footer>By Lap former</nb-card-footer>
+                </nb-card>
+              </div>
+            </div>
+          </nb-tab>
+          <nb-tab tabTitle="Search One Date"><br>
+            <form [formGroup]="SingleDate" (ngSubmit)="onDateSingleSubmit()">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="date" nbInput fullWidth id="Date" placeholder="Search Date" formControlName="date">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <button nbButton status="danger">Submit</button>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="adminOneDate">
+              <ng2-smart-table [settings]="settings1" [source]="source1">
+              </ng2-smart-table>
+              <button nbButton status="danger" (click)="downloadSingle()">Download</button>
+            </div>
+          </nb-tab>
+          <nb-tab tabTitle="Search Date">
+            <form [formGroup]="TwoDate" (ngSubmit)="onDateSubmit()">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="date" nbInput fullWidth id="Date" placeholder="Search Start Date"
+                      formControlName="start">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="date" nbInput fullWidth id="end" placeholder="Search End Date" formControlName="end">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <button nbButton status="danger">Submit</button>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="adminTwoDate">
+              <ng2-smart-table [settings]="settings1" [source]="source2">
+              </ng2-smart-table>
+              <button nbButton status="danger" (click)="download()">Download</button>
+            </div>
+          </nb-tab>
+        </nb-tabset>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row" *ngIf="superviser">
+  <div *ngIf="MachineNotFounderror">
+    <nb-card class="text-center">
+      <nb-card-body>
+        <h2>Lap Former Machine Not Found</h2>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-12" *ngIf="!QcMachineParameterNotSetError">
+    <nb-card>
+      <nb-card-header>{{todayDate | date: 'dd/MM/yyyy'}}
+        <button class="btn-float" *ngIf="shiftData || shiftData1" nbButton status="danger"
+          (click)="addParameter(dialog)">Add Parameter</button>
+      </nb-card-header>
+      <nb-card-body>
+        <ng2-smart-table [settings]="superviserViewData" [source]="source">
+        </ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row" *ngIf="qc">
+  <div *ngIf="MachineNotFounderror">
+    <nb-card class="text-center">
+      <nb-card-body>
+        <h2>Lap Former Machine Not Found</h2>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-12" *ngIf="!MachineNotFounderror">
+    <nb-card>
+      <nb-card-header>{{ time | date: 'dd/MM/yyyy'}}
+      </nb-card-header>
+      <nb-card-body>
+        <hr>
+        <div *ngIf="qcokay">
+          <form [formGroup]="lapformerpara" (ngSubmit)="onComberSubmit()">
+            <div formArrayName="lapformerparaData">
+              <div *ngFor="let party of LapformerGet.controls; let i = index">
+                <div [formGroupName]="i">
+                  <div class="row">
+                    <div class="col-md-3">{{party.controls.addLapFormer.value.name}}</div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="para1-{{i}}" class="label">DELIVRY SPEED</label>
+                        <input type="tel1" nbInput fullWidth id="para1-{{i}}" pattern="[0-9]{3}"
+                          placeholder="ENTER DELIVRY SPEED" formControlName="deliveryspeed"
+                          (keydown)="NumberOnly($event)"
+                          [status]="party.get('deliveryspeed').touched ? (party.get('deliveryspeed').invalid  ? 'danger' : 'success') : 'basic'">
+                        <small *ngIf="party.get('deliveryspeed').invalid && party.get('deliveryspeed').touched"
+                          class="red">Delivery Speed is required</small>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="para3-{{i}}" class="label">LAP WEIGHT</label>
+                        <input type="text" nbInput fullWidth id="para3-{{i}}" placeholder="ENTER LAP WEIGHT"
+                          formControlName="lapWeight" (keydown)="NumberOnly($event)"
+                          [status]="party.get('lapWeight').touched ? (party.get('lapWeight').invalid  ? 'danger' : 'success') : 'basic'">
+                        <small *ngIf="party.get('lapWeight').invalid && party.get('lapWeight').touched"
+                          class="red">Lap Weight is required</small>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="para4-{{i}}" class="label">MACHINE EFFICENCY</label>
+                        <!-- pattern="([0-9]{1})+\.([0-9]{3})" -->
+                        <input type="text" nbInput fullWidth id="para4-{{i}}" placeholder="ENTER MACHINE EFFICENCY"
+                          formControlName="machineefficency"
+                          [status]="party.get('machineefficency').touched ? (party.get('machineefficency').invalid  ? 'danger' : 'success') : 'basic'">
+                        <small *ngIf="party.get('machineefficency').invalid && party.get('machineefficency').touched"
+                          class="red">Machine Efficency is required</small>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+            <div *ngIf="(LapformerGet.controls.length != 0)">
+              <button type="submit" nbButton status="danger"
+                [disabled]="lapformerpara.get('lapformerparaData').invalid">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div *ngIf="qcdataokay">
+          <ng2-smart-table [settings]="settings" [source]="source">
+          </ng2-smart-table>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+
+<ng-template #dialog let-ref="dialogRef">
+  <nb-card class="scroll-bar">
+    <nb-card-header>
+      <div *ngIf="shiftA1">8:00 AM To 2:00 PM</div>
+      <div *ngIf="shiftA2">2:00 PM To 8:00 PM</div>
+      <div *ngIf="shiftB1">8:00 PM To 2:00 AM</div>
+      <div *ngIf="shiftB2">2:00 AM To 8:00 AM</div>
+    </nb-card-header>
+    <nb-card-body>
+
+      <div *ngIf="shiftA1">
+        <form [formGroup]="lapformerparameterAone" (ngSubmit)="onLapformerParameterAoneSubmit(); clicked = true;">
+          <div formArrayName="parareading">
+            <div *ngFor="let cost of LapformerParaAoneGet.controls; let i = index" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-12" *ngIf="shiftData">
+                  <div class="form-group">
+                    <label for="parameter-{{i}}"
+                      class="label">{{cost.controls.description._pendingValue.addLapFormer.name}}</label>
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" pattern="[0-9]{3}"
+                      placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursOne" (keydown)="NumberOnly($event)"
+                      [readonly]="(cost.controls.description._pendingValue.shift_a_sixHoursOne == 0) ? false : true"
+                      [value]="cost.controls.description._pendingValue.shift_a_sixHoursOne"
+                      [status]="cost.get('shift_a_sixHoursOne').touched ? (cost.get('shift_a_sixHoursOne').invalid  ? 'danger' : 'success') : 'basic'">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="(LapformerParaAoneGet.controls.length != 0)">
+              <button type="submit" nbButton status="danger"
+                [disabled]="lapformerparameterAone.get('parareading').invalid || clicked">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="shiftA2">
+        <form [formGroup]="lapformerparameterAtwo" (ngSubmit)="onLapformerParameterAtwoSubmit(); clicked = true;">
+          <div formArrayName="parareading">
+            <div *ngFor="let cost of LapformerParaAtwoGet.controls; let i = index" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-12" *ngIf="shiftData">
+                  <div class="form-group">
+                    <label for="parameter-{{i}}"
+                      class="label">{{cost.controls.description._pendingValue.addLapFormer.name}}</label>
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" pattern="[0-9]{3}"
+                      placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursTwo" (keydown)="NumberOnly($event)"
+                      [readonly]="(cost.controls.description._pendingValue.shift_a_sixHoursTwo == 0) ? false : true"
+                      [value]="cost.controls.description._pendingValue.shift_a_sixHoursTwo"
+                      [status]="cost.get('shift_a_sixHoursTwo').touched ? (cost.get('shift_a_sixHoursTwo').invalid  ? 'danger' : 'success') : 'basic'">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="(LapformerParaAtwoGet.controls.length != 0)">
+              <button type="submit" nbButton status="danger"
+                [disabled]="lapformerparameterAtwo.get('parareading').invalid || clicked">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="shiftB1">
+        <form [formGroup]="lapformerparameterBone" (ngSubmit)="onLapformerParameterBoneSubmit(); clicked = true;">
+          <div formArrayName="parareading">
+            <div *ngFor="let cost of LapformerParaBoneGet.controls; let i = index" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-12" *ngIf="shiftData1">
+                  <div class="form-group">
+                    <label for="parameter-{{i}}"
+                      class="label">{{cost.controls.description._pendingValue.addLapFormer.name}}</label>
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" pattern="[0-9]{3}"
+                      placeholder="ENTER PARAMETER" formControlName="shift_b_sixHoursOne" (keydown)="NumberOnly($event)"
+                      [readonly]="(cost.controls.description._pendingValue.shift_b_sixHoursOne == 0) ? false : true"
+                      [value]="cost.controls.description._pendingValue.shift_b_sixHoursOne"
+                      [status]="cost.get('shift_b_sixHoursOne').touched ? (cost.get('shift_b_sixHoursOne').invalid  ? 'danger' : 'success') : 'basic'">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="(LapformerParaBoneGet.controls.length != 0)">
+              <button type="submit" nbButton status="danger"
+                [disabled]="lapformerparameterBone.get('parareading').invalid || clicked">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="shiftB2">
+        <form [formGroup]="lapformerparameterBtwo" (ngSubmit)="onLapformerparameterBtwoSubmit(); clicked = true;">
+          <div formArrayName="parareading">
+            <div *ngFor="let cost of LapformerParaBtwoGet.controls; let i = index" [formGroupName]="i">
+              <div class="row">
+                <div class="col-md-12" *ngIf="shiftData1">
+                  <div class="form-group">
+                    <label for="parameter-{{i}}"
+                      class="label">{{cost.controls.description._pendingValue.addLapFormer.name}}</label>
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" pattern="[0-9]{3}"
+                      placeholder="ENTER PARAMETER" formControlName="shift_b_sixHoursTwo" (keydown)="NumberOnly($event)"
+                      [readonly]="(cost.controls.description._pendingValue.shift_b_sixHoursTwo == 0) ? false : true"
+                      [value]="cost.controls.description._pendingValue.shift_b_sixHoursTwo"
+                      [status]="cost.get('shift_b_sixHoursTwo').touched ? (cost.get('shift_b_sixHoursTwo').invalid  ? 'danger' : 'success') : 'basic'">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="(LapformerParaBtwoGet.controls.length != 0)">
+              <button type="submit" nbButton status="danger"
+                [disabled]="lapformerparameterBtwo.get('parareading').invalid || clicked">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </nb-card-body>
+    <nb-card-footer>
+      <button class="cancel" nbButton status="danger" (click)="ref.close()">Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

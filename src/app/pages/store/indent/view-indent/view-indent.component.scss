@@ -1,0 +1,56 @@
+.red {
+    color: red;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+.mr-10 {
+    margin-right: 10px;
+}
+.m-10 {
+    margin: 10px;
+}
+.mr-50 {
+    margin-right: 50px;
+}
+.float {
+    float: right;
+}
+
+:host ::ng-deep 
+nb-card-header a {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  font-size: 3em;
+  text-decoration: none;
+}
+// :host ::ng-deep 
+nb-card-header .ml-40 {
+    margin-left: 40px;
+}
+.cancel {
+    margin: 0.5rem;
+  }
+  
+.scroll-card-bar {
+    max-height: 100%;
+    overflow-y: hidden;
+  }
+  
+
+
+@media only screen and (max-aspect-ratio: 16/11) {
+    :host .scroll-card-bar {
+        width: 300px;
+        overflow-x: hidden;
+    }
+}
+
+@media only screen and (min-aspect-ratio: 16/11) {
+    :host .scroll-card-bar {
+        width: auto;
+        overflow-x: hidden;
+    }
+}

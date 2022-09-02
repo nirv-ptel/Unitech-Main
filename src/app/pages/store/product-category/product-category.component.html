@@ -1,0 +1,42 @@
+<div *ngIf="admin || store">
+  <nb-card>
+    <nb-card-header>Product Category
+      <button nbButton status="danger" class="right" (click)="addCategory(dialog)">
+        Add Product Category
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="source">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+</div>
+
+<ng-template #dialog let-ref="dialogRef">
+  <form [formGroup]="CategoryForm" (ngSubmit)="onCategoryFormSubmit(dialog)">
+    <nb-card>
+      <nb-card-header>Enter Product Category Name
+        <button type="button" (click)="NbDialogRef.close()" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="form-group">
+          <label for="name" class="label">Name</label>
+          <input type="text" nbInput fullWidth id="name" placeholder="Name" formControlName="productName" [status]="
+              CategoryForm.get('productName').touched
+                ? CategoryForm.get('productName').invalid
+                  ? 'danger'
+                  : 'success'
+                : 'basic'
+            " />
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton status="success" type="submit" [disabled]="CategoryForm.get('productName').invalid">
+          Submit
+        </button>
+      </nb-card-footer>
+    </nb-card>
+  </form>
+</ng-template>

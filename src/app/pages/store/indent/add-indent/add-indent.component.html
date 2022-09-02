@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-md-12">
+        <nb-card>
+            <nb-card-header>
+                <a (click)="backClicked()"><i class="icon nb-arrow-thin-left"></i></a>
+            </nb-card-header>
+        </nb-card>
+    </div>
+</div>
+
+<nb-card>
+    <nb-card-header>Create Indent</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="IndentForm" (ngSubmit)="onIndentFormSubmit()">
+            <div formArrayName="indentQuantityList">
+                <div *ngFor="let party of AddIndentGet.controls; let i = index">
+                    <div class="row" [formGroupName]="i">
+                        <div class="col-md-2">
+                            <div class="form-group" formGroupName="storeItemIndentQuantityData">
+                                <label for="Select_Item-{{i}}" class="label">Select Item <span
+                                        class="red">*</span></label>
+                                <nb-select placeholder="Select Product Item" fullWidth formControlName="itemId"
+                                    (ngModelChange)="ItemPriceTotal($event,i)">
+                                    <nb-option *ngFor="let item of item" value="{{item.itemId}}">{{item.itemName}}
+                                    </nb-option>
+                                </nb-select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="quantity-{{i}}" class="label">Quantity <span class="red">*</span></label>
+                                <input type="tel" nbInput fullWidth id="quantity-{{i}}" placeholder="quantity"
+                                    formControlName="quantity" (keyup)="taxToatalQantity(i)"
+                                    (keydown)="NumberOnly($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="estimatedPrice-{{i}}" class="label">Estimated Unit Price <span
+                                        class="red">*</span></label>
+                                <input type="tel" nbInput fullWidth id="estimatedPrice-{{i}}"
+                                    placeholder="Estimated Unit Price" formControlName="estimatedPrice"
+                                    (keyup)="taxToatalQantity(i)" (keydown)="NumberOnly($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label for="tax-{{i}}" class="label">Tax (%)</label>
+                                <input type="tel" nbInput fullWidth id="tax-{{i}}" placeholder="Tax"
+                                    formControlName="tax" readonly="readonly" (keydown)="NumberOnly($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="BasicAmmount-{{i}}" class="label">Basic Ammount</label>
+                                <input type="tel" nbInput fullWidth id="BasicAmmount-{{i}}" placeholder="Basic Ammount"
+                                    formControlName="BasicAmmount" readonly="readonly" (keydown)="NumberOnly($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="TotalAmmount-{{i}}" class="label">Total Ammount</label>
+                                <!-- <p  formControlName="TotalAmmount">aaa</p> -->
+                                <input type="tel" nbInput fullWidth id="TotalAmmount-{{i}}" placeholder="Total Ammount"
+                                    formControlName="TotalAmmount" readonly="readonly" (keydown)="NumberOnly($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <button nbButton *ngIf="i>=1" status="danger" class="mt-20" (click)="AddIndentRemove(i)">
+                                <nb-icon icon="trash-2-outline"></nb-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <button type="button" nbButton status="success" class="mr-10" (click)="IndnetAdd()">
+                <nb-icon icon="plus-square-outline"></nb-icon>
+            </button>
+            <button nbButton status="success" [disabled]="IndentForm.invalid" type="submit">Submit</button>
+        </form>
+    </nb-card-body>
+</nb-card>

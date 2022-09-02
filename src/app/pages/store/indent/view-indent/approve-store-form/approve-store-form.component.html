@@ -1,0 +1,38 @@
+<form [formGroup]="IndentStatusChange">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Select Vender</th>
+                <th *ngFor="let item of itemData" scope="col">
+                    {{item.storeItemIndentQuantityData.itemName}}</th>
+                    <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody formArrayName="vendorWisePriceSet">
+            <tr *ngFor="let party of AddvendorWiseGet.controls; let i = index" [formGroupName]="i">
+                <td formGroupName="vendorModelData">
+                    <nb-select placeholder="Select Vender" fullWidth formControlName="id">
+                        <nb-option *ngFor="let item of VenderSource" value="{{item.id}}">
+                            {{item.vendorName}}
+                        </nb-option>
+                    </nb-select>
+                </td>
+
+                <td formArrayName="priceItem" *ngFor="let price of AddPriceGet(i).controls; let j = index">
+                    <div [formGroupName]="j">
+                        <input nbInput type="tel" formControlName="price" placeholder="Enter Price">
+                        <!-- <input nbInput type="tel" formControlName="item"> -->
+                    </div>
+                </td>
+
+                <td>
+                    <button nbButton *ngIf="i>=1" status="danger" class="mt-20" (click)="AddVenderRemove(i)">
+                        <nb-icon icon="trash-2-outline"></nb-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button nbButton status="primary" class="mr-10" (click)="vendorWisePriceSetAdd()"><nb-icon icon="plus-square-outline"></nb-icon></button>
+    <button nbButton status="success" [disabled]="IndentStatusChange.invalid" (click)="onSubmitData()">Submit</button>
+</form>

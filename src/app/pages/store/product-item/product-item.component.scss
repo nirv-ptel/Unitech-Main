@@ -1,0 +1,48 @@
+@import "./../../../@theme/styles/themes";
+
+.cancel {
+  margin-right: 1rem;
+}
+.scroll-bar {
+  max-height: 100%;
+  overflow-y: hidden;
+}
+.red {
+  color: red;
+}
+:host ::ng-deep ng2-st-tbody-edit-delete {display: flex !important;
+  height: 0 !important;
+}
+
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  font-size: 1.1em;
+  text-decoration: none;
+}
+
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
+  color: #ff3d71;
+}
+
+:host ::ng-deep .cell_right {
+
+  color: white;
+  text-align: center;
+  background-color: #ff3d71;
+  padding: 4px 8px;
+  border-radius: 12%;
+  }
+
+:host ::ng-deep .cell_right1 {
+  color: white;
+  text-align: center;
+  background-color: #16cb5f;
+  padding: 4px 8px;
+  border-radius: 12%;
+}
+
+.margin {
+  margin-bottom: 10px;
+}

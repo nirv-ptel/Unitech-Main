@@ -1,0 +1,239 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>Select Department form</nb-card-header>
+      <nb-card-body>
+        <form>
+          <div class="form-group">
+            <label for="roleName" class="label">Department Name</label>
+            <!-- <input type="text" nbInput fullWidth id="roleName" placeholder="Enter Role Name"> -->
+            <nb-select fullWidth selected="bloowroom" (selectedChange)="onFormChange($event)" >
+              <nb-option value="bloowroom">Bloow Room</nb-option>
+              <nb-option value="carding">Carding</nb-option>
+              <nb-option value="drawframes">Draw Frames</nb-option>
+              <nb-option value="finisher">Finisher</nb-option>
+              <nb-option value="simplex">Speed Frame</nb-option>
+              <nb-option value="ringframe">Ring Frame</nb-option>
+              <nb-option value="winding">Winding</nb-option>
+              <nb-option value="packing">Packing</nb-option>
+              <nb-option value="utility">Utility</nb-option>
+              <nb-option value="wasteroom">Waste Room</nb-option>
+              <nb-option value="combers">Combers</nb-option>
+              <nb-option value="lapformer">Lap Former</nb-option>
+            </nb-select>
+          </div>
+        <!-- <button type="submit" nbButton status="danger">Submit</button> -->
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+
+    <nb-card *ngIf="bloowroom1">
+      <nb-card-header>bloowroom</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="bloowroom" (ngSubmit)="onBloowroomSubmit()">
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="bloowroom.get('name').invalid || bloowroom.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="carding1">
+      <nb-card-header>carding</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="carding" (ngSubmit)="onCardingSubmit()">
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="carding.get('name').invalid || carding.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="drawframes1">
+      <nb-card-header>drawframes</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="drawframes" (ngSubmit)="onDrawframesSubmit()">
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="drawframes.get('name').invalid || drawframes.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="finisher1">
+      <nb-card-header>finisher</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="finisher" (ngSubmit)="onFinisherSubmit()">
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="finisher.get('name').invalid || finisher.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="simplex1">
+      <nb-card-header>Speed Frame</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="simplex" (ngSubmit)="onSimplexSubmit()">
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="simplex.get('name').invalid || simplex.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="ringframe1">
+      <nb-card-header>ringframe</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="ringframe" (ngSubmit)="onRingframeSubmit()">
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="ringframe.get('name').invalid || ringframe.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="winding1">
+      <nb-card-header>winding</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="winding" (ngSubmit)="onWindingSubmit()">
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="winding.get('name').invalid || winding.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="packing1">
+      <nb-card-header>packing</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="packing" (ngSubmit)="onPackingSubmit()">
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="packing.get('name').invalid || packing.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="utility1">
+      <nb-card-header>utility</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="utility" (ngSubmit)="onUtilitySubmit()" >
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="utility.get('name').invalid || utility.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="wasteroom1">
+      <nb-card-header>wasteroom</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="wasteroom" (ngSubmit)="onWasteroomSubmit()" >
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="wasteroom.get('name').invalid || wasteroom.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="combers1">
+      <nb-card-header>combers</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="combers" (ngSubmit)="onCombersSubmit()" >
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="combers.get('name').invalid || combers.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngIf="lapformer1">
+      <nb-card-header>lapformer</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="lapformer" (ngSubmit)="onLapformerSubmit()" >
+          <div class="form-group">
+            <label for="name" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="descrption" class="label">Descrption</label>
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+          </div>
+        <button type="submit" [disabled]="lapformer.get('name').invalid || lapformer.get('descrption').invalid" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

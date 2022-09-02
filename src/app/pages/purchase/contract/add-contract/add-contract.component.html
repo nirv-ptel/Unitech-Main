@@ -1,0 +1,185 @@
+<nb-card>
+  <nb-card-header>Contract form</nb-card-header>
+  <nb-card-body>
+    <nb-stepper>
+      <nb-step [stepControl]="contractForm" [label]="label1">
+        <ng-template #label1>Contract</ng-template>
+        <form [formGroup]="contractForm" (ngSubmit)="onContractSubmit()" class="step-container">
+          <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" formGroupName="vendorModel">
+                  <label for="vendorName" class="label">Vendor Name</label>
+                  <nb-select placeholder="Select Vender Name" fullWidth formControlName="id">
+                    <nb-option *ngFor="let item of vender" value={{item.id}}>{{item.vendorName}}</nb-option>
+                  </nb-select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" formGroupName="itemdata">
+                  <label for="itemname" class="label">Item Name</label>
+                  <nb-select placeholder="Select Item Name" fullWidth formControlName="id">
+                    <nb-option *ngFor="let item of item" value={{item.id}}>{{item.itemDescription}}</nb-option>
+                  </nb-select>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="quantity" class="label">quantity</label>
+                <input type="text" nbInput fullWidth id="quantity" placeholder="Enter quantity" formControlName="quantity" (keyup)="quantity($event)">
+              </div>
+            </div>
+          </div>
+          <div formArrayName="partyLotModels">
+            <div class="row">
+              <div class="col-md-3" *ngFor="let party of partyLot.controls; let i = index">
+                <div class="form-group"  [formGroupName]="i">
+              <label for="partyplotNumber-{{i}}" class="label">partyplotNumber</label>
+                  <input type="text" nbInput fullWidth id="partyplotNumber-{{i}}" placeholder="Enter partyplotNumber-{{i}}" formControlName="partyNumber">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="contractNo" class="label">contractNo</label>
+                <input type="text" nbInput fullWidth id="contractNo" placeholder="Enter contractNo" formControlName="contractNo">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="invoiceno" class="label">invoiceno</label>
+                <input type="text" nbInput fullWidth id="invoiceno" placeholder="Enter invoiceno" formControlName="invoiceno">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="originname" class="label">originname</label>
+                <input type="text" nbInput fullWidth id="originname" placeholder="Enter originname" formControlName="originname">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="portOfDischarged" class="label">portOfDischarged</label>
+                <input type="text" nbInput fullWidth id="portOfDischarged" placeholder="Enter portOfDischarged" formControlName="portOfDischarged">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="blNo" class="label">blNo</label>
+                <input type="text" nbInput fullWidth id="blNo" placeholder="Enter blNo" formControlName="blNo">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="containerNo" class="label">containerNo</label>
+                <input type="text" nbInput fullWidth id="containerNo" placeholder="Enter containerNo" formControlName="containerNo">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="station" class="label">station</label>
+                <input type="text" nbInput fullWidth id="station" placeholder="Enter station" formControlName="station">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="moisture" class="label">moisture</label>
+                <input type="text" nbInput fullWidth id="moisture" placeholder="Enter moisture" formControlName="moisture">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="vom" class="label">vom</label>
+                <input type="text" nbInput fullWidth id="vom" placeholder="Enter vom" formControlName="vom">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="press_running_no" class="label">press_running_no</label>
+                <input type="text" nbInput fullWidth id="press_running_no" placeholder="Enter press_running_no" formControlName="press_running_no">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="gstno" class="label">gstno</label>
+                <input type="text" nbInput fullWidth id="gstno" placeholder="Enter gstno" formControlName="gstno">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="panno" class="label">panno</label>
+                <input type="text" nbInput fullWidth id="panno" placeholder="Enter panno" formControlName="panno">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="trash" class="label">trash</label>
+                <input type="text" nbInput fullWidth id="trash" placeholder="Enter trash" formControlName="trash">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="mic" class="label">mic</label>
+                <input type="text" nbInput fullWidth id="mic" placeholder="Enter mic" formControlName="mic">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="broker" class="label">broker</label>
+                <input type="text" nbInput fullWidth id="broker" placeholder="Enter broker" formControlName="broker">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="length" class="label">length</label>
+                <input type="text" nbInput fullWidth id="length" placeholder="Enter length" formControlName="length">
+              </div>
+            </div>
+            <!-- <div class="col-md-6">
+              <div class="form-group">
+                <label for="broker" class="label">broker</label>
+                <input type="text" nbInput fullWidth id="broker" placeholder="Enter broker" formControlName="broker">
+              </div>
+            </div> -->
+          </div>
+          <button nbButton status="danger">Edit</button>&nbsp;
+          <button nbButton status="success">Download</button> &nbsp;
+        <button type="submit" nbButton status="danger">Submit</button>&nbsp;
+        <button nbButton status="success" nbStepperNext>next</button>
+        </form>
+      </nb-step>
+
+      <nb-step [stepControl]="" [label]="label2">
+        <ng-template #label2>Second Step</ng-template>
+      </nb-step>
+
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>

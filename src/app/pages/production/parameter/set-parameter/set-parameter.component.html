@@ -1,0 +1,96 @@
+<nb-card>
+  <nb-card-header>
+    <a [routerLink]="['/pages/production/prepratery/bloowroom']">
+      <i class="icon nb-arrow-thin-left"></i>
+    </a>
+  </nb-card-header>
+</nb-card>
+<nb-card>
+  <nb-card-header>
+    {{currentDate}}
+  </nb-card-header>
+  <nb-card-body>
+    <!-- <form>
+      <div class="form-group">
+        <label for="vendorName" class="label">SHIFT Name</label>
+        <nb-select placeholder="Select SHIFT Name" fullWidth>
+          <nb-option value="A">A SHIFT</nb-option>
+          <nb-option value="B">B SHIFT</nb-option>
+        </nb-select>
+      </div>
+
+      <div class="form-group">
+        <nb-toggle status="primary" disabled="false">8:00 TO 2:00</nb-toggle>
+      </div>
+
+      <div class="form-group">
+        <nb-toggle status="primary" disabled="false">2:00 TO 8:00</nb-toggle>
+      </div>
+
+      <div class="form-group">
+        <label for="Reading" class="label">Reading</label>
+        <input type="text" nbInput fullWidth id="Reading" placeholder="Enter Reading">
+      </div>
+
+      <button type="submit" nbButton status="danger">Submit</button>
+    </form> -->
+
+    <nb-tabset fullWidth>
+      <nb-tab tabTitle="A Shift">
+        <table class="table">
+          <tbody>
+            <tr *ngIf="A1shiftToday">
+              <td>
+                8:00 TO 2:00
+              </td>
+              <td>
+                <input type="text" nbInput fullWidth id="Reading" placeholder="Enter Reading">
+              </td>
+              <td>
+                <button type="submit" nbButton status="danger">Submit</button>
+              </td>
+            </tr>
+            <tr *ngIf="A2shiftToday">
+              <td>
+                2:00 TO 8:00
+              </td>
+              <td>
+                <input type="text" nbInput fullWidth id="Reading" placeholder="Enter Reading">
+              </td>
+              <td>
+                <button type="submit" nbButton status="danger">Submit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </nb-tab>
+      <nb-tab tabTitle="B Shift" disabled="">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                8:00 TO 2:00
+              </td>
+              <td>
+                <input type="text" disabled nbInput fullWidth id="Reading" placeholder="Enter Reading">
+              </td>
+              <td>
+                <button type="submit"disabled nbButton status="danger">Submit</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                2:00 TO 8:00
+              </td>
+              <td>
+                <input type="text" nbInput fullWidth id="Reading" placeholder="Enter Reading">
+              </td>
+              <td>
+                <button type="submit" nbButton status="danger">Submit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>

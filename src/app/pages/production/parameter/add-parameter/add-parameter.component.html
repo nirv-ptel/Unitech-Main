@@ -1,0 +1,210 @@
+<nb-card>
+  <nb-card-header>
+    <a [routerLink]="['/pages/production/prepratery/bloowroom']">
+      <i class="icon nb-arrow-thin-left"></i>
+    </a>
+  </nb-card-header>
+</nb-card>
+<nb-card >
+  <nb-card-header>{{machineName}}</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="bloowroompara" (ngSubmit)="onBloowroomSubmit()" *ngIf="bloowroom1">
+      <div class="form-group">
+        <label for="para1" class="label">DELIVERY SPEED</label>
+        <input type="tel1" nbInput fullWidth id="para1" pattern="[0-9]{3}" placeholder="ENTER DELIVERY SPEED" formControlName="deliveryspeed" (keydown)="NumberOnly($event)">
+        <small *ngIf="bloowroompara.get('deliveryspeed').invalid" class="red"> Mobile No. Id is required !</small>
+      </div>
+      <div class="form-group">
+        <label for="para2" class="label">SILVER HANK</label>
+        <input type="text" nbInput fullWidth id="para2" pattern="([0-9]{1})+\.([0-9]{3})" placeholder="ENTER SILVER HANK" formControlName="silverhank" (keydown)="NumberOnly($event)">
+        <small *ngIf="bloowroompara.get('silverhank').invalid" class="red"> silverhank Id is required !</small>
+      </div>
+      <div class="form-group">
+        <label for="para3" class="label">MACHINE EFFICENCY</label>
+        <input type="text" nbInput fullWidth id="para3" placeholder="ENTER MACHINE EFFICENCY" formControlName="machineefficency" (keydown)="NumberOnly($event)">
+      </div>
+    <button type="button" nbButton status="danger">Submit</button>
+    </form>
+
+    <form [formGroup]="cardingpara" (ngSubmit)="onCardingSubmit()" *ngIf="carding1">
+      <div class="form-group">
+        <label for="para1" class="label">para1</label>
+        <input type="text" nbInput fullWidth id="para1" placeholder="Enter para1 Name" formControlName="para1">
+      </div>
+      <div class="form-group">
+        <label for="para2" class="label">para2</label>
+        <input type="text" nbInput fullWidth id="para2" placeholder="Enter para2 Name" formControlName="para2">
+      </div>
+      <div class="form-group">
+        <label for="para3" class="label">para3</label>
+        <input type="text" nbInput fullWidth id="para3" placeholder="Enter para3 Name" formControlName="para3">
+      </div>
+      <div class="form-group">
+        <label for="para4" class="label">para4</label>
+        <input type="text" nbInput fullWidth id="para4" placeholder="Enter para4 Name" formControlName="para4">
+      </div>
+    <button type="submit" nbButton status="danger">Submit</button>
+    </form>
+
+    <form [formGroup]="drawframespara" (ngSubmit)="onDrawframesSubmit()" *ngIf="drawframes1">
+      <div class="form-group">
+        <label for="para1" class="label">para1</label>
+        <input type="text" nbInput fullWidth id="para1" placeholder="Enter para1 Name" formControlName="para1">
+      </div>
+      <div class="form-group">
+        <label for="para2" class="label">para2</label>
+        <input type="text" nbInput fullWidth id="para2" placeholder="Enter para2 Name" formControlName="para2">
+      </div>
+      <div class="form-group">
+        <label for="para3" class="label">para3</label>
+        <input type="text" nbInput fullWidth id="para3" placeholder="Enter para3 Name" formControlName="para3">
+      </div>
+      <div class="form-group">
+        <label for="para4" class="label">para4</label>
+        <input type="text" nbInput fullWidth id="para4" placeholder="Enter para4 Name" formControlName="para4">
+      </div>
+    <button type="submit" nbButton status="danger">Submit</button>
+    </form>
+
+    <form [formGroup]="finisherpara" (ngSubmit)="onFinisherSubmit()" *ngIf="finisher1">
+      <div class="form-group">
+        <label for="para1" class="label">para1</label>
+        <input type="text" nbInput fullWidth id="para1" placeholder="Enter para1 Name" formControlName="para1">
+      </div>
+      <div class="form-group">
+        <label for="para2" class="label">para2</label>
+        <input type="text" nbInput fullWidth id="para2" placeholder="Enter para2 Name" formControlName="para2">
+      </div>
+      <div class="form-group">
+        <label for="para3" class="label">para3</label>
+        <input type="text" nbInput fullWidth id="para3" placeholder="Enter para3 Name" formControlName="para3">
+      </div>
+      <div class="form-group">
+        <label for="para4" class="label">para4</label>
+        <input type="text" nbInput fullWidth id="para4" placeholder="Enter para4 Name" formControlName="para4">
+      </div>
+    <button type="submit" nbButton status="danger">Submit</button>
+    </form>
+
+    <form [formGroup]="simplexpara" (ngSubmit)="onSimplexSubmit()" *ngIf="simplex1">
+      <div class="form-group">
+        <label for="para1" class="label">para1</label>
+        <input type="text" nbInput fullWidth id="para1" placeholder="Enter para1 Name" formControlName="para1">
+      </div>
+      <div class="form-group">
+        <label for="para2" class="label">para2</label>
+        <input type="text" nbInput fullWidth id="para2" placeholder="Enter para2 Name" formControlName="para2">
+      </div>
+      <div class="form-group">
+        <label for="para3" class="label">para3</label>
+        <input type="text" nbInput fullWidth id="para3" placeholder="Enter para3 Name" formControlName="para3">
+      </div>
+      <div class="form-group">
+        <label for="para4" class="label">para4</label>
+        <input type="text" nbInput fullWidth id="para4" placeholder="Enter para4 Name" formControlName="para4">
+      </div>
+    <button type="submit" nbButton status="danger">Submit</button>
+    </form>
+
+    <form [formGroup]="ringframepara" (ngSubmit)="onRingframeSubmit()" *ngIf="ringframe1">
+      <div class="form-group">
+        <label for="para1" class="label">para1</label>
+        <input type="text" nbInput fullWidth id="para1" placeholder="Enter para1 Name" formControlName="para1">
+      </div>
+      <div class="form-group">
+        <label for="para2" class="label">para2</label>
+        <input type="text" nbInput fullWidth id="para2" placeholder="Enter para2 Name" formControlName="para2">
+      </div>
+      <div class="form-group">
+        <label for="para3" class="label">para3</label>
+        <input type="text" nbInput fullWidth id="para3" placeholder="Enter para3 Name" formControlName="para3">
+      </div>
+      <div class="form-group">
+        <label for="para4" class="label">para4</label>
+        <input type="text" nbInput fullWidth id="para4" placeholder="Enter para4 Name" formControlName="para4">
+      </div>
+    <button type="submit" nbButton status="danger">Submit</button>
+    </form>
+
+    <form [formGroup]="windingpara" (ngSubmit)="onWindingSubmit()" *ngIf="winding1">
+      <div class="form-group">
+        <label for="para1" class="label">para1</label>
+        <input type="text" nbInput fullWidth id="para1" placeholder="Enter para1 Name" formControlName="para1">
+      </div>
+      <div class="form-group">
+        <label for="para2" class="label">para2</label>
+        <input type="text" nbInput fullWidth id="para2" placeholder="Enter para2 Name" formControlName="para2">
+      </div>
+      <div class="form-group">
+        <label for="para3" class="label">para3</label>
+        <input type="text" nbInput fullWidth id="para3" placeholder="Enter para3 Name" formControlName="para3">
+      </div>
+      <div class="form-group">
+        <label for="para4" class="label">para4</label>
+        <input type="text" nbInput fullWidth id="para4" placeholder="Enter para4 Name" formControlName="para4">
+      </div>
+    <button type="submit" nbButton status="danger">Submit</button>
+    </form>
+
+    <form [formGroup]="packingpara" (ngSubmit)="onPackingSubmit()" *ngIf="packing1">
+      <div class="form-group">
+        <label for="para1" class="label">para1</label>
+        <input type="text" nbInput fullWidth id="para1" placeholder="Enter para1 Name" formControlName="para1">
+      </div>
+      <div class="form-group">
+        <label for="para2" class="label">para2</label>
+        <input type="text" nbInput fullWidth id="para2" placeholder="Enter para2 Name" formControlName="para2">
+      </div>
+      <div class="form-group">
+        <label for="para3" class="label">para3</label>
+        <input type="text" nbInput fullWidth id="para3" placeholder="Enter para3 Name" formControlName="para3">
+      </div>
+      <div class="form-group">
+        <label for="para4" class="label">para4</label>
+        <input type="text" nbInput fullWidth id="para4" placeholder="Enter para4 Name" formControlName="para4">
+      </div>
+    <button type="submit" nbButton status="danger">Submit</button>
+    </form>
+
+    <form [formGroup]="utilitypara" (ngSubmit)="onUtilitySubmit()" *ngIf="utility1">
+      <div class="form-group">
+        <label for="para1" class="label">para1</label>
+        <input type="text" nbInput fullWidth id="para1" placeholder="Enter para1 Name" formControlName="para1">
+      </div>
+      <div class="form-group">
+        <label for="para2" class="label">para2</label>
+        <input type="text" nbInput fullWidth id="para2" placeholder="Enter para2 Name" formControlName="para2">
+      </div>
+      <div class="form-group">
+        <label for="para3" class="label">para3</label>
+        <input type="text" nbInput fullWidth id="para3" placeholder="Enter para3 Name" formControlName="para3">
+      </div>
+      <div class="form-group">
+        <label for="para4" class="label">para4</label>
+        <input type="text" nbInput fullWidth id="para4" placeholder="Enter para4 Name" formControlName="para4">
+      </div>
+    <button type="submit" nbButton status="danger">Submit</button>
+    </form>
+
+    <form [formGroup]="wasteroompara" (ngSubmit)="onWasteroomSubmit()" *ngIf="wasteroom1">
+      <div class="form-group">
+        <label for="para1" class="label">para1</label>
+        <input type="text" nbInput fullWidth id="para1" placeholder="Enter para1 Name" formControlName="para1">
+      </div>
+      <div class="form-group">
+        <label for="para2" class="label">para2</label>
+        <input type="text" nbInput fullWidth id="para2" placeholder="Enter para2 Name" formControlName="para2">
+      </div>
+      <div class="form-group">
+        <label for="para3" class="label">para3</label>
+        <input type="text" nbInput fullWidth id="para3" placeholder="Enter para3 Name" formControlName="para3">
+      </div>
+      <div class="form-group">
+        <label for="para4" class="label">para4</label>
+        <input type="text" nbInput fullWidth id="para4" placeholder="Enter para4 Name" formControlName="para4">
+      </div>
+    <button type="submit" nbButton status="danger">Submit</button>
+    </form>
+
+  </nb-card-body>
+</nb-card>

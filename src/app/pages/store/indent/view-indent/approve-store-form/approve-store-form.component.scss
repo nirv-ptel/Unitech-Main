@@ -1,0 +1,22 @@
+.red {
+    color: red;
+}
+.mt-20 {
+    margin-top: 20px;
+}
+.mr-10 {
+    margin-right: 10px;
+}
+
+:host ::ng-deep 
+nb-card-header a {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  font-size: 3em;
+  text-decoration: none;
+}
+// :host ::ng-deep 
+nb-card-header .ml-40 {
+    margin-left: 40px;
+}

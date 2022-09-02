@@ -1,0 +1,163 @@
+<nb-card>
+  <nb-card-header>
+      <a [routerLink]="['/pages/user/user/userdetails']"><i class="icon nb-arrow-thin-left"></i></a>
+  </nb-card-header>
+  <nb-card-body>
+       <nb-tabset fullWidth>
+        <nb-tab tabTitle="User Profile">
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr *ngIf="UserDetails.username != null">
+                    <th scope="row" class="menu-title">Name</th>
+                    <td>{{UserDetails.username}}</td>
+                  </tr>
+                  <tr *ngIf="UserDetails.address != null">
+                    <th scope="row">Address</th>
+                    <td>{{UserDetails.address}}</td>
+                  </tr>
+                  <tr *ngIf="UserDetails.email != null">
+                    <th scope="row">Email</th>
+                    <td>{{UserDetails.email}}</td>
+                  </tr>
+                  <tr *ngIf="UserDetails.phoneno != null">
+                    <th scope="row">Mobile No.</th>
+                    <td>{{UserDetails.phoneno}}</td>
+                  </tr>
+                  <tr *ngIf="UserDetails.telephoneNumber != null">
+                    <th scope="row">Telephone No.</th>
+                    <td>{{UserDetails.telephoneNumber}}</td>
+                  </tr>
+                  <tr *ngIf="UserDetails.dob != null">
+                    <th scope="row">Date Of Birth</th>
+                    <td>{{UserDetails.dob}}</td>
+                  </tr>
+                  <tr *ngIf="UserDetails.maritalStatus != null">
+                    <th scope="row">Marital Status</th>
+                    <td>{{UserDetails.maritalStatus}}</td>
+                  </tr>
+                  <tr *ngIf="UserDetails.nativePalace != null">
+                    <th scope="row">Native Palace</th>
+                    <td>{{UserDetails.nativePalace}}</td>
+                  </tr>
+                  <tr *ngIf="UserDetails.nationality != null">
+                    <th scope="row">Nationality</th>
+                    <td>{{UserDetails.nationality}}</td>
+                  </tr>
+                  <tr *ngIf="UserDetails.bloodGroup != null">
+                    <th scope="row">Blood Group</th>
+                    <td>{{UserDetails.bloodGroup}}</td>
+                  </tr>
+                  <tr *ngIf="UserDetails.pinCode != null">
+                    <th scope="row">Pin Code</th>
+                    <td>{{UserDetails.pinCode}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+
+        </nb-tab>
+        <nb-tab tabTitle="Qualifications" *ngIf="Qualification">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col">Examination</th>
+                    <th scope="col">University Board</th>
+                    <th scope="col">Duration Of Course</th>
+                    <th scope="col">Year Of Passing</th>
+                    <th scope="col">Grade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let Qualification of UserQualification">
+                    <td>{{Qualification.examination}}</td>
+                    <td>{{Qualification.universityBoard}}</td>
+                    <td>{{Qualification.durationOfCourse}}</td>
+                    <td>{{Qualification.yearOfPassing}}</td>
+                    <td>{{Qualification.grade}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </nb-tab>
+        <nb-tab tabTitle="Experience" *ngIf="Exprience">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col">Organization</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Reporting</th>
+                    <th scope="col">Year Of Experience</th>
+                    <th scope="col">salary</th>
+                    <th scope="col">Reason Of Leaving</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let Exprience of UserExprience">
+                    <td>{{Exprience.organization}}</td>
+                    <td>{{Exprience.position}}</td>
+                    <td>{{Exprience.reporting}}</td>
+                    <td>{{Exprience.yearOfExperience}}</td>
+                    <td>{{Exprience.salary}}</td>
+                    <td>{{Exprience.reasonOfLeaving}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </nb-tab>
+        <nb-tab tabTitle="Family Details" *ngIf="Family">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Relationship</th>
+                    <th scope="col">Occupation</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Offcial Telephone No.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let Family of UserFamily">
+                    <td>{{Family.name}}</td>
+                    <td>{{Family.age}}</td>
+                    <td>{{Family.relationship}}</td>
+                    <td>{{Family.occupation}}</td>
+                    <td>{{Family.position}}</td>
+                    <td>{{Family.offcialTelNumber}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </nb-tab>
+        <nb-tab tabTitle="HR Conformation" *ngIf="Hr">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col">Interview By</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Period Of Probation</th>
+                    <th scope="col">DOJ</th>
+                    <th scope="col">Interview Date</th>
+                    <th scope="col">post</th>
+                    <th scope="col">Remarks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{UserHr.interviewBy}}</td>
+                    <td>{{UserHr.salary}}</td>
+                    <td>{{UserHr.periodOfProbation}}</td>
+                    <td>{{UserHr.doj}}</td>
+                    <td>{{UserHr.interviewDate}}</td>
+                    <td>{{UserHr.post}}</td>
+                    <td>{{UserHr.remarks}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </nb-tab>
+      </nb-tabset>
+
+  </nb-card-body>
+</nb-card>

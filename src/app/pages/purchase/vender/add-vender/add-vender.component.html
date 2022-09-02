@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>Vender form</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="venderForm" (ngSubmit)="onVenderSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="vendorName" class="label">Vender Name</label>
+                <input type="text" nbInput fullWidth id="vendorName" placeholder="Enter Vender Name"
+                  formControlName="vendorName">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="vendorcode" class="label">Vender Code</label>
+                <input type="text" nbInput fullWidth id="vendorcode" placeholder="Enter Vender code"
+                  formControlName="vendorcode">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="city" class="label">Vender City</label>
+                <input type="text" nbInput fullWidth id="city" placeholder="Enter Vender City" formControlName="city">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="pincode" class="label">Vender Pincode</label>
+                <input type="tel" nbInput fullWidth id="pincode" placeholder="Enter Vender Pincode"
+                  formControlName="pincode">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="vendorAddress" class="label">Vender Address</label>
+                <input type="text" nbInput fullWidth id="vendorAddress" placeholder="Enter Vender Address"
+                  formControlName="vendorAddress">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="vendorpan" class="label">Vender Pan</label>
+                <input type="text" nbInput fullWidth id="vendorpan" placeholder="Enter Vender Pan No."
+                  formControlName="panno">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="vendorGst" class="label">Vender GST</label>
+                <input type="text" nbInput fullWidth id="vendorGst" placeholder="Enter Vender GST No."
+                  formControlName="gstno">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="paymentTermsConditions" class="label">payment Terms Conditions</label>
+                <!-- <input type="text" nbInput fullWidth id="paymentTermsConditions" placeholder="Enter payment Terms Conditions"
+                  formControlName="paymentTermsConditions"> -->
+                <nb-select placeholder="Select Payment Terms Conditions" fullWidth
+                  formControlName="paymentTermsConditions">
+                  <nb-option value="AFTER">AFTER</nb-option>
+                  <nb-option value="BEFORE">BEFORE</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="paymentDays" class="label">Payment Days<span class="red">*</span></label>
+                <input type="text" nbInput fullWidth id="paymentDays" placeholder="Enter paymentDays"
+                  formControlName="paymentDays">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Select_Item" class="label">Select Item</label>
+                <nb-select placeholder="Select Product Item" multiple fullWidth formControlName="itemDemo"
+                  (selectedChange)="changeItem($event)">
+                  <nb-option *ngFor="let item of item" value="{{ item.itemId }}">{{ item.itemName }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+          <button type="submit" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

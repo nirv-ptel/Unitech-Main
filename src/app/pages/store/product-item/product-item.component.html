@@ -1,0 +1,338 @@
+<nb-card>
+  <nb-card-body>
+    <nb-tabset fullWidth>
+      <nb-tab *ngIf="store || admin" tabTitle="View Item">
+        <ng2-smart-table [settings]="settings" [source]="item" (custom)="EditItem($event.data, dialog1)">
+        </ng2-smart-table>
+      </nb-tab>
+      <nb-tab *ngIf="gm" tabTitle="View Item">
+        <ng2-smart-table [settings]="settingRead" [source]="item">
+        </ng2-smart-table>
+      </nb-tab>
+      <nb-tab *ngIf="maintanance" tabTitle="View Item">
+        <ng2-smart-table [settings]="settingsMain" [source]="item" (custom)="createIssue($event.data, dialog)">
+        </ng2-smart-table>
+      </nb-tab>
+      <!-- <nb-tab tabTitle="Add Stock" *ngIf="store || admin">
+        <form [formGroup]="AddStockForm" (ngSubmit)="onStockUpdateFormSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Select_Item" class="label">Select Item</label>
+                <nb-select
+                  placeholder="Select Product Item"
+                  fullWidth
+                  formControlName="itemId"
+                  (ngModelChange)="ViewItemGet($event)"
+                >
+                  <nb-option *ngFor="let item of item" value="{{ item.itemId }}"
+                    >{{ item.itemName }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="AddStockFormView">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="oldquantity" class="label">Old quantity</label>
+                  <input
+                    type="text"
+                    nbInput
+                    fullWidth
+                    id="oldquantity"
+                    placeholder="Old Quantity"
+                    readonly
+                    value="{{ oldquantity }}"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="aquantity" class="label">Add Quantity</label>
+                  <input
+                    type="text"
+                    nbInput
+                    fullWidth
+                    id="aquantity"
+                    placeholder="Quantity"
+                    (keyup)="keyFunc($event)"
+                    formControlName="quantity"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="total" class="label">Total</label>
+                  <input
+                    type="text"
+                    nbInput
+                    readonly
+                    fullWidth
+                    id="total"
+                    placeholder="Total Quantity"
+                    value="{{ total }}"
+                  />
+                </div>
+              </div>
+            </div>
+            <button
+              type="submit"
+              [disabled]="AddStockForm.get('quantity').invalid"
+              nbButton
+              status="danger"
+            >
+              submit
+            </button>
+          </div>
+        </form>
+      </nb-tab> -->
+      <nb-tab tabTitle="Create Item" *ngIf="store || admin">
+        <form [formGroup]="ItemForm" (ngSubmit)="onItemFormSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" formGroupName="productCategory">
+                <label for="productCategory" class="label">Product Category</label>
+                <nb-select placeholder="Select Product Category" fullWidth formControlName="pid" [ngClass]="{
+                    'form-control-danger':
+                      ItemForm.invalid && (ItemForm.dirty || ItemForm.touched)
+                  }">
+                  <nb-option *ngFor="let item of category" value="{{ item.pid }}">{{ item.productName }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group" formGroupName="unit">
+                <label for="unit" class="label">Unit</label>
+                <nb-select placeholder="Select Product Category" fullWidth formControlName="uid" [ngClass]="{
+                    'form-control-danger':
+                      ItemForm.invalid && (ItemForm.dirty || ItemForm.touched)
+                  }">
+                  <nb-option *ngFor="let item of unit" value="{{ item.uid }}">{{ item.unitName }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="itemName" class="label">Item Name <span class="red">*</span></label>
+                <input type="text" nbInput fullWidth id="itemName" placeholder="Item Name" formControlName="itemName" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="itemDescription" class="label">Item Description</label>
+                <input type="text" nbInput fullWidth id="itemDescription" placeholder="Item Description"
+                  formControlName="itemDescription" class="form-control-danger" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="drawingNo" class="label">Drawing No <span class="red">*</span></label>
+                <input type="text" nbInput fullWidth id="drawingNo" placeholder="Drawing No"
+                  formControlName="drawingNo" (keydown)="NumberOnly($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="catalogNo" class="label">Catalog No <span class="red">*</span></label>
+                <input type="text" nbInput fullWidth id="catalogNo" placeholder="Catalog No"
+                  formControlName="catalogNo" (keydown)="NumberOnly($event)" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="frequency" class="label">Time Limit (In Days) <span class="red">*</span></label>
+                <input type="text" nbInput fullWidth id="frequency" placeholder="Time Limit"
+                  formControlName="frequency" class="form-control-danger" (keydown)="NumberOnly($event)" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="remainingItem" class="label">Minimum Quantity</label>
+                <input type="text" nbInput fullWidth id="remainingItem" placeholder="Minimum Quantity"
+                  formControlName="remainingItem" (keydown)="NumberOnly($event)" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="quantity" class="label">Opening Quantity <span class="red">*</span></label>
+                <input type="text" nbInput fullWidth id="quantity" placeholder="Opening Quantity"
+                  formControlName="quantity" (keydown)="NumberOnly($event)" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="expiryDate" class="label">Expiry Day</label>
+                <input type="text" nbInput fullWidth id="expiryDate" placeholder="Expiry Day"
+                  formControlName="expiryDate" class="form-control-danger" (keydown)="NumberOnly($event)" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="paytax" class="label">Tax (%) <span class="red">*</span></label>
+                <input type="text" nbInput fullWidth id="paytax" placeholder="Tax" formControlName="paytax" (keydown)="NumberOnly($event)" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 margin">
+              <nb-checkbox formControlName="activation" status="success">Activation</nb-checkbox>
+            </div>
+          </div>
+          <button type="submit" [disabled]="ItemForm.invalid" nbButton status="danger">submit</button>
+        </form>
+      </nb-tab>
+      <nb-tab *ngIf="admin" tabTitle="Upload Excel File">
+        <form [formGroup]="UploadItemForm" (ngSubmit)="onUploadItemFormSubmit()">
+          <div class="form-group">
+            <label for="Select_Item" class="label">Select Item</label>
+            <input type="file" nbInput fullWidth id="itemName" (change)="onFileSelected($event)"
+              placeholder="itemName" />
+          </div>
+          <button type="submit" [disabled]="UploadItemForm.get('file').invalid" nbButton status="danger">
+            submit
+          </button>
+        </form>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #dialog let-ref="dialogRef">
+    <nb-card class="scroll-bar">
+      <nb-card-header>Create Issue
+        <button type="button" (click)="ref.close()" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="IssueForm" (ngSubmit)="onIssueFormSubmit()">
+        <div class="form-group" formGroupName="storeItemModel">
+          <label for="Select_Item" class="label">Select Item <span class="red">*</span></label>
+          <nb-select placeholder="Select Product Item" fullWidth formControlName="itemId">
+            <nb-option *ngFor="let item of item" [value]="item.itemId">{{ item.itemName }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group">
+          <label for="quantity" class="label">Quantity <span class="red">*</span></label>
+          <input type="text" nbInput fullWidth id="quantity" placeholder="Quantity" formControlName="quantity" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="description" class="label">Description <span class="red">*</span></label>
+          <input type="text" nbInput fullWidth id="description" placeholder="Description"
+            formControlName="description" />
+        </div>
+        <div class="form-group">
+          <label for="requiredDays" class="label">Required Days <span class="red">*</span></label>
+          <input type="tel" nbInput fullWidth id="requiredDays" placeholder="Required Days"
+            formControlName="requiredDays" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="requiredDays" class="label">Demartment <span class="red">*</span></label>
+          <nb-select placeholder="Select Product Item" fullWidth (ngModelChange)="chengeDepartmentName($event)"
+            formControlName="deptName">
+            <nb-option *ngFor="let item of deptName" value="{{ item }}">{{ item }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group">
+          <label for="requiredDays" class="label">Machine <span class="red">*</span></label>
+          <nb-select placeholder="Select Product Item" fullWidth formControlName="machineName">
+            <nb-option *ngFor="let item of MachineName" value="{{ item.id }}">{{ item.name }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <button nbButton status="success" [disabled]="IssueForm.invalid" type="submit">Submit</button>
+      </form>
+      </nb-card-body>
+    </nb-card>
+</ng-template>
+
+<ng-template #dialog1 let-ref="dialogRef">
+  <nb-card class="scroll-bar">
+    <nb-card-header>Update Item
+      <button type="button" (click)="ref.close()" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="ItemFormUpdate" (ngSubmit)="onUpdateItem()">
+        <div class="form-group" formGroupName="productCategory">
+          <label for="productCategory" class="label">Product Category</label>
+          <nb-select placeholder="Select Product Category" fullWidth formControlName="pid" [ngClass]="{
+              'form-control-danger':
+                ItemForm.invalid && (ItemForm.dirty || ItemForm.touched)
+            }">
+            <nb-option *ngFor="let item of category" [value]="item.pid">{{ item.productName }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group" formGroupName="unit">
+          <label for="unit" class="label">Unit</label>
+          <nb-select placeholder="Select Product Category" fullWidth formControlName="uid" [ngClass]="{
+              'form-control-danger':
+                ItemForm.invalid && (ItemForm.dirty || ItemForm.touched)
+            }">
+            <nb-option *ngFor="let item of unit" [value]="item.uid">{{ item.unitName }}
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="form-group">
+          <label for="itemName" class="label">Item Name <span class="red">*</span></label>
+          <input type="text" nbInput fullWidth id="itemName" placeholder="Item Name" formControlName="itemName" />
+        </div>
+        <div class="form-group">
+          <label for="itemDescription" class="label">Item Description</label>
+          <input type="text" nbInput fullWidth id="itemDescription" placeholder="Item Description"
+            formControlName="itemDescription" class="form-control-danger" />
+        </div>
+        <div class="form-group">
+          <label for="drawingNo" class="label">Drawing No <span class="red">*</span></label>
+          <input type="text" nbInput fullWidth id="drawingNo" placeholder="Drawing No"
+            formControlName="drawingNo" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="catalogNo" class="label">Catalog No <span class="red">*</span></label>
+          <input type="text" nbInput fullWidth id="catalogNo" placeholder="Catalog No"
+            formControlName="catalogNo" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="frequency" class="label">Time Limit (In Days) <span class="red">*</span></label>
+          <input type="text" nbInput fullWidth id="frequency" placeholder="Time Limit"
+            formControlName="frequency" class="form-control-danger" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="remainingItem" class="label">Minimum Quantity</label>
+          <input type="text" nbInput fullWidth id="remainingItem" placeholder="Minimum Quantity"
+            formControlName="remainingItem" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="expiryDate" class="label">Expiry Day</label>
+          <input type="text" nbInput fullWidth id="expiryDate" placeholder="Expiry Day"
+            formControlName="expiryDays" class="form-control-danger" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <label for="paytax" class="label">Tax (%) <span class="red">*</span></label>
+          <input type="text" nbInput fullWidth id="paytax" placeholder="Tax" formControlName="paytax" (keydown)="NumberOnly($event)" />
+        </div>
+        <div class="form-group">
+          <nb-checkbox formControlName="activation" status="success">Activation</nb-checkbox>
+        </div>
+       
+      <button nbButton status="success" [disabled]="ItemFormUpdate.invalid" type="submit">Submit</button>
+    </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>Item form</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="itemForm" (ngSubmit)="onItemSubmit()">
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                  <label for="itemcode" class="label">Item Code</label>
+                  <input type="text" nbInput fullWidth id="itemcode" placeholder="Enter Item Code" formControlName="itemcode">
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                  <label for="station" class="label">Item No</label>
+                  <input type="text" nbInput fullWidth id="station" placeholder="Enter Item No" formControlName="station">
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="form-group">
+                  <label for="itemdesciption" class="label">Item Desciption</label>
+                  <input type="text" nbInput fullWidth id="itemdesciption" placeholder="Enter Item Desciption" formControlName="itemDescription">
+                  </div>
+              </div>
+          </div>
+        <button type="submit" nbButton status="danger">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div *ngIf="admin || store">
+  <nb-card>
+    <nb-card-header>Unit
+      <button nbButton status="danger" class="right" (click)="addUnit(dialog)">
+        Add Unit
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="source">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+</div>
+
+<ng-template #dialog let-ref="dialogRef">
+  <form [formGroup]="UnitForm" (ngSubmit)="onUnitFormSubmit(dialog)">
+    <nb-card>
+      <nb-card-header>Enter Unit Name
+        <button type="button" (click)="NbDialogRef.close()" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="form-group">
+          <label for="name" class="label">Name</label>
+          <input type="text" nbInput fullWidth id="name" placeholder="Name" formControlName="unitName" [status]="
+              UnitForm.get('unitName').touched
+                ? UnitForm.get('unitName').invalid
+                  ? 'danger'
+                  : 'success'
+                : 'basic'
+            " />
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton status="success" type="submit" [disabled]="UnitForm.get('unitName').invalid">
+          Submit
+        </button>
+      </nb-card-footer>
+    </nb-card>
+  </form>
+</ng-template>

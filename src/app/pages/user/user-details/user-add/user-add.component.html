@@ -1,0 +1,498 @@
+<div class="steppers-container row">
+  <div class="col-md-12 col-lg-12 col-xxxl-12">
+    <nb-card>
+      <nb-card-body>
+        <nb-stepper #stepper>
+          <nb-step [stepControl]="firstForm" label="personal Details">
+            <form [formGroup]="firstForm" (ngSubmit)="onFirstSubmit()">
+
+              <hr>
+              <div formArrayName="roles">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="role" class="label">Role</label>
+                      <nb-select placeholder="Select Role" fullWidth formControlName="0" (ngModelChange)="passwordHide($event)"
+                        [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                        <nb-option value="ADMIN">ADMIN</nb-option>
+                        <nb-option value="SUBADMIN">SUBADMIN</nb-option>
+                        <nb-option value="HR">HR</nb-option>
+                        <nb-option value="PURCHASER">PURCHASER</nb-option>
+                        <nb-option value="SUPERVISER">SUPERVISER</nb-option>
+                        <nb-option value="QC">QC</nb-option>
+                        <nb-option value="LABOR">LABOR</nb-option>
+                        <nb-option value="MAINTENANCE">MAINTENANCE</nb-option>
+                        <nb-option value="STORE">STORE</nb-option>
+                        <nb-option value="ACCOUNT">ACCOUNT</nb-option>
+                      </nb-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name" class="label">Name</label>
+                    <input type="text" nbInput fullWidth id="name" placeholder="Name" formControlName="username">
+                    <small *ngIf="firstForm.get('username').invalid && required" class="red">Name is required</small>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email" class="label">Email</label>
+                    <input type="email" nbInput fullWidth id="email" placeholder="Email" formControlName="email"
+                      [ngClass]="{'form-control-danger': firstForm.get('email').invalid && (firstForm.get('email').dirty || firstForm.get('email').touched)}">
+                    <small *ngIf="firstForm.get('email').invalid && required" class="red"> Email Id is required
+                      !</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="password" class="label">Password</label>
+                    <input type="password" nbInput fullWidth id="password" placeholder="Password"
+                      formControlName="password"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="c_password" class="label">Confirm Password</label>
+                    <input type="password" nbInput fullWidth id="c_password" placeholder="Confirm Password"
+                      formControlName="c_password"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+              </div> -->
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="address" class="label">Address</label>
+                    <input type="text" nbInput fullWidth id="address" placeholder="Address" formControlName="address"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="pinCode" class="label">Pincode</label>
+                    <input type="number" nbInput fullWidth id="pinCode" placeholder="Pincode" formControlName="pinCode"
+                      class="form-control-danger"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="photo" class="label">Photo</label>
+                    <input type="file" nbInput fullWidth id="photo" placeholder="Photo" formControlName="photo"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="mobileNumber" class="label">Mobile No.<span class="red"> *</span></label>
+
+                    <input type="tel" nbInput fullWidth id="mobileNumber" placeholder="Mobile No."
+                      formControlName="phoneno" pattern="[0-9]{10}"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                    <small *ngIf="firstForm.get('phoneno').invalid && required" class="red"> Mobile No. Id is required
+                      !</small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="telephoneNumber" class="label">Telephone No.</label>
+                    <input type="number" nbInput fullWidth id="telephoneNumber" placeholder="Telephone No."
+                      formControlName="telephoneNumber"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="dob" class="label">Date Of Birth</label>
+                    <input type="date" nbInput fullWidth id="dob" placeholder="Date Of Birth" formControlName="dob"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="maritalStatus" class="label">Marital Status<span class="red"> *</span></label>
+                    <nb-select placeholder="Select Marital Status" fullWidth formControlName="maritalStatus"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                      <nb-option value="single">single</nb-option>
+                      <nb-option value="married">married</nb-option>
+                      <nb-option value="widowed">widowed</nb-option>
+                      <nb-option value="divorced">divorced</nb-option>
+                    </nb-select>
+                    <small *ngIf="firstForm.get('maritalStatus').invalid && required" class="red"> Marital Status is
+                      required !</small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="nationality" class="label">nationality</label>
+                    <input type="text" nbInput fullWidth id="nationality" placeholder="Nationality"
+                      formControlName="nationality"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="nativePalace" class="label">Native Place</label>
+                    <input type="text" nbInput fullWidth id="nativePalace" placeholder="Native Place"
+                      formControlName="nativePalace"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="identification_mark" class="label">Identification Mark</label>
+                    <input type="text" nbInput fullWidth id="identification_mark" placeholder="Identification Mark"
+                      indentification="identification_mark"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="bloodGroup" class="label">Blood Group</label>
+                    <nb-select placeholder="Blood Group" fullWidth formControlName="bloodGroup"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                      <nb-option value="A+">A+</nb-option>
+                      <nb-option value="A-">A-</nb-option>
+                      <nb-option value="B+">B+</nb-option>
+                      <nb-option value="B-">B-</nb-option>
+                      <nb-option value="O+">O+</nb-option>
+                      <nb-option value="O-">O-</nb-option>
+                      <nb-option value="AB+">AB+</nb-option>
+                      <nb-option value="AB-">AB-</nb-option>
+                    </nb-select>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <form [formGroup]="PasswordForm">
+              <div class="row" *ngIf="password">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="password" class="label">Password</label>
+                    <input type="password" nbInput fullWidth id="password" placeholder="Password"
+                      formControlName="password"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="c_password" class="label">Confirm Password</label>
+                    <input type="password" nbInput fullWidth id="c_password" placeholder="Confirm Password"
+                      formControlName="c_password"
+                      [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                  </div>
+                </div>
+              </div>
+            </form>
+
+              <button nbButton nbStepperNext status="danger">next</button>
+
+          </nb-step>
+
+          <nb-step label="Qualifications">
+            <form [formGroup]="secondForm" (ngSubmit)="onSecondSubmit()">
+
+              <div formArrayName="userQualificationData">
+                <div *ngFor="let party of QualificationGet.controls; let i = index">
+                  <div [formGroupName]="i">
+                    <hr>
+                    <h5>Qualification Form-{{i+1}} <button nbButton *ngIf="i>=1" status="danger"
+                        (click)="QualificationRemove(i)">Remove</button></h5>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="examination-{{i}}" class="label">Examination</label>
+                          <input type="text" nbInput fullWidth id="examination-{{i}}" placeholder="Examination"
+                            formControlName="examination"
+                            [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="universityBoard-{{i}}" class="label">University / Board</label>
+                          <input type="text" nbInput fullWidth id="universityBoard-{{i}}"
+                            placeholder="University / Board" formControlName="universityBoard"
+                            [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="durationOfCourse-{{i}}" class="label">Duration Of Course</label>
+                          <input type="text" nbInput fullWidth id="durationOfCourse-{{i}}"
+                            placeholder="Duration Of Course" formControlName="durationOfCourse"
+                            [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="yearOfPassing-{{i}}" class="label">Year Of Passing</label>
+                          <input type="text" nbInput fullWidth id="yearOfPassing-{{i}}" placeholder="Year Of Passing"
+                            formControlName="yearOfPassing"
+                            [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="grade-{{i}}" class="label">Class & Percentage Of Marks</label>
+                          <input type="text" nbInput fullWidth id="grade-{{i}}"
+                            placeholder="Class & Percentage Of Marks" formControlName="grade"
+                            [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button nbButton status="success" (click)="QualificationAdd()">Add Another Qualifications</button>
+              <button nbButton nbStepperPrevious>prev</button>
+              <button nbButton status="danger" nbStepperNext>next</button>
+            </form>
+          </nb-step>
+
+          <nb-step label="Experience">
+            <form [formGroup]="thirdForm" (ngSubmit)="onThirdSubmit()">
+              <div formArrayName="userExperienceData">
+                <div *ngFor="let party of ExperienceGet.controls; let i = index">
+                  <div [formGroupName]="i">
+                    <hr>
+                    <h5>Experience Form-{{i+1}} <button nbButton *ngIf="i>=1" status="danger"
+                        (click)="ExperienceRemove(i)">Remove</button></h5>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="organization-{{i}}" class="label">Organisation</label>
+                          <input type="text" nbInput fullWidth id="organization-{{i}}" placeholder="Organisation"
+                            formControlName="organization"
+                            [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="position-{{i}}" class="label">Position</label>
+                          <input type="text" nbInput fullWidth id="position-{{i}}" placeholder="Position"
+                            formControlName="position"
+                            [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="reporting-{{i}}" class="label">Reporting To</label>
+                          <input type="text" nbInput fullWidth id="reporting-{{i}}" placeholder="Reporting To"
+                            formControlName="reporting"
+                            [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="yearOfExperience-{{i}}" class="label">Period Of Employment</label>
+                          <input type="text" nbInput fullWidth id="yearOfExperience-{{i}}"
+                            placeholder="Period Of Employment" formControlName="yearOfExperience"
+                            [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="salary-{{i}}" class="label">Salary With Park</label>
+                          <input type="text" nbInput fullWidth id="salary-{{i}}" placeholder="Salary With Park"
+                            formControlName="salary"
+                            [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="reasonOfLeaving-{{i}}" class="label">Reason Of Leaving</label>
+                          <input type="text" nbInput fullWidth id="reasonOfLeaving-{{i}}"
+                            placeholder="Reason Of Leaving" formControlName="reasonOfLeaving"
+                            [ngClass]="{'form-control-danger': thirdForm.invalid && (thirdForm.dirty || thirdForm.touched)}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button nbButton status="success" (click)="ExperienceAdd()">Add Another Experience</button>
+              <button nbButton nbStepperPrevious>prev</button>
+              <button nbButton status="danger" nbStepperNext>next</button>
+            </form>
+          </nb-step>
+
+          <nb-step label="Family Details">
+            <form [formGroup]="fourthForm" (ngSubmit)="onFourthSubmit()">
+
+              <div formArrayName="familyDetails">
+                <div *ngFor="let party of FamilyDetailGet.controls; let i = index">
+                  <div [formGroupName]="i">
+                    <hr>
+                    <h5>Family Detail Form {{i+1}} <button nbButton *ngIf="i>=1" status="danger"
+                        (click)="FamilyDetailRemove(i)">Remove</button></h5>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="member_of_name" class="label">Member Of Name</label>
+                          <input type="text" nbInput fullWidth id="member_of_name" placeholder="Member Of Name"
+                            formControlName="name"
+                            [ngClass]="{'form-control-danger': fourthForm.invalid && (fourthForm.dirty || fourthForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="age" class="label">Age</label>
+                          <input type="number" nbInput fullWidth id="age" placeholder="Age" formControlName="age"
+                            [ngClass]="{'form-control-danger': fourthForm.invalid && (fourthForm.dirty || fourthForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="relationship" class="label">Relationship</label>
+                          <input type="text" nbInput fullWidth id="relationship" placeholder="Relationship"
+                            formControlName="relationship"
+                            [ngClass]="{'form-control-danger': fourthForm.invalid && (fourthForm.dirty || fourthForm.touched)}">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="occupation" class="label">Occupation</label>
+                          <input type="text" nbInput fullWidth id="occupation" placeholder="Occupation"
+                            formControlName="occupation"
+                            [ngClass]="{'form-control-danger': fourthForm.invalid && (fourthForm.dirty || fourthForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="member_of_position" class="label">Position</label>
+                          <input type="text" nbInput fullWidth id="member_of_position" placeholder="Position"
+                            formControlName="position"
+                            [ngClass]="{'form-control-danger': fourthForm.invalid && (fourthForm.dirty || fourthForm.touched)}">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="office_tel_no" class="label">Office Telephone No.</label>
+                          <input type="text" nbInput fullWidth id="office_tel_no" placeholder="Office Telephone No."
+                            formControlName="offcialTelNumber"
+                            [ngClass]="{'form-control-danger': fourthForm.invalid && (fourthForm.dirty || fourthForm.touched)}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button nbButton status="success" (click)="FamilyDetailAdd()">Add Another FamilyDetails</button>
+              <button nbButton nbStepperPrevious>prev</button>
+              <button nbButton status="danger" nbStepperNext>next</button>
+            </form>
+          </nb-step>
+
+          <nb-step label="HR Conformation">
+            <form [formGroup]="fifthForm" (ngSubmit)="onFifthSubmit()">
+
+              <hr>
+              <div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="interview_by" class="label">Interview By</label>
+                      <input type="text" nbInput fullWidth id="interview_by" placeholder="Interview By"
+                        formControlName="interviewBy"
+                        [ngClass]="{'form-control-danger': fifthForm.invalid && (fifthForm.dirty || fifthForm.touched)}">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="date" class="label">Date</label>
+                      <input type="date" nbInput fullWidth id="date" placeholder="Date" formControlName="InterviewDate"
+                        [ngClass]="{'form-control-danger': fifthForm.invalid && (fifthForm.dirty || fifthForm.touched)}">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="post_to_appointed" class="label">Post To Appointed</label>
+                      <input type="text" nbInput fullWidth id="post_to_appointed" placeholder="Post To Appointed"
+                        formControlName="Post"
+                        [ngClass]="{'form-control-danger': fifthForm.invalid && (fifthForm.dirty || fifthForm.touched)}">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="salary_fixed" class="label">Salary Fixed</label>
+                      <input type="number" nbInput fullWidth id="salary_fixed" placeholder="Salary Fixed"
+                        formControlName="salary"
+                        [ngClass]="{'form-control-danger': fifthForm.invalid && (fifthForm.dirty || fifthForm.touched)}">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="doj" class="label">Date Of Join</label>
+                      <input type="text" nbInput fullWidth id="doj" placeholder="Date Of Join" formControlName="doj"
+                        [ngClass]="{'form-control-danger': fifthForm.invalid && (fifthForm.dirty || fifthForm.touched)}">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="period_of_probation" class="label">Period Of Probation</label>
+                      <input type="number" nbInput fullWidth id="period_of_probation" placeholder="Period Of Probation"
+                        formControlName="periodOfProbation"
+                        [ngClass]="{'form-control-danger': fifthForm.invalid && (fifthForm.dirty || fifthForm.touched)}">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="remark" class="label">Remark</label>
+                      <input type="text" nbInput fullWidth id="remark" placeholder="Remark" formControlName="remarks"
+                        [ngClass]="{'form-control-danger': fifthForm.invalid && (fifthForm.dirty || fifthForm.touched)}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button nbButton nbStepperPrevious>prev</button>
+              <button type="submit" nbButton status="danger">Submit</button>
+            </form>
+          </nb-step>
+
+          <!-- <nb-step [stepControl]="fifthForm" [hidden]="true" label="Third step">
+            <div class="step-container">
+              <h3>Wizard completed!</h3>
+              <button nbButton (click)="stepper.reset()">Try again</button>
+            </div>
+          </nb-step> -->
+
+        </nb-stepper>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
