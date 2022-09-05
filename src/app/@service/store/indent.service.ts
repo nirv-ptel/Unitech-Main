@@ -55,4 +55,12 @@ export class IndentService {
     return this.http.get(`${this.url}/api/v1/store/price/indent/${indentId}`);
   }
 
+  ViewVenderByIdItemId(indentId: number): Observable<any> {
+    return this.http.get(`${this.url}/api/v1/store/price/item/${indentId}`);
+  }
+
+  ViewVenderByIdVenderId(indentId: number): Observable<any> {
+    return this.http.get(`${this.url}/api/v1/store/price/price/${indentId}`);
+  }
+
 }

@@ -132,6 +132,7 @@ export class AddIndentComponent implements OnInit {
   }
 
   onIndentFormSubmit() {
+    console.warn(this.IndentForm.value);
     let a = this.IndentForm.get('indentQuantityList').value;
     
     for( let i = 0; i < a.length; i++) {

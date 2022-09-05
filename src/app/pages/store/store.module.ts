@@ -18,6 +18,7 @@ import { AddIndentComponent } from './indent/add-indent/add-indent.component';
 import { ViewIndentComponent } from './indent/view-indent/view-indent.component';
 import { ApproveStoreFormComponent } from './indent/view-indent/approve-store-form/approve-store-form.component';
 import { AppproveAdminFormComponent } from './indent/view-indent/appprove-admin-form/appprove-admin-form.component';
+import { PoComponent } from './po/po.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AppproveAdminFormComponent } from './indent/view-indent/appprove-admin-
     AddIndentComponent,
     ViewIndentComponent,
     ApproveStoreFormComponent,
-    AppproveAdminFormComponent
+    AppproveAdminFormComponent,
+    PoComponent
   ],
   imports: [
     CommonModule,

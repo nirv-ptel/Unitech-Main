@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef } from '@nebular/theme';
 import { LoginService } from '../../../../../@service/auth/login.service';
 import { IndentService } from '../../../../../@service/store/indent.service';
@@ -20,20 +20,24 @@ export class AppproveAdminFormComponent implements OnInit {
 
   role_idMain: number;
 
+  FinalForm: FormGroup;
+
   ItemVenderSorce: any = [];
+  ItemId: any = [];
+  VenderId: any = [];
 
   @Input() indentId: number;
-  
+
   constructor(
     protected ref: NbDialogRef<AppproveAdminFormComponent>,
     private _auth: LoginService,
     private _user: UserService,
     private fb: FormBuilder,
     private post: IndentService
-    ) { }
+  ) { }
 
-  ngOnInit(): void {    
-    
+  ngOnInit(): void {
+
     let role = this._auth.user.roles.find((x => x));
     this.role_idMain = this._auth.user.userId;
     if (role == 'ROLE_ADMIN') {
@@ -50,9 +54,55 @@ export class AppproveAdminFormComponent implements OnInit {
 
     this.post.ViewVenderById(this.indentId).subscribe((data: any) => {
       this.ItemVenderSorce = data.Data;
+      console.warn(this.ItemVenderSorce);
+    })
+    this.post.ViewVenderByIdItemId(this.indentId).subscribe((data: any) => {
+      this.ItemId = data.Data;
     })
 
-    let result = this.ItemVenderSorce.filter(p => p.itemModelPrice.itemName == p);
-    console.warn(result);
+    this.post.ViewVenderByIdVenderId(this.indentId).subscribe((data: any) => {
+      this.VenderId = data.Data;
+      this.demo();
+    })
+
+
+
+    this.FinalForm = this.fb.group({
+      A: this.fb.array([])
+    })
+
   }
+  demo() {
+    for (let i = 0; i < this.VenderId.length; i++) {
+      this.AddRow();
+    }
+  }
+  AddRow() {
+    this.Arow.push(this.AddCol());
+    for (let i = 0; i < this.ItemId.length; i++) {
+      this.BCol(this.Arow.length - 1).push(this.AddRows(this.ItemId[i]));
+    }
+  }
+
+  get Arow() {
+    return (this.FinalForm.get('A')) as FormArray;
+  }
+  BCol(i: number) {
+    return this.Arow.at(i).get('B') as FormArray;
+  }
+
+  AddCol() {
+    return this.fb.group({
+      B: this.fb.array([]),
+    });
+  }
+
+  AddRows(event: any) {
+    return this.fb.group({
+      item: [null, Validators.required],
+      Vender: [event, Validators.required]
+    })
+  }
+
+
 }

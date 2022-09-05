@@ -1,5 +1,4 @@
-<p>appprove-admin-form works!</p>
-<table class="table">
+<!-- <table class="table">
     <thead>
         <tr>
             <th scope="col">Select Vender</th>
@@ -18,4 +17,21 @@
             <td>{{item.vendorModelData.vendorName}}</td>
         </tr>
     </tbody>
-</table> 
+</table> -->
+
+
+<form [formGroup]="FinalForm">
+    <table class="table">
+        <tbody formArrayName="A">
+            <tr *ngFor="let party of Arow.controls; let i = index" [formGroupName]="i">
+                <p>demo</p>
+                <td formArrayName="B" *ngFor="let price of BCol(i).controls; let j = index">
+                    <p>DEMO</p>
+                    <div [formGroupName]="j">
+                        <input nbInput type="tel" formControlName="Vender" placeholder="Enter Price">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
