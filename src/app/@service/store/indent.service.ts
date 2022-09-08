@@ -63,4 +63,19 @@ export class IndentService {
     return this.http.get(`${this.url}/api/v1/store/price/price/${indentId}`);
   }
 
+  ViewFinalDataAdmin(venderId: number, itemId: number, indentId: number): Observable<any> {
+    return this.http.get(`${this.url}/api/v1/store/price/item/${venderId}/${itemId}/${indentId}`);
+  }
+
+  createPo(Po: any): Observable<any> {
+    return this.http.post(`${this.url}/api/v1/store/po/d`,Po);
+  }
+
+  ViewPO(page: number, pagesize: number): Observable<any> {
+    return this.http.get(`${this.url}/api/v1/store/po/getAll?page=${page}&pagesize=${pagesize}`);
+  }
+
+  ViewPoById(Po: any): Observable<any> {
+    return this.http.get(`${this.url}/api/v1/store/po/getById/${Po}`);
+  }
 }

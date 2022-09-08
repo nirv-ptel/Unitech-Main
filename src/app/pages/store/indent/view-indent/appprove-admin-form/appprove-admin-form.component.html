@@ -22,16 +22,27 @@
 
 <form [formGroup]="FinalForm">
     <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Vender Name</th>
+                <th *ngFor="let item of ItemData" scope="col">
+                    {{item.itemName}}
+                </th>
+            </tr>
+        </thead>
         <tbody formArrayName="A">
             <tr *ngFor="let party of Arow.controls; let i = index" [formGroupName]="i">
-                <p>demo</p>
+                <!-- <input type="text" nbInput formControlName="venderName" nbPopover="sssssss" nbPopoverTrigger="hint"  readonly > -->
+                <h6 scope="col" nbPopover="paymentTermsConditions -  {{VenderData[i].paymentTermsConditions}}" nbPopoverTrigger="hint" nbPopoverPlacement="right"> {{VenderData[i].vendorName}}</h6>
                 <td formArrayName="B" *ngFor="let price of BCol(i).controls; let j = index">
-                    <p>DEMO</p>
                     <div [formGroupName]="j">
-                        <input nbInput type="tel" formControlName="Vender" placeholder="Enter Price">
+                        <!-- <input nbInput type="tel" formControlName="VenderDetail" placeholder="Enter Vender"> -->
+                        <nb-checkbox formControlName="final"></nb-checkbox>
+                        <input nbInput type="tel" formControlName="priceId" placeholder="Enter priceId" readonly>
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
+    <button nbButton (click)="demos()" status="primary">submit</button>
 </form>

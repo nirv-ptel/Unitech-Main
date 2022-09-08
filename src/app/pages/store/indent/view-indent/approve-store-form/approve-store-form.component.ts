@@ -66,7 +66,6 @@ export class ApproveStoreFormComponent implements OnInit {
     this._vender.ViewVender().subscribe((data: any) => {
       this.VenderSource = data.Data;
     });
-    console.warn(this.IndentStatusChange.value);
     this.vendorWisePriceSetAdd();
   }
 
@@ -122,16 +121,9 @@ export class ApproveStoreFormComponent implements OnInit {
     return this.AddvendorWiseGet.at(i).get('priceItem') as FormArray;
   }
 
-  // getPriceGet(i: number,j: number) {
-  //   console.warn(i +"  "+j);
-  //   console.warn((<FormArray>(<FormArray>this.IndentStatusChange.controls.vendorWisePriceSet).controls[i].get('priceItem')).controls[j].value)
-  // }
-
   onSubmitData() {
     let MainData: any = [];
     let a = this.IndentStatusChange.value.vendorWisePriceSet;
-       console.warn(this.IndentStatusChange.get('vendorWisePriceSet').value);
-    console.warn();
     for(let i = 0; i < a.length; i++) {
       let b = this.IndentStatusChange.value.vendorWisePriceSet[i].priceItem;
       for(let j = 0; j < b.length; j++) {
@@ -149,7 +141,6 @@ export class ApproveStoreFormComponent implements OnInit {
         (this.IndentStatusChangeData.get('vendorWisePriceSet') as FormArray).push(z);
       }
     }
-    console.warn(this.IndentStatusChangeData.value);
     this._indent.StatusUpdateIndent(this.indentId, this.IndentStatusChangeData.value).subscribe((data: any) => {
         this.ngOnInit();
         this.ref.close();

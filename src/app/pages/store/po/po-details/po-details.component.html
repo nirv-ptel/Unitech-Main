@@ -1,0 +1,27 @@
+<nb-card class="scroll-card-bar">
+    <nb-card-header> PO Number - {{PoDetailsName.PoId}}
+        <button type="button" (click)="dismiss()" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </nb-card-header>
+    <nb-card-body>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Item QTY</th>
+                    <th scope="col">Item Price</th>
+                    <th scope="col">Tax (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of poSource">
+                    <td>{{item.itemModelPrice.itemName}}</td>
+                    <td>{{item.itemQuantity}}</td>
+                    <td>{{item.priceItem}}</td>
+                    <td>{{item.itemModelPrice.paytax}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </nb-card-body>
+</nb-card>

@@ -64,8 +64,6 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="paymentTermsConditions" class="label">payment Terms Conditions</label>
-                <!-- <input type="text" nbInput fullWidth id="paymentTermsConditions" placeholder="Enter payment Terms Conditions"
-                  formControlName="paymentTermsConditions"> -->
                 <nb-select placeholder="Select Payment Terms Conditions" fullWidth
                   formControlName="paymentTermsConditions">
                   <nb-option value="AFTER">AFTER</nb-option>
@@ -83,14 +81,7 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <div class="form-group">
-                <label for="Select_Item" class="label">Select Item</label>
-                <nb-select placeholder="Select Product Item" multiple fullWidth formControlName="itemDemo"
-                  (selectedChange)="changeItem($event)">
-                  <nb-option *ngFor="let item of item" value="{{ item.itemId }}">{{ item.itemName }}
-                  </nb-option>
-                </nb-select>
-              </div>
+             
             </div>
           </div>
           <button type="submit" nbButton status="danger">Submit</button>

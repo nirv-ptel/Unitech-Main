@@ -30,24 +30,41 @@ export class AddVenderComponent implements OnInit {
 
     this.venderForm = this.fb.group({
       vendorName: ['', Validators.required],
-      vendorAddress: ['', Validators.required],
-      vendorcode: ['', [Validators.required, Validators.pattern]],
       paymentTermsConditions: [null, Validators.required],
       paymentDays:[''],
-      city: [''],
-      pincode: [''],
       gstno: [''],
       panno: [''],
-      itemDemo: [null]
+      gstStatus: [''],
+      msmeType: [''],
+      factory: [''],
+      msgmeRegisterDate: [''],
+      gstForm: [''],
+      gstTo: [''],
+      centralgst: [''],
+      stategst: [''],
+      integratedgst: [''],
+      sezNumber: [''],
+      refrencesBy: [''],
+      bankName: [''],
+      branchName: [''],
+      bankCityName: [''],
+      bankAccountNumber: [''],
+      ifscCode: [''],
+      micrCode: [''],
+      cancelChequeNumber: [''],
+      supplierscode: [''],
+      accountGroupHead: [''],
+      natureOfBussiness: [''],
+      officePhoneNumber: [''],
+      ResidentPhoneNumber: [''],
+      vendorEmail: [''],
+      webSite: [''],
+      faxNumber: [''],
+      dateOfIncorporation: [''],
     });
   }
 
-  changeItem(event) {
-    this.DataTransfer.length = 0;
-    for (let i = 0; i < event.length; i++) {
-      this.DataTransfer.push({ 'itemId': event[i] })
-    }
-  }
+
   onVenderSubmit() {
     this.venderForm.removeControl('itemDemo');
     this.venderForm.addControl('itemData', this.fb.control(this.DataTransfer));

@@ -33,6 +33,7 @@ export class ViewIndentComponent implements OnInit {
 
   IndentDetailsName = {
     IndentId: null,
+    IndentNumber:null,
     IndentDate: null,
     indentStatus: null,
     IndentTotal: null,
@@ -157,6 +158,7 @@ export class ViewIndentComponent implements OnInit {
 
     this.post.IndentFindById(this.indentId).subscribe((data: any) => {
       this.IndentDetailsName.IndentId = data.Data.indentId;
+      this.IndentDetailsName.IndentNumber = data.Data.indentNumber;
       this.IndentDetailsName.IndentDate = data.Data.createdDate;
       this.IndentDetailsName.indentStatus = data.Data.indentStatus;
       this.IndentDetailsName.IndentTotal = data.Data.total;
@@ -164,7 +166,6 @@ export class ViewIndentComponent implements OnInit {
       let id = data.Data.indentId;
       this.ItemSource = data.Data.indentQuantityList;
 
-      // console.warn(this.ItemSource);
       if (id == null) {
         this.ref.close();
       }
@@ -236,7 +237,11 @@ export class ViewIndentComponent implements OnInit {
   }
 
   ApprovedReject() {
-
+    this.IndentSatatusChange.get('indentStatus').setValue('REJECT');
+    this.post.StatusUpdateIndent(this.IndentDetailsName.IndentId, this.IndentSatatusChange.value).subscribe((data: any) => {
+      this.ngOnInit();
+      this.ref.close();
+    });
   }
 
   backClicked() {
