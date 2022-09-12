@@ -10,17 +10,62 @@
     </div>
 </div>
 
+<div class="row" *ngIf="store || admin || gm">
+    <div class="col-md-12">
+        <nb-card>
+            <nb-card-header>
+                <div class="row float">
+
+                    <!-- <button nbButton>
+            <i class="fa-solid fa-arrow-up-wide-short"></i><i class="fa-solid fa-arrow-down-wide-short"></i>
+        </button> -->
+                    <button nbButton class="mr-10" (click)="FilterClear()">clear</button>
+                    <input type="text" class="mr-10" *ngIf="!StatusOnOff" nbInput [(ngModel)]="SearchField"
+                        (keyup.enter)="FilterDone()" placeholder="Search Indent Number">
+                    <nb-select id="status" class="mr-10" placeholder="Select Status" [(ngModel)]="FiltersStatus"
+                        (selectedChange)="FilterStatus($event)">
+                        <nb-option value="GM" *ngIf="gm">Pending</nb-option>
+                        <nb-option value="ADMIN" *ngIf="admin">Pending</nb-option>
+                        <nb-option value="STORE" *ngIf="store">Pending</nb-option>
+                        <nb-option value="ADMIN_LAST" *ngIf="admin">Last Pending</nb-option>
+                        <nb-option value="GM" *ngIf="!gm">GM</nb-option>
+
+                        <nb-option value="ADMIN" *ngIf="!admin">Admin</nb-option>
+                        <nb-option value="STORE" *ngIf="!store">Store</nb-option>
+                        <nb-option value="ADMIN_LAST" *ngIf="!admin">Last Admin</nb-option>
+                        <nb-option value="DONE">Done</nb-option>
+                        <nb-option value="REJECT">Reject</nb-option>
+                    </nb-select>
+                    <button nbButton status="primary" (click)="FilterOn()"><i class="fa-solid fa-filter"></i></button>
+                </div>
+                <!-- <nb-tag-list (tagRemove)="onFilterRemove($event)">
+                    <nb-tag removable *ngFor="let tree of trees" [text]="tree"></nb-tag>
+                  </nb-tag-list> -->
+                <div *ngIf="FilterOnOff" class="row">
+                    <form [formGroup]="FilterDateForm" (ngSubmit)="onfilterDateFormSubmit()">
+                        <input nbInput type="date" class="mr-10" formControlName="start" placeholder="Pick Start Date">
+                        <input nbInput type="date" class="mr-10" formControlName="end" placeholder="Pick Stop Date">
+                        <button nbButton [disabled]="FilterDateForm.invalid">Submit</button>
+                    </form>
+
+                </div>
+
+            </nb-card-header>
+        </nb-card>
+    </div>
+</div>
+
 <nb-card>
     <nb-card-header>Indent List</nb-card-header>
     <nb-card-body>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Indent Number</th>
-                    <th scope="col">Basic Ammount</th>
-                    <th scope="col">Total Ammount</th>
-                    <th scope="col">Indent Date</th>
-                    <th scope="col">Status</th>
+                    <th scope="col" (click)="sort('indentNumber')">Indent Number &nbsp; <i class="fa fa-sort"></i></th>
+                    <th scope="col" (click)="sort('total')">Basic Ammount &nbsp; <i class="fa fa-sort"></i></th>
+                    <th scope="col" (click)="sort('includingTax')">Total Ammount &nbsp; <i class="fa fa-sort"></i></th>
+                    <th scope="col" (click)="sort('created')">Indent Date &nbsp; <i class="fa fa-sort"></i></th>
+                    <th scope="col" (click)="sort('indentStatus')">Status &nbsp; <i class="fa fa-sort"></i></th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -30,31 +75,31 @@
                   itemsPerPage: itemsPerPage,
                   currentPage: page,
                   totalItems: totalItems
-                }">
+                } | orderBy: key: reverse">
                     <th scope="row"> {{ item.indentNumber}}</th>
                     <td>{{item.total}}</td>
                     <td>{{item.includingTax}}</td>
                     <td ng-controller="datCtrl">{{item.created | date : "MMM dd, y - hh:mm:ss a"}}</td>
                     <td *ngIf="item.indentStatus == 'GM' && gm">
-                        <span class="badge badge-warning">Panding</span>
+                        <span class="badge badge-warning">Pending</span>
                     </td>
                     <td *ngIf="item.indentStatus == 'GM' && !gm">
                         <span class="badge badge-primary">GM</span>
                     </td>
                     <td *ngIf="item.indentStatus == 'ADMIN' && admin">
-                        <span class="badge badge-warning">Panding</span>
+                        <span class="badge badge-warning">Pending</span>
                     </td>
                     <td *ngIf="item.indentStatus == 'ADMIN' && !admin">
                         <span class="badge badge-primary">Admin</span>
                     </td>
                     <td *ngIf="item.indentStatus == 'STORE' && store">
-                        <span class="badge badge-warning">Panding</span>
+                        <span class="badge badge-warning">Pending</span>
                     </td>
                     <td *ngIf="item.indentStatus == 'STORE' && !store">
                         <span class="badge badge-primary">Store</span>
                     </td>
                     <td *ngIf="item.indentStatus == 'ADMIN_LAST' && admin">
-                        <span class="badge badge-warning">Last Panding</span>
+                        <span class="badge badge-warning">Last Pending</span>
                     </td>
                     <td *ngIf="item.indentStatus == 'ADMIN_LAST' && !admin">
                         <span class="badge badge-primary">Last Admin</span>
@@ -67,8 +112,8 @@
                     </td>
                     <td>
                         <i class="fa-solid fa-eye" (click)="openIndentDetails(item.indentId,dialog)" title="View"></i>
-                        <i class="fa-solid fa-pen" (click)="openIndentDetails(item.indentId,dialog)" title="Edit"></i>
-                        <i class="fa-solid fa-trash" title="Delete"></i>
+                        <!-- <i class="fa-solid fa-pen" (click)="openIndentDetails(item.indentId,dialog)" title="Edit"></i> -->
+                        <!-- <i class="fa-solid fa-trash" title="Delete"></i> -->
                     </td>
                 </tr>
             </tbody>

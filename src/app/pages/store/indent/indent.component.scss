@@ -73,6 +73,9 @@ nb-card-header a {
 .float {
   float: right;
  }
+ .float-l {
+  float: left;
+ }
 .pagi {
   float: left;
   font-family: "Segoe UI";
@@ -87,4 +90,7 @@ pagination-controls ul {
 }
 span {
   font-size: 15px;
+}
+.mr-10 {
+  margin-right: 10px;
 }

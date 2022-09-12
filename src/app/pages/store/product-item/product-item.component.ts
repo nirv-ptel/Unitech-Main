@@ -222,6 +222,15 @@ export class ProductItemComponent implements OnInit {
   ];
   MachineName: any = [];
 
+  key: string = 'created';
+  reverse: boolean = false;
+  FilterOnOff: boolean = false;
+  SearchField: any = null;
+  page: number = 1;
+  itemsPerPage = 5;
+  totalItems: any;
+  FilterForm: FormGroup;
+
   constructor(
     private dialogService: NbDialogService,
     private fb: FormBuilder,
@@ -323,6 +332,11 @@ export class ProductItemComponent implements OnInit {
       }),
     });
 
+    this.FilterForm = this.fb.group({
+      page: [null],
+      size: [null]
+    })
+
     this.postCategory.ViewCategory().subscribe((data) => {
       this.category = data.Data;
     });
@@ -331,9 +345,12 @@ export class ProductItemComponent implements OnInit {
       this.unit = data.Data;
     });
 
-    this.postItem.ViewItem().subscribe((data) => {
-      this.item = data.Data;
-    });
+    // this.postItem.ViewItem().subscribe((data) => {
+    //   this.item = data.Data;
+    //   console.warn(this.item);
+    // });
+
+    this.ViewItemPage(1);
   }
 
   NumberOnly(event) {
@@ -548,6 +565,7 @@ export class ProductItemComponent implements OnInit {
     });
   }
   EditItem(event, dialog) {
+    console.warn(event);
     this.ItemFormUpdate.get('productCategory').get('pid').setValue(event.productCategory.pid);
     this.ItemFormUpdate.get('unit').get('uid').setValue(event.unit.uid);
     this.ItemFormUpdate.get('itemName').setValue(event.itemName);
@@ -602,6 +620,66 @@ export class ProductItemComponent implements OnInit {
         this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       }
     );
+  }
+
+  FilterClear() {
+    this.ngOnInit();
+  }
+
+  FilterOn() {
+    this.FilterOnOff = !this.FilterOnOff;
+  }
+
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  AddFilterForm() {
+    this.FilterForm.addControl('filters', this.fb.array([
+      this.fb.group({
+        key: [null],
+        operator: [null],
+        field_type: [null],
+        value: [null],
+        value_to: [null]
+      })
+    ]))
+  }
+
+  FilterDone() {
+
+    this.AddFilterForm();
+    this.FilterForm.value.filters[0].key = 'itemName';
+    this.FilterForm.value.filters[0].operator = 'LIKE';
+    this.FilterForm.value.filters[0].field_type = 'STRING';
+    this.FilterForm.value.filters[0].value = this.SearchField;
+    this.FilterForm.value.filters[0].value_to = null;
+
+    this.FilterForm.get('page').setValue(0);
+    this.FilterForm.get('size').setValue(this.itemsPerPage);
+    this.postItem.FilterGetAllItem(this.FilterForm.value).subscribe((data: any) => {
+      this.item = data.content;
+      this.page = data.number;
+      this.totalItems = data.totalElements;
+    })
+  }
+
+  ViewItemPage(pages: number) {
+    this.item = null;
+    this.FilterForm.get('page').setValue(pages-1);
+    this.FilterForm.get('size').setValue(this.itemsPerPage);
+     
+    this.postItem.FilterGetAllItem(this.FilterForm.value).subscribe((data: any) => {
+      this.item = data.content;
+      this.page = pages;
+      this.totalItems = data.totalElements;
+    })
+
+  }
+
+  refreshCountries() {
+    this.ViewItemPage(1);
   }
 
   allAlert(alertMsg, headMsg, msg) {

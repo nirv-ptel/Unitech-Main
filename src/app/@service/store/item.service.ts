@@ -32,6 +32,10 @@ export class ItemService {
     return this.http.patch(`${this.url}/api/v1/store/update/${id}/${quantity}`, '');
   }
 
+  FilterGetAllItem(Filter: any): Observable<any> {
+    return this.http.post(`${this.url}/api/v1/store/searching`,Filter);
+  }
+
   ItemUpload(file: any): Observable<any> {
 
     return this.http.post(`${apiUrl.url}/db/exc`, file,

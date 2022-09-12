@@ -15,6 +15,10 @@ export class IndentService {
   ViewIndent(): Observable<any> {
     return this.http.get(`${this.url}/api/v1/store/req`);
   }
+  ViewIndentWithFilter(Filter: any): Observable<any> {
+    return this.http.post(`${this.url}/api/v1/store/req/getAllByIndent`,Filter);
+  }
+
   ViewIndentPaginasion(page: number, pagesize: number): Observable<any> {
     return this.http.get(`${this.url}/api/v1/store/req/page/?page=${page}&pagesize=${pagesize}`);
   }
@@ -47,6 +51,10 @@ export class IndentService {
     return this.http.patch(`${this.url}/api/v1/store/req/${indentId}`, indent);
   }
 
+  priceIdUpdate(indentId: number, priceId: number): Observable<any> {
+    return this.http.patch(`${this.url}/api/v1/store/req/update/vendorPrice/${priceId}/${indentId}`,null);
+  }
+
   ApprovelRecord(indentId: number): Observable<any> {
     return this.http.get(`${this.url}/api/v1/store/eve/${indentId}`);
   }
@@ -65,6 +73,10 @@ export class IndentService {
 
   ViewFinalDataAdmin(venderId: number, itemId: number, indentId: number): Observable<any> {
     return this.http.get(`${this.url}/api/v1/store/price/item/${venderId}/${itemId}/${indentId}`);
+  }
+
+  PvenderPriceUpdate(priceId: number, price: any): Observable<any> {
+    return this.http.patch(`${this.url}/api/v1/store/req/update/PvendorPrice/${priceId}`, price);
   }
 
   createPo(Po: any): Observable<any> {

@@ -8,7 +8,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { NbActionsModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDatepickerModule, NbDialogModule, NbIconModule, NbInputModule, NbListModule, NbPopoverModule, NbRadioModule, NbSelectModule, NbStepperModule, NbTabsetModule, NbToggleModule } from '@nebular/theme';
+import { NbActionsModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDatepickerModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbListModule, NbPopoverModule, NbRadioModule, NbSelectModule, NbStepperModule, NbTabsetModule, NbTagModule, NbToggleModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { IssueComponent } from './issue/issue.component';
@@ -41,6 +41,7 @@ import { PoDetailsComponent } from './po/po-details/po-details.component';
     CommonModule,
     StoreRoutingModule,
     Ng2SearchPipeModule,
+    NbFormFieldModule,
     NbPopoverModule,
     Ng2OrderModule,
     Ng2SmartTableModule,
@@ -48,6 +49,7 @@ import { PoDetailsComponent } from './po/po-details/po-details.component';
     NbInputModule,
     NbListModule,
     NbCardModule,
+    NbTagModule,
     NbButtonModule,
     NbActionsModule,
     NbToggleModule,

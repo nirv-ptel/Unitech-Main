@@ -49,7 +49,7 @@ export class ApproveStoreFormComponent implements OnInit {
     } else if (role == 'ROLE_ACCOUNT') {
       this.account = true;
     }
-    
+
     this.IndentStatusChangeData = this.fb.group({
       indentStatus: ['ADMIN_LAST'],
       comment: ['Vender Select And Price Set', Validators.required],
@@ -71,8 +71,8 @@ export class ApproveStoreFormComponent implements OnInit {
 
   vendorWisePriceSetAdd() {
     this.AddvendorWiseGet.push(this.AddvendorWisePriceSet());
-    for(let i = 0; i< this.itemData.length; i++) {
-      this.AddPriceGet(this.AddvendorWiseGet.length-1).push(this.Price(this.itemData[i].storeItemIndentQuantityData.itemId));
+    for (let i = 0; i < this.itemData.length; i++) {
+      this.AddPriceGet(this.AddvendorWiseGet.length - 1).push(this.Price(this.itemData[i].storeItemIndentQuantityData.itemId));
     }
   }
 
@@ -94,8 +94,8 @@ export class ApproveStoreFormComponent implements OnInit {
 
   Price(event: number) {
     return this.fb.group({
-      item:[event, Validators.required],
-      price:[null, Validators.required]
+      item: [event, Validators.required],
+      price: [null, Validators.required]
     })
   }
 
@@ -124,9 +124,9 @@ export class ApproveStoreFormComponent implements OnInit {
   onSubmitData() {
     let MainData: any = [];
     let a = this.IndentStatusChange.value.vendorWisePriceSet;
-    for(let i = 0; i < a.length; i++) {
+    for (let i = 0; i < a.length; i++) {
       let b = this.IndentStatusChange.value.vendorWisePriceSet[i].priceItem;
-      for(let j = 0; j < b.length; j++) {
+      for (let j = 0; j < b.length; j++) {
         let z = this.fb.group({
           itemModelPrice: this.fb.group({
             itemId: [b[j].item]
@@ -142,11 +142,9 @@ export class ApproveStoreFormComponent implements OnInit {
       }
     }
     this._indent.StatusUpdateIndent(this.indentId, this.IndentStatusChangeData.value).subscribe((data: any) => {
-        this.ngOnInit();
-        this.ref.close();
-      });
+      this.ngOnInit();
+      this.ref.close();
+    });
   }
-
-
 
 }

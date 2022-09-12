@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
+import { NbDateService, NbDialogService, NbGlobalPhysicalPosition, NbTagComponent, NbToastrService } from '@nebular/theme';
 import { LoginService } from '../../../@service/auth/login.service';
 import { VenderService } from '../../../@service/purchase/vender/vender.service';
 import { IndentService } from '../../../@service/store/indent.service';
@@ -29,15 +29,28 @@ export class IndentComponent implements OnInit {
   account: boolean = false;
   role_idMain: number;
 
-  IndentSource: any = [];
+
 
   // Model View Indent
   NbDialogRef: any;
 
-  // Pagination in Table
+  FilterDateForm: FormGroup;
+  // Pagination Filter Sorting in Table
   page: number = 1;
   itemsPerPage = 5;
   totalItems: any;
+  FilterField: any = 'indentNumber';
+  FiltersStatus: any = null;
+  SearchField: any = null;
+  FilterDate: any = null;
+  key: string = 'createdDate';
+  reverse: boolean = false;
+  FilterOnOff: boolean = false;
+  StatusOnOff: boolean = false;
+  FilterType: boolean = false;
+  IndentSource: any = [];
+  FilterForm: FormGroup;
+  trees: any = [];
 
   settings = {
     actions: {
@@ -91,6 +104,7 @@ export class IndentComponent implements OnInit {
     private postResponce: ResponceService,
     private toastrService: NbToastrService,
     private _location: Location,
+    protected dateService: NbDateService<Date>,
     private venderService: VenderService,
     private _router: Router
   ) {
@@ -111,17 +125,161 @@ export class IndentComponent implements OnInit {
     } else if (role == 'ROLE_ACCOUNT') {
       this.account = true;
     }
-    this.ViewIndentPage(1);
 
+    this.FilterDateForm = this.fb.group({
+      start:[null, Validators.required],
+      end: [null, Validators.required]
+    })
+    this.FilterForm = this.fb.group({
+      // filters: this.fb.array([
+      //   this.fb.group({
+      //     key:[null],
+      //     operator:[null],
+      //     field_type:[null],
+      //     value:[null],
+      //   })
+      // ]),
+      // filters: this.fb.array([]),
+      // sort: this.fb.array([
+      //  this.fb.group({
+      //   key: [null],
+      //   direction: [null]
+      //  })
+      // ]),
+      page: [null],
+      size: [null]
+    })
+    this.AddFilterForm();
+    this.FilterForm.value.filters[0].key = this.FilterField;
+    this.FilterForm.value.filters[0].operator = 'LIKE';
+    this.FilterForm.value.filters[0].field_type = 'INTEGER';
+    this.FilterForm.value.filters[0].value = "";
+    this.FilterForm.value.filters[0].value_to = null;
+    this.ViewIndentPage(1);
+  }
+
+  AddFilterForm() {
+    this.FilterForm.addControl('filters', this.fb.array([
+      this.fb.group({
+        key: [null],
+        operator: [null],
+        field_type: [null],
+        value: [null],
+        value_to: [null]
+      })
+    ]))
+  }
+
+  ViewIndentWithFilter() {
+    this.post.ViewIndentWithFilter(1).subscribe((data: any) => {
+
+    })
+  }
+
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  onfilterDateFormSubmit() {
+    this.AddFilterForm();
+    this.FilterForm.value.filters[0].key = 'created';
+    this.FilterForm.value.filters[0].operator = 'BETWEEN';
+    this.FilterForm.value.filters[0].field_type = 'DATE';
+    this.FilterForm.value.filters[0].value = this.dateService.format(this.FilterDateForm.get('start').value, 'dd-MM-yyyy')+" 00:00:00";
+    this.FilterForm.value.filters[0].value_to = this.dateService.format(this.FilterDateForm.get('end').value, 'dd-MM-yyyy')+" 00:00:00";
+    console.warn(this.FilterForm.value);
+    this.post.ViewIndentWithFilter(this.FilterForm.value).subscribe((data: any) => {
+      this.IndentSource = data.content;
+      this.page = data.number;
+      this.totalItems = data.totalElements;
+      console.warn(this.IndentSource);
+    })
+  }
+
+  FilterStatus(event) {
+    this.SearchField = null;
+    console.warn(event);
+
+    this.post.ViewIndentStatus(this.FiltersStatus).subscribe((data: any) => {
+      console.warn(data.Data);
+      this.IndentSource = data.Data;
+    })
+
+  }
+  FilterClear() {
+    this.FiltersStatus = null;
+    this.SearchField = null;
+    this.ngOnInit();
+    this.FilterDateForm.reset();
+
+    this.ViewIndentPage(1);
+  }
+
+  FilterDone() {
+    this.FiltersStatus = null;
+    // this.FilterAdd(this.FilterField, 'LIKE', 'INTEGER', this.SearchField);
+    this.AddFilterForm();
+    this.FilterForm.value.filters[0].key = this.FilterField;
+    this.FilterForm.value.filters[0].operator = 'LIKE';
+    this.FilterForm.value.filters[0].field_type = 'INTEGER';
+    this.FilterForm.value.filters[0].value = this.SearchField;
+    this.FilterForm.value.filters[0].value_to = null;
+
+    this.FilterForm.get('page').setValue(0);
+
+    this.FilterForm.get('size').setValue(this.itemsPerPage);
+    console.warn(this.FilterForm.value);
+    this.post.ViewIndentWithFilter(this.FilterForm.value).subscribe((data: any) => {
+      this.IndentSource = data.content;
+      this.page = data.number;
+      this.totalItems = data.totalElements;
+      console.warn(this.IndentSource);
+      // this.trees.push("Search By "+ this.FilterField +" - "+this.SearchField);
+    })
+  }
+
+  FilterAdd(key, operator, field_type, value) {
+    this.FilterGet.push(this.filter(key, operator, field_type, value));
+  }
+
+  get FilterGet() {
+    return this.FilterForm.get('filters') as FormArray;
+  }
+
+  filter(key, operator, field_type, value) {
+    return this.fb.group({
+      key: [key],
+      operator: [operator],
+      field_type: [field_type],
+      value: [value],
+      
+    })
+  }
+  onFilterRemove(tagToRemove: NbTagComponent) {
+    this.trees = this.trees.filter(t => t !== tagToRemove.text);
   }
 
   ViewIndentPage(pages: number) {
     this.IndentSource = null;
-    this.post.ViewIndentPaginasion(pages - 1, this.itemsPerPage).subscribe(data => {
-      this.IndentSource = data.Data;
+   
+    // this.FilterForm.value.filters[0].key = this.FilterField;
+    // this.FilterForm.value.filters = null;
+    // this.FilterForm.removeControl('filters');
+    this.FilterForm.get('page').setValue(pages - 1);
+    this.FilterForm.get('size').setValue(this.itemsPerPage);
+    this.post.ViewIndentWithFilter(this.FilterForm.value).subscribe((data: any) => {
+      this.IndentSource = data.content;
       this.page = pages;
-      this.totalItems = data.Pagination.rowcount;
+      this.totalItems = data.totalElements;
+      console.warn(this.FilterForm.value);
     })
+    // this.post.ViewIndentPaginasion(pages - 1, this.itemsPerPage).subscribe(data => {
+    //   this.IndentSource = data.Data;
+    //   this.page = pages;
+    //   this.totalItems = data.Pagination.rowcount;
+    //   console.warn(this.IndentSource);
+    // })
   }
 
   refreshCountries() {
@@ -342,7 +500,6 @@ export class IndentComponent implements OnInit {
     pdfMake.createPdf(docDefinition).open();
   }
 
-
   createIndent(dialog: TemplateRef<any>) {
     this._router.navigate(['pages/store/add-indent']);
   }
@@ -367,6 +524,10 @@ export class IndentComponent implements OnInit {
         this.ngOnInit();
       }
       )
+  }
+
+  FilterOn() {
+    this.FilterOnOff = !this.FilterOnOff;
   }
 
   allAlert(alertMsg, headMsg, msg) {
