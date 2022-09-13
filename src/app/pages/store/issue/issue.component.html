@@ -1,12 +1,112 @@
-<div *ngIf="maintanance">
+<!-- <div *ngIf="maintanance">
   <button nbButton status="danger" (click)="createIssue(dialog)">
     New Issue
   </button>
+</div> -->
+<div class="row" *ngIf="maintanance">
+  <div class="col-md-12">
+      <nb-card>
+          <nb-card-header>
+              <div *ngIf="maintanance" class="float">
+                <button nbButton status="danger" (click)="createIssue(dialog)">
+                  New Issue
+                </button>
+              </div>
+          </nb-card-header>
+      </nb-card>
+  </div>
+</div>
+
+
+<div class="row" *ngIf="store || admin || maintanance">
+  <div class="col-md-12">
+      <nb-card>
+          <nb-card-header>
+              <div class="row float">
+                  <button nbButton class="mr-10" (click)="FilterClear()">clear</button>
+                  <!-- <input type="text" class="mr-10" *ngIf="!StatusOnOff" nbInput [(ngModel)]="SearchField"
+                      (keyup.enter)="FilterDone()" placeholder="Search Indent Number"> -->
+                  <nb-select id="status" class="mr-10" placeholder="Select Status" [(ngModel)]="FiltersStatus"
+                      (selectedChange)="FilterStatus($event)">
+                      <nb-option value="PENDING">Pending</nb-option>
+                      <nb-option value="CANCEL">Cancel</nb-option>
+                      <nb-option value="DONE">Done</nb-option>
+                      <nb-option value="REJECT">Reject</nb-option>
+                  </nb-select>
+                  <button nbButton status="primary" (click)="FilterOn()"><i class="fa-solid fa-filter"></i></button>
+              </div>
+              <div *ngIf="FilterOnOff" class="row">
+                  <form [formGroup]="FilterDateForm" (ngSubmit)="onfilterDateFormSubmit()">
+                      <input nbInput type="date" class="mr-10" formControlName="start" placeholder="Pick Start Date">
+                      <input nbInput type="date" class="mr-10" formControlName="end" placeholder="Pick Stop Date">
+                      <button nbButton [disabled]="FilterDateForm.invalid">Submit</button>
+                  </form>
+
+              </div>
+
+          </nb-card-header>
+      </nb-card>
+  </div>
 </div>
 
 <nb-card>
   <nb-card-body>
-    <nb-tabset fullWidth>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" (click)="sort('itemName')">Item Name &nbsp; <i class="fa fa-sort"></i></th>
+          <th scope="col" (click)="sort('description')">Item Description &nbsp; <i class="fa fa-sort"></i></th>
+          <th scope="col" (click)="sort('quantity')">quantity &nbsp; <i class="fa fa-sort"></i></th>
+          <th scope="col" (click)="sort('requiredDays')">requiredDays &nbsp; <i class="fa fa-sort"></i></th>
+          <th scope="col" (click)="sort('issueDate')">issueDate &nbsp; <i class="fa fa-sort"></i></th>
+          <th scope="col" (click)="sort('quantity')" *ngIf="admin || store || gm">Quantity &nbsp; <i class="fa fa-sort"></i></th>
+          <th scope="col">Status</th>
+          <th scope="col" *ngIf="store || maintanance">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of IssueSource | paginate : 
+          {
+            itemsPerPage: itemsPerPage,
+            currentPage: page,
+            totalItems: totalItems
+          } | orderBy: key: reverse">
+          <td>{{item.storeItemModel.itemName}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.requiredDays}}</td>
+          <td ng-controller="datCtrl">{{item.issueDate| date : "MMM dd, y - hh:mm:ss a"}}</td>
+          <td *ngIf="admin || store || gm">{{item.quantity}}</td>
+          <td *ngIf="item.status == 'PENDING'">
+            <span class="badge badge-warning">{{item.status}}</span>
+          </td>
+          <td *ngIf="item.status == 'DONE'">
+            <span class="badge badge-success">{{item.status}}</span>
+          </td>
+          <td *ngIf="item.status == 'REJECT'">
+            <span class="badge badge-danger">{{item.status}}</span>
+          </td>
+          <td *ngIf="item.status == 'CANCEL'">
+            <span class="badge badge-primary">{{item.status}}</span>
+          </td>
+          <!-- <td *ngIf="admin">
+            <i class="fa-solid fa-eye" (click)="EditItem(item, dialog1)" title="View"></i>
+          </td> -->
+          <td *ngIf="maintanance || store">
+            <i class="fa-solid fa-eye" *ngIf="(item.status == 'PENDING' || maintanance)" (click)="onChangeIssueStatus(item, dialog1)" title="View"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls class="pagi" (pageChange)="ViewItemPage((page = $event))"></pagination-controls>
+    <div class="float">
+      <nb-select class="form-select" [selected]="5" [(ngModel)]="itemsPerPage" (ngModelChange)="refreshCountries()">
+        <nb-option [value]="5">5 items per page</nb-option>
+        <nb-option [value]="10">10 items per page</nb-option>
+        <nb-option [value]="25">25 items per page</nb-option>
+      </nb-select>
+    </div>
+    <!-- <nb-tabset fullWidth>
       <nb-tab *ngIf="!admin" tabTitle="PENDING">
         <ng2-smart-table [settings]="PENDINGsettings" [source]="PENDINGIssueSource"
           (custom)="onChangeIssueStatus($event.data, dialog1)">
@@ -15,7 +115,7 @@
       <nb-tab *ngIf="admin" tabTitle="PENDING">
         <ng2-smart-table [settings]="OPENsettings" [source]="PENDINGIssueSource">
         </ng2-smart-table>
-      </nb-tab>
+      </nb-tab> -->
       <!-- <nb-tab *ngIf="admin || store" tabTitle="OPEN">
         <ng2-smart-table [settings]="OPENsettings" [source]="OPENIssueSource">
         </ng2-smart-table>
@@ -25,7 +125,7 @@
           (custom)="onChangeIssueCloseStatus($event.data, dialog2)">
         </ng2-smart-table>
       </nb-tab> -->
-      <nb-tab tabTitle="DONE">
+      <!-- <nb-tab tabTitle="DONE">
         <ng2-smart-table [settings]="DONEsettings" [source]="DONEIssueSource">
         </ng2-smart-table>
       </nb-tab>
@@ -38,7 +138,7 @@
         <ng2-smart-table [settings]="CANCELsettings" [source]="CANCELIssueSource">
         </ng2-smart-table>
       </nb-tab>
-    </nb-tabset>
+    </nb-tabset> -->
   </nb-card-body>
 </nb-card>
 
@@ -140,13 +240,13 @@
           [disabled]="IssueOpenForm.invalid">
           Reject
         </button>
-        <button class="cancel" *ngIf="
+        <!-- <button class="cancel" *ngIf="
             store &&
             IssueOpenForm.get('quantity').value >=
               statusChangeIssue.storeItemModel.quantity
           " nbButton status="primary" (click)="IndentCreate(dialog3)" type="button">
           Indent
-        </button>
+        </button> -->
         <button class="cancel" *ngIf="maintanance" nbButton status="success" (click)="issueCancel()" type="button"
           [disabled]="IssueOpenForm.invalid">
           Cancel

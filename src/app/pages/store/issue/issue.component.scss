@@ -49,3 +49,27 @@
   padding: 4px 8px;
   border-radius: 12%;
 }
+.float {
+  float: right;
+ }
+ .float-l {
+  float: left;
+ }
+.pagi {
+  float: left;
+  font-family: "Segoe UI";
+}
+pagination-controls ul {
+  font-family: "Segoe UI";
+  font-size: 300px;
+}
+.scroll-card-bar {
+  max-height: 100%;
+  overflow-y: hidden;
+}
+span {
+  font-size: 15px;
+}
+.mr-10 {
+  margin-right: 10px;
+}

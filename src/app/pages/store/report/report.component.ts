@@ -40,6 +40,16 @@ export class ReportComponent implements OnInit {
   SourceItemFilter: any = [];
   MachineName: any = [];
 
+  key: string = 'created';
+  reverse: boolean = false;
+  FilterOnOff: boolean = false;
+  SearchField: any = null;
+  FiltersStatus: any = null;
+  page: number = 1;
+  itemsPerPage = 5;
+  totalItems: any;
+  FilterForm: FormGroup;
+
   settings = {
     actions: false,
     columns: {
@@ -263,5 +273,28 @@ export class ReportComponent implements OnInit {
         this.MachineName = data;
       });
     }
+  }
+
+  
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  refreshCountries() {
+    this.ViewItemPage(1);
+  }
+
+  ViewItemPage(pages: number) {
+    this.item = null;
+    this.FilterForm.get('page').setValue(pages-1);
+    this.FilterForm.get('size').setValue(this.itemsPerPage);
+     
+    this.post.VIewIssueFIlter(this.FilterForm.value).subscribe((data: any) => {
+      this.MachineName = data.content;
+      this.page = pages;
+      this.totalItems = data.totalElements;
+    })
+
   }
 }
