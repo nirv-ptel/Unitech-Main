@@ -3,89 +3,338 @@
     <nb-card>
       <nb-card-header>Vender form</nb-card-header>
       <nb-card-body>
-        <form [formGroup]="venderForm" (ngSubmit)="onVenderSubmit()">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="vendorName" class="label">Vender Name</label>
-                <input type="text" nbInput fullWidth id="vendorName" placeholder="Enter Vender Name"
-                  formControlName="vendorName">
+        <nb-toggle [(ngModel)]="toggleNgModel">Store Vender Form</nb-toggle>
+        <div *ngIf="toggleNgModel">
+          <form [formGroup]="venderForm" (ngSubmit)="onVenderSubmit()">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="vendorName" class="label">Vender Name</label>
+                  <input type="text" nbInput fullWidth id="vendorName" placeholder="Enter Vender Name"
+                    formControlName="vendorName">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="factory" class="label">Vender Factory</label>
+                  <input type="text" nbInput fullWidth id="factory" placeholder="Enter Vender Factory"
+                    formControlName="factory">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="paymentTermsConditions" class="label">Payment Terms Conditions</label>
+                  <nb-select placeholder="Select Payment Terms Conditions" fullWidth
+                    formControlName="paymentTermsConditions">
+                    <nb-option value="AFTER">AFTER</nb-option>
+                    <nb-option value="BEFORE">BEFORE</nb-option>
+                  </nb-select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="paymentDays" class="label">Payment Days<span class="red">*</span></label>
+                  <input type="text" nbInput fullWidth id="paymentDays" placeholder="Enter Payment Days"
+                    formControlName="paymentDays">
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="vendorcode" class="label">Vender Code</label>
-                <input type="text" nbInput fullWidth id="vendorcode" placeholder="Enter Vender code"
-                  formControlName="vendorcode">
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="supplierscode" class="label">Suppliers Code</label>
+                  <input type="text" nbInput fullWidth id="supplierscode" placeholder="Enter Suppliers Code"
+                    formControlName="supplierscode">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="accountGroupHead" class="label">Account Group Head</label>
+                  <input type="text" nbInput fullWidth id="accountGroupHead" placeholder="Enter Account Group Head"
+                    formControlName="accountGroupHead">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="natureOfBussiness" class="label">Nature Of Bussiness</label>
+                  <input type="text" nbInput fullWidth id="natureOfBussiness"
+                    placeholder="Enter Nature Of Bussiness" formControlName="natureOfBussiness">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="officePhoneNumber" class="label">Office Phone Number</label>
+                  <input type="text" nbInput fullWidth id="officePhoneNumber"
+                    placeholder="Enter Office Phone Number" formControlName="officePhoneNumber">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="city" class="label">Vender City</label>
-                <input type="text" nbInput fullWidth id="city" placeholder="Enter Vender City" formControlName="city">
+
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="ResidentPhoneNumber" class="label">Resident Phone Number</label>
+                  <input type="text" nbInput fullWidth id="ResidentPhoneNumber"
+                    placeholder="Enter Resident Phone Number" formControlName="ResidentPhoneNumber">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="vendorEmail" class="label">Vender Email</label>
+                  <input type="text" nbInput fullWidth id="vendorEmail" placeholder="Enter Vender Email"
+                    formControlName="vendorEmail">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="webSite" class="label">Website</label>
+                  <input type="text" nbInput fullWidth id="webSite" placeholder="Enter Website"
+                    formControlName="webSite">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="faxNumber" class="label">Fax Number</label>
+                  <input type="text" nbInput fullWidth id="faxNumber" placeholder="Enter Fax Number"
+                    formControlName="faxNumber">
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="pincode" class="label">Vender Pincode</label>
-                <input type="tel" nbInput fullWidth id="pincode" placeholder="Enter Vender Pincode"
-                  formControlName="pincode">
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="refrencesBy" class="label">Refrences By</label>
+                  <input type="text" nbInput fullWidth id="refrencesBy" placeholder="Enter Refrences By"
+                    formControlName="refrencesBy">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="vendorAddress" class="label">Vender Address</label>
-                <input type="text" nbInput fullWidth id="vendorAddress" placeholder="Enter Vender Address"
-                  formControlName="vendorAddress">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="vendorpan" class="label">Vender Pan</label>
-                <input type="text" nbInput fullWidth id="vendorpan" placeholder="Enter Vender Pan No."
-                  formControlName="panno">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="vendorGst" class="label">Vender GST</label>
-                <input type="text" nbInput fullWidth id="vendorGst" placeholder="Enter Vender GST No."
-                  formControlName="gstno">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="paymentTermsConditions" class="label">payment Terms Conditions</label>
-                <nb-select placeholder="Select Payment Terms Conditions" fullWidth
-                  formControlName="paymentTermsConditions">
-                  <nb-option value="AFTER">AFTER</nb-option>
-                  <nb-option value="BEFORE">BEFORE</nb-option>
-                </nb-select>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="paymentDays" class="label">Payment Days<span class="red">*</span></label>
-                <input type="text" nbInput fullWidth id="paymentDays" placeholder="Enter paymentDays"
-                  formControlName="paymentDays">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
+
+            <hr>
+            <h6>Bank Details</h6>
+            <div class="row">
              
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="bankName" class="label">Bank Name</label>
+                  <input type="text" nbInput fullWidth id="bankName" placeholder="Enter Bank Name"
+                    formControlName="bankName">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="branchName" class="label">Branch Name</label>
+                  <input type="text" nbInput fullWidth id="branchName" placeholder="Enter Branch Name"
+                    formControlName="branchName">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="bankCityName" class="label">Bank City Name</label>
+                  <input type="text" nbInput fullWidth id="bankCityName" placeholder="Enter Bank City Name"
+                    formControlName="bankCityName">
+                </div>
+              </div>
             </div>
-          </div>
-          <button type="submit" nbButton status="danger">Submit</button>
-        </form>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="bankAccountNumber" class="label">Bank Account Number</label>
+                  <input type="tel" nbInput fullWidth id="bankAccountNumber"
+                    placeholder="Enter Bank Account Number" formControlName="bankAccountNumber">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="ifscCode" class="label">IFSC Code</label>
+                  <input type="text" nbInput fullWidth id="ifscCode" placeholder="Enter IFSC Code"
+                    formControlName="ifscCode">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="micrCode" class="label">MICR Code</label>
+                  <input type="text" nbInput fullWidth id="micrCode" placeholder="Enter MICR Code"
+                    formControlName="micrCode">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="cancelChequeNumber" class="label">Cancel Cheque Number</label>
+                  <input type="text" nbInput fullWidth id="cancelChequeNumber"
+                    placeholder="Enter Cancel Cheque Number" formControlName="cancelChequeNumber">
+                </div>
+              </div>
+            </div>
+            <hr>
+           
+            <hr>
+            <h6>GST Details</h6>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="vendorpan" class="label">Vender Pan</label>
+                  <input type="text" nbInput fullWidth id="vendorpan" placeholder="Enter Vender Pan No."
+                    formControlName="panno">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="vendorGst" class="label">Vender GST</label>
+                  <input type="text" nbInput fullWidth id="vendorGst" placeholder="Enter Vender GST No."
+                    formControlName="gstno">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="gstStatus" class="label">GST Status</label>
+                  <nb-select placeholder="Select GST Status" fullWidth formControlName="gstStatus">
+                    <nb-option value="REGULAR">REGULAR</nb-option>
+                    <nb-option value="COMPOSITION">COMPOSITION</nb-option>
+                    <nb-option value="UNREGISTERED">UNREGISTERED</nb-option>
+                    <nb-option value="REGISTERED">REGISTERED</nb-option>
+                  </nb-select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="msmeType" class="label">MSME Type</label>
+                  <nb-select placeholder="Select MSME Type" fullWidth formControlName="msmeType">
+                    <nb-option value="MICRO">MICRO</nb-option>
+                    <nb-option value="SMALL">SMALL</nb-option>
+                    <nb-option value="MEDIUM">MEDIUM</nb-option>
+                  </nb-select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="msgmeRegisterDate" class="label">MSME Register Date</label>
+                  <input type="date" nbInput fullWidth id="msgmeRegisterDate" placeholder="Enter MSME Register Date"
+                    formControlName="msgmeRegisterDate">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="gstForm" class="label">GST Form</label>
+                  <input type="date" nbInput fullWidth id="gstForm" placeholder="Enter GST Form"
+                    formControlName="gstForm">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="gstTo" class="label">GST To</label>
+                  <input type="date" nbInput fullWidth id="gstTo" placeholder="Enter GST To" formControlName="gstTo">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="dateOfIncorporation" class="label">Date Of Incorporation<span class="red">*</span></label>
+                  <input type="date" nbInput fullWidth id="dateOfIncorporation" placeholder="Enter Date Of Incorporation"
+                    formControlName="dateOfIncorporation">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="centralgst" class="label">CGST</label>
+                  <input type="tel" nbInput fullWidth id="centralgst" placeholder="Enter CGST"
+                    formControlName="centralgst">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="stategst" class="label">SGST</label>
+                  <input type="tel" nbInput fullWidth id="stategst" placeholder="Enter SGST"
+                    formControlName="stategst">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="integratedgst" class="label">IGST</label>
+                  <input type="tel" nbInput fullWidth id="integratedgst" placeholder="Enter IGST"
+                    formControlName="integratedgst">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="sezNumber" class="label">Sez Number</label>
+                  <input type="text" nbInput fullWidth id="sezNumber" placeholder="Enter Sez Number"
+                    formControlName="sezNumber">
+                </div>
+              </div>
+            </div>
+
+         
+            <hr>
+            <h6>Address Details</h6>
+            <div formArrayName="vendorAddressModels">
+              <div *ngFor="let party of AddVenterAddressGet.controls; let i = index">
+                <div class="row" [formGroupName]="i">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="vendorAddressType-{{i}}" class="label">Address Type<span class="red">
+                          *</span></label>
+                      <nb-select placeholder="Select Address Type" fullWidth formControlName="vendorAddressType">
+                        <nb-option value="OFFICE">OFFICE</nb-option>
+                        <nb-option value="FACTORY">FACTORY</nb-option>
+                        <nb-option value="BUSINESS">BUSINESS</nb-option>
+                        <nb-option value="SHIPPING">SHIPPING</nb-option>
+                        <nb-option value="CONTRACT">CONTRACT</nb-option>
+                        <nb-option value="DELIVERY">DELIVERY</nb-option>
+                      </nb-select>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="city-{{i}}" class="label">City<span class="red"> *</span></label>
+                      <input type="text" nbInput fullWidth id="city-{{i}}" placeholder="Enter City"
+                        formControlName="city">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="state-{{i}}" class="label">State<span class="red"> *</span></label>
+                      <input type="text" nbInput fullWidth id="state-{{i}}" placeholder="Enter State"
+                        formControlName="state">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="address-{{i}}" class="label">Address<span class="red"> *</span></label>
+                      <input type="text" nbInput fullWidth id="address-{{i}}" placeholder="Enter Address"
+                        formControlName="address">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label for="pincode-{{i}}" class="label">Pin Code<span class="red"> *</span></label>
+                      <input type="text" nbInput fullWidth id="pincode-{{i}}" placeholder="Enter Pin Code"
+                        formControlName="pincode">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <button nbButton *ngIf="i>=1" status="danger" class="mt-20" (click)="AddAddressRemove(i)">
+                      <nb-icon icon="trash-2-outline"></nb-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" nbButton status="success" class="mr-10" (click)="AddressAdd()">
+              <nb-icon icon="plus-square-outline"></nb-icon>
+            </button>
+            <button type="submit" nbButton status="danger">Submit</button>
+          </form>
+        </div>
       </nb-card-body>
     </nb-card>
   </div>
