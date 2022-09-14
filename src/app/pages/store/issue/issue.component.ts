@@ -920,6 +920,21 @@ export class IssueComponent implements OnInit {
       });
   }
 
+
+  getToday(): string {
+    return new Date().toISOString().split('T')[0];
+  }
+  getMin(): string {
+    return new Date(this.FilterDateForm.get('start').value).toISOString().split('T')[0];
+  }
+  getMix(): string {
+    if(this.FilterDateForm.get('end').value != null) {
+      return new Date(this.FilterDateForm.get('end').value).toISOString().split('T')[0];
+    } else {
+      return new Date().toISOString().split('T')[0];
+    }
+  }
+
   FilterClear() {
     this.SearchField = null;
     this.FiltersStatus = null;

@@ -165,6 +165,6 @@ export class AppproveAdminFormComponent implements OnInit {
       }
 
     }
-    // this.ref.close();
+    this.ref.close();
   }
 }

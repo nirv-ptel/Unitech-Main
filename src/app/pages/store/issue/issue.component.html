@@ -37,8 +37,8 @@
               </div>
               <div *ngIf="FilterOnOff" class="row">
                   <form [formGroup]="FilterDateForm" (ngSubmit)="onfilterDateFormSubmit()">
-                      <input nbInput type="date" class="mr-10" formControlName="start" placeholder="Pick Start Date">
-                      <input nbInput type="date" class="mr-10" formControlName="end" placeholder="Pick Stop Date">
+                      <input nbInput type="date" [max]="getMix()" class="mr-10" formControlName="start" placeholder="Pick Start Date">
+                      <input nbInput type="date" [max]="getToday()" [min]="getMin()" class="mr-10" formControlName="end" placeholder="Pick Stop Date">
                       <button nbButton [disabled]="FilterDateForm.invalid">Submit</button>
                   </form>
 

@@ -90,4 +90,8 @@ export class IndentService {
   ViewPoById(Po: any): Observable<any> {
     return this.http.get(`${this.url}/api/v1/store/po/getById/${Po}`);
   }
+  ViewPoFilter(Filter: any): Observable<any> {
+    return this.http.post(`${this.url}/api/v1/store/po/searchingInPo`,Filter);
+  }
+
 }

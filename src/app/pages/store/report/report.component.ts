@@ -179,6 +179,26 @@ export class ReportComponent implements OnInit {
   getToday(): string {
     return new Date().toISOString().split('T')[0];
   }
+  getMin(): string {
+    return new Date(this.TwoDate.get('start').value).toISOString().split('T')[0];
+  }
+  getMix(): string {
+    if(this.TwoDate.get('end').value != null) {
+      return new Date(this.TwoDate.get('end').value).toISOString().split('T')[0];
+    } else {
+      return new Date().toISOString().split('T')[0];
+    }
+  }
+  getMinItem(): string {
+    return new Date(this.TwoDateItem.get('start').value).toISOString().split('T')[0];
+  }
+  getMixItem(): string {
+    if(this.TwoDateItem.get('end').value != null) {
+      return new Date(this.TwoDateItem.get('end').value).toISOString().split('T')[0];
+    } else {
+      return new Date().toISOString().split('T')[0];
+    }
+  }
 
   chengeDepartmentName(event) {
     this.post.ViewDepartUsageItem(event).subscribe((data) => {

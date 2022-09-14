@@ -5,6 +5,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { NbDialogService } from '@nebular/theme';
 import { PoDetailsComponent } from './po-details/po-details.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -26,11 +27,19 @@ export class PoComponent implements OnInit {
     itemsPerPage = 5;
     totalItems: any;
     NbDialogRef: any;
+    FilterOnOff: boolean = false;
+    SearchField: any = null;
+    FiltersStatus: any = null;
+    FilterForm: FormGroup;
+    FilterDateForm: FormGroup;
+    key: string = 'createdDate';
+    reverse: boolean = false;
 
   poSource: any = [];
   constructor(
     private _auth: LoginService,
     private dialogService: NbDialogService,
+    private fb: FormBuilder,
     private _indent: IndentService
   ) { }
 
@@ -51,17 +60,25 @@ export class PoComponent implements OnInit {
       this.account = true;
     }
 
+    this.FilterForm = this.fb.group({
+      page: [null],
+      size: [null]
+    })
+
     this.ViewPoPage(1);
   }
 
   ViewPoPage(pages: number) {
     this.poSource = null;
-    this._indent.ViewPO(pages - 1, this.itemsPerPage).subscribe(data => {
-      console.warn(data.Data);
-      this.poSource = data.Data;
+    this.FilterForm.get('page').setValue(pages-1);
+    this.FilterForm.get('size').setValue(this.itemsPerPage);
+     
+    this._indent.ViewPoFilter(this.FilterForm.value).subscribe((data: any) => {
+      this.poSource = data.content;
       this.page = pages;
-      this.totalItems = data.Pagination.rowcount;
+      this.totalItems = data.totalElements;
     })
+
   }
   refreshCountries() {
     this.ViewPoPage(1);
@@ -85,6 +102,7 @@ export class PoComponent implements OnInit {
   }
 
   downloadAsPo(event) {
+    console.warn(event);
     let a = event.listOfpO;
     let n = [];
     var x = new Array('Item No.','Item Name','QTY','Item Price','Tax (%)', 'Total');
@@ -97,7 +115,7 @@ export class PoComponent implements OnInit {
       let d = a[i].itemQuantity;
       let e = a[i].priceItem;
       let f = a[i].itemModelPrice.paytax; 
-      let g = a[i].includingTax;
+      let g = a[i].totalAmount;
       var b = new Array((i+1).toString(),c.toString(),d.toString(),e.toString(), f.toString(),g.toString());
       n.push(b);
     }
@@ -184,7 +202,7 @@ export class PoComponent implements OnInit {
                   {
                     // width: '100%',
                     margin: [0, 3],
-                    text: `Vendor Address  :- `,
+                    text: `Vendor Address  :- ${event.listOfpO[0].vendorModelData.vendorAddressModels[0].address}, ${event.listOfpO[0].vendorModelData.vendorAddressModels[0].city}, ${event.listOfpO[0].vendorModelData.vendorAddressModels[0].state} - ${event.listOfpO[0].vendorModelData.vendorAddressModels[0].pincode}`,
                   },
                 ]
               ],
@@ -237,7 +255,7 @@ export class PoComponent implements OnInit {
         },
         {
           table: {
-            widths: ['*', '*', '*', '*', '*', '*'],
+            widths: [25, '*', 30, 50, 50, 60],
             body: n
           }
         },
@@ -273,6 +291,50 @@ export class PoComponent implements OnInit {
       }
     }
     pdfMake.createPdf(docDefinition).open();
+  }
+
+
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  FilterClear() {
+    this.SearchField = null;
+    this.FiltersStatus = null;
+    this.ngOnInit();
+  }
+  AddFilterForm() {
+    this.FilterForm.addControl('filters', this.fb.array([
+      this.fb.group({
+        key: [null],
+        operator: [null],
+        field_type: [null],
+        value: [null],
+        value_to: [null]
+      })
+    ]))
+  }
+
+  FilterDone() {
+    this.AddFilterForm();
+    this.FilterForm.value.filters[0].key = 'poNumber';
+    this.FilterForm.value.filters[0].operator = 'LIKE';
+    this.FilterForm.value.filters[0].field_type = 'INTEGER';
+    this.FilterForm.value.filters[0].value = this.SearchField;
+    this.FilterForm.value.filters[0].value_to = null;
+
+    this.FilterForm.get('page').setValue(0);
+    this.FilterForm.get('size').setValue(this.itemsPerPage);
+    this._indent.ViewPoFilter(this.FilterForm.value).subscribe((data: any) => {
+      this.poSource = data.content;
+      this.page = data.number;
+      this.totalItems = data.totalElements;
+    })
+  }
+
+  FilterOn() {
+    this.FilterOnOff = !this.FilterOnOff;
   }
 
 }
