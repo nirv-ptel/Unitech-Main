@@ -3,9 +3,9 @@ import { LoginService } from '../../../@service/auth/login.service';
 import { IndentService } from '../../../@service/store/indent.service';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import { NbDialogService } from '@nebular/theme';
+import { NbDateService, NbDialogService } from '@nebular/theme';
 import { PoDetailsComponent } from './po-details/po-details.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -39,6 +39,7 @@ export class PoComponent implements OnInit {
   constructor(
     private _auth: LoginService,
     private dialogService: NbDialogService,
+    protected dateService: NbDateService<Date>,
     private fb: FormBuilder,
     private _indent: IndentService
   ) { }
@@ -65,6 +66,11 @@ export class PoComponent implements OnInit {
       size: [null]
     })
 
+    this.FilterDateForm = this.fb.group({
+      start:[null, Validators.required],
+      end: [null, Validators.required]
+    })
+
     this.ViewPoPage(1);
   }
 
@@ -80,6 +86,21 @@ export class PoComponent implements OnInit {
     })
 
   }
+
+  getToday(): string {
+    return new Date().toISOString().split('T')[0];
+  }
+  getMin(): string {
+    return new Date(this.FilterDateForm.get('start').value).toISOString().split('T')[0];
+  }
+  getMix(): string {
+    if(this.FilterDateForm.get('end').value != null) {
+      return new Date(this.FilterDateForm.get('end').value).toISOString().split('T')[0];
+    } else {
+      return new Date().toISOString().split('T')[0];
+    }
+  }
+
   refreshCountries() {
     this.ViewPoPage(1);
   }
@@ -102,7 +123,6 @@ export class PoComponent implements OnInit {
   }
 
   downloadAsPo(event) {
-    console.warn(event);
     let a = event.listOfpO;
     let n = [];
     var x = new Array('Item No.','Item Name','QTY','Item Price','Tax (%)', 'Total');
@@ -297,6 +317,22 @@ export class PoComponent implements OnInit {
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
+  }
+
+  onfilterDateFormSubmit() {
+    this.SearchField = null;
+    this.AddFilterForm();
+
+    this.FilterForm.value.filters[0].key = 'createdDate';
+    this.FilterForm.value.filters[0].operator = 'BETWEEN';
+    this.FilterForm.value.filters[0].field_type = 'DATE';
+    this.FilterForm.value.filters[0].value = this.dateService.format(this.FilterDateForm.get('start').value, 'dd-MM-yyyy')+" 00:00:00";
+    this.FilterForm.value.filters[0].value_to = this.dateService.format(this.FilterDateForm.get('end').value, 'dd-MM-yyyy')+" 00:00:00";
+    this._indent.ViewPoFilter(this.FilterForm.value).subscribe((data: any) => {
+      this.poSource = data.content;
+      this.page = data.number;
+      this.totalItems = data.totalElements;
+    })
   }
 
   FilterClear() {

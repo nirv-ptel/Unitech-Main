@@ -91,7 +91,6 @@ export class AddVenderComponent implements OnInit {
 
 
   onVenderSubmit() {
-    console.warn(this.venderForm.value);
     this.venderService.CreateVender(this.venderForm.value).subscribe((data: any) => {
       this.allAlert('success', `Vender Created !`, 'Successfully Vender Created');
       this.ngOnInit();

@@ -954,10 +954,8 @@ export class IssueComponent implements OnInit {
     this.FilterDateForm.reset();
     this.SearchField = null;
     this.post.ViewIssueStatus(this.FiltersStatus).subscribe((data: any) => {
-      console.warn(data.Data);
       this.IssueSource = data.Data;
     })
-
   }
 
   AddFilterForm() {

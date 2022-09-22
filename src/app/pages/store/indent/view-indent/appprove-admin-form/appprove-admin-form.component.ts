@@ -158,7 +158,6 @@ export class AppproveAdminFormComponent implements OnInit {
       }
 
       if (cc.get('listOfpO').value != null) {
-        console.warn(cc.value);
         this.post.createPo(cc.value).subscribe((data: any) => {
           
         })

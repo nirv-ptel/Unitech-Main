@@ -347,7 +347,6 @@ export class ProductItemComponent implements OnInit {
 
     // this.postItem.ViewItem().subscribe((data) => {
     //   this.item = data.Data;
-    //   console.warn(this.item);
     // });
 
     this.ViewItemPage(1);
@@ -565,7 +564,6 @@ export class ProductItemComponent implements OnInit {
     });
   }
   EditItem(event, dialog) {
-    console.warn(event);
     this.ItemFormUpdate.get('productCategory').get('pid').setValue(event.productCategory.pid);
     this.ItemFormUpdate.get('unit').get('uid').setValue(event.unit.uid);
     this.ItemFormUpdate.get('itemName').setValue(event.itemName);
@@ -623,6 +621,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   FilterClear() {
+    this.SearchField = null;
     this.ngOnInit();
   }
 

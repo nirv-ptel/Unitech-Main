@@ -203,21 +203,17 @@ export class IndentComponent implements OnInit {
     this.FilterForm.value.filters[0].field_type = 'DATE';
     this.FilterForm.value.filters[0].value = this.dateService.format(this.FilterDateForm.get('start').value, 'dd-MM-yyyy')+" 00:00:00";
     this.FilterForm.value.filters[0].value_to = this.dateService.format(this.FilterDateForm.get('end').value, 'dd-MM-yyyy')+" 00:00:00";
-    console.warn(this.FilterForm.value);
     this.post.ViewIndentWithFilter(this.FilterForm.value).subscribe((data: any) => {
       this.IndentSource = data.content;
       this.page = data.number;
       this.totalItems = data.totalElements;
-      console.warn(this.IndentSource);
     })
   }
 
   FilterStatus(event) {
     this.SearchField = null;
-    console.warn(event);
 
     this.post.ViewIndentStatus(this.FiltersStatus).subscribe((data: any) => {
-      console.warn(data.Data);
       this.IndentSource = data.Data;
     })
 
@@ -244,12 +240,10 @@ export class IndentComponent implements OnInit {
     this.FilterForm.get('page').setValue(0);
 
     this.FilterForm.get('size').setValue(this.itemsPerPage);
-    console.warn(this.FilterForm.value);
     this.post.ViewIndentWithFilter(this.FilterForm.value).subscribe((data: any) => {
       this.IndentSource = data.content;
       this.page = data.number;
       this.totalItems = data.totalElements;
-      console.warn(this.IndentSource);
       // this.trees.push("Search By "+ this.FilterField +" - "+this.SearchField);
     })
   }
@@ -287,13 +281,11 @@ export class IndentComponent implements OnInit {
       this.IndentSource = data.content;
       this.page = pages;
       this.totalItems = data.totalElements;
-      console.warn(this.FilterForm.value);
     })
     // this.post.ViewIndentPaginasion(pages - 1, this.itemsPerPage).subscribe(data => {
     //   this.IndentSource = data.Data;
     //   this.page = pages;
     //   this.totalItems = data.Pagination.rowcount;
-    //   console.warn(this.IndentSource);
     // })
   }
 

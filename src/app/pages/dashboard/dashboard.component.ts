@@ -189,7 +189,6 @@ export class DashboardComponent implements OnInit {
     //   }
     // });
     this.MachinePara.DateSingleRingframe(this.SingleDate.value.date).subscribe(data => {
-      // console.warn(data.Data);
 
       let a = data.Data.length;
       for (let i = 0; i < a; i++) {
@@ -208,10 +207,7 @@ export class DashboardComponent implements OnInit {
         this.redingB4.push(data.Data[i].averageshift_b_HankFour);
         this.redingB5.push(data.Data[i].averageshift_b_HankFive);
         this.redingB6.push(data.Data[i].averageshift_b_HankSix);
-        if(i + 1 == a) {
-        
-          // console.warn(this.datasets);
-          // console.warn(this.datasets1);
+        if (i + 1 == a) {
           this.chart.update();
         }
       }
@@ -250,8 +246,6 @@ export class DashboardComponent implements OnInit {
   addCol() {
 
     this.MachinePara.DateSingleRingframe(this.SingleDate.value.date).subscribe(data => {
-      console.warn(this.SingleDate.value.date);
-
       let a = data.Data.length;
       for (let i = 0; i < a; i++) {
         // this.labels.push(data.Data[i].ringframe.name);
@@ -270,18 +264,16 @@ export class DashboardComponent implements OnInit {
         this.redingB4[i] = data.Data[i].averageshift_a_HankTen;
         this.redingB5[i] = data.Data[i].averageshift_a_HankEleven;
         this.redingB6[i] = data.Data[i].averageshift_a_HankTwo;
-        if(i + 1 == a) {
+        if (i + 1 == a) {
           // this.chart.data.datasets = [];
           // for (let j = 0; j < this.datasets1.length; j++) {
           //   this.chart.data.datasets.push(this.datasets1[j]);
           // }
-          // console.warn(this.datasets);
-          // console.warn(this.datasets1.length);
           this.chart.update();
         }
       }
     })
-   
+
 
   }
 

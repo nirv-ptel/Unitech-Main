@@ -719,7 +719,6 @@ export class RingframeComponent implements OnInit {
         if (data.Data[i].averageshift_a_HankTwelev == 0 && this.shiftB6) {
           this.shiftData1 = true;
         }
-        console.warn(data.Data[i]);
         this.name.push(data.Data[i].ringframe.name);
         this.reding0.push(data.Data[i].productionSpindle2HoursKg);
         this.redingA1.push(data.Data[i].averageshift_a_HankOne);
@@ -925,8 +924,6 @@ export class RingframeComponent implements OnInit {
   // }
   onSingleDateChartSubmit() {
     this.MachinePara.DateSingleRingframe(this.SingleDatechart.value.date).subscribe(data => {
-      console.warn(this.SingleDatechart.value.date);
-
       let a = data.Data.length;
       for (let i = 0; i < a; i++) {
         this.reding0[i] = data.Data[i].productionSpindle2HoursKg;

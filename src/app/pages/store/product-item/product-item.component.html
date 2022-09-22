@@ -59,10 +59,10 @@
               <td>{{item.itemRate}}</td>
               <td *ngIf="admin || store || gm">{{item.quantity}}</td>
               <td *ngIf="store || admin">
-                <i class="fa-solid fa-eye" (click)="EditItem(item, dialog1)" title="View"></i>
+                <i class="fa-solid fa-pen" (click)="EditItem(item, dialog1)" title="View"></i>
               </td>
               <td *ngIf="maintanance">
-                <i class="fa-solid fa-eye" (click)="createIssue(item, dialog)" title="View"></i>
+                <i class="fa-solid fa-square-plus" (click)="createIssue(item, dialog)" title="Create Issue"></i>
               </td>
             </tr>
           </tbody>
@@ -261,11 +261,11 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-4 margin">
               <nb-checkbox formControlName="activation" status="success">Activation</nb-checkbox>
             </div>
-          </div>
+          </div> -->
           <button type="submit" [disabled]="ItemForm.invalid" nbButton status="danger">submit</button>
         </form>
       </nb-tab>
@@ -405,9 +405,9 @@
           <input type="text" nbInput fullWidth id="paytax" placeholder="Tax" formControlName="paytax"
             (keydown)="NumberOnly($event)" />
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <nb-checkbox formControlName="activation" status="success">Activation</nb-checkbox>
-        </div>
+        </div> -->
 
         <button nbButton status="success" [disabled]="ItemFormUpdate.invalid" type="submit">Submit</button>
       </form>

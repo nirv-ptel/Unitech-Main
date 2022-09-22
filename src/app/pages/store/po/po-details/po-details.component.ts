@@ -48,7 +48,6 @@ export class PoDetailsComponent implements OnInit {
     }
 
     this._indent.ViewPoById(this.poID).subscribe((data: any) => {
-      // console.warn(data.Data);
       this.poSource = data.Data.listOfpO;
       this.PoDetailsName.PoId = data.Data.poNumber;
     })
