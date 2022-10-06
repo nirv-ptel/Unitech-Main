@@ -15,10 +15,10 @@ export const HR_MENU_ITEMS: NbMenuItem[] = [
     title: 'HR',
     icon: 'layout-outline',
     children: [
-      {
-        title: 'Role',
-        link: '/pages/user/role',
-      },
+      // {
+      //   title: 'Role',
+      //   link: '/pages/user/role',
+      // },
       {
         title: 'Add User',
         link: '/pages/user/user/user',
