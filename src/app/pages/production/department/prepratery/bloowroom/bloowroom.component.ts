@@ -260,7 +260,7 @@ export class BloowroomComponent implements OnInit {
     } else if (Date2a < nowDate) {
       this.shiftB2 = true;
     }
-
+// role find -------------------------------
     let role = this._auth.user.roles.find((x => x));
     if (role == 'ROLE_ADMIN') {
       this.admin = true;
@@ -442,7 +442,7 @@ export class BloowroomComponent implements OnInit {
         closeOnBackdropClick: false,
       });
   }
-
+// form-------------------------------
   Bloowroom(Data: any) {
     return this.fb.group({
       deliveryspeed: ['', Validators.required],
@@ -515,7 +515,7 @@ export class BloowroomComponent implements OnInit {
       })
     }
   }
-
+// excel download ----------------------------------
   downloadSingle() {
     let start = this.SingleDate.value.date;
     this.MachinePara.DownloadSingleBloowRoom(this.dateService.format(start, 'yyyy-MM-dd')).subscribe(data => {
@@ -548,7 +548,7 @@ export class BloowroomComponent implements OnInit {
     }
     alert("Date Submited Success Fully...");
   }
-
+// parameter -------------------------------------
   onBloowroomParameterAoneSubmit() {
     let check = 1;
     for (let i = 0; i < this.bloowroomparameterAone.value.parareading.length; i++) {

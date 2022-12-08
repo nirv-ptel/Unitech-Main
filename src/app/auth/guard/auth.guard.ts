@@ -14,8 +14,6 @@ constructor(private router: Router, private _loginservice: LoginService) {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // return false;
-    // return this.router.createUrlTree(['']);
     if(this._loginservice.isLoggedIn()) {
       return true;
     }

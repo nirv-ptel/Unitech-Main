@@ -313,7 +313,7 @@ export class SimplexComponent implements OnInit {
     } else if (Date2a < nowDate) {
       this.shiftB2 = true;
     }
-
+// role find ---------------------------------
     let role = this._auth.user.roles.find((x => x));
     if (role == 'ROLE_ADMIN') {
       this.admin = true;
@@ -460,8 +460,6 @@ export class SimplexComponent implements OnInit {
         });
       }
 
-
-
       if (data.Data.length <= 0) {
         this.qcokay = true;
         this.qcdataokay = false;
@@ -487,8 +485,7 @@ export class SimplexComponent implements OnInit {
   get SimplexParaBtwoGet() {
     return this.simplexparameterBtwo.get('parareading') as FormArray;
   }
-
-
+// form----------------------------------
   Simplex(Data: any) {
     return this.fb.group({
       speedRpm: ['', Validators.required],
@@ -569,7 +566,7 @@ export class SimplexComponent implements OnInit {
       })
     }
   }
-
+// excel download ---------------------------------
   downloadSingle() {
     let start = this.SingleDate.value.date;
     this.MachinePara.DownloadSingleSimplax(this.dateService.format(start, 'yyyy-MM-dd')).subscribe(data => {

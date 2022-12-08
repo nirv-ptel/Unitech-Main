@@ -244,7 +244,7 @@ export class LapformerComponent implements OnInit {
     } else if (Date2a < nowDate) {
       this.shiftB2 = true;
     }
-
+// role find-----------------------------
     let role = this._auth.user.roles.find((x => x));
     if (role == 'ROLE_ADMIN') {
       this.admin = true;
@@ -497,7 +497,7 @@ export class LapformerComponent implements OnInit {
       })
     }
   }
-
+// excel download -----------------------------
   downloadSingle() {
     let start = this.SingleDate.value.date;
     this.MachinePara.DownloadSingleLapformer(this.dateService.format(start, 'yyyy-MM-dd')).subscribe(data => {
@@ -533,7 +533,7 @@ export class LapformerComponent implements OnInit {
     this.ngOnInit();
     alert("Date Submited Success Fully...");
   }
-
+// parameter-----------------------
   onLapformerParameterAoneSubmit() {
     let check = 1;
     for (let i = 0; i < this.lapformerparameterAone.value.parareading.length; i++) {

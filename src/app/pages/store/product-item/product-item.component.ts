@@ -245,6 +245,7 @@ export class ProductItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // role find ------------------------------------
     let role = this._auth.user.roles.find((x) => x);
     let role_id = this._auth.user.userId;
     if (role == "ROLE_ADMIN") {
@@ -256,7 +257,7 @@ export class ProductItemComponent implements OnInit {
     } else if (role == "ROLE_GENERALMANAGER") {
       this.gm = true;
     }
-
+//  form -------------------------------------
     this.ItemForm = this.fb.group({
       itemName: ["", Validators.required],
       productCategory: this.fb.group({

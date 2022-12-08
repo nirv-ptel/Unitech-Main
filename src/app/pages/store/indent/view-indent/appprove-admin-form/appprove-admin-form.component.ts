@@ -44,7 +44,7 @@ export class AppproveAdminFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+// role find -------------------------------------
     let role = this._auth.user.roles.find((x => x));
     this.role_idMain = this._auth.user.userId;
     if (role == 'ROLE_ADMIN') {

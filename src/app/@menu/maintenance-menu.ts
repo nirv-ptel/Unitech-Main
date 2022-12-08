@@ -7,10 +7,6 @@ export const MAINTNANCE_MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     home: false,
   },
-  // {
-  //   title: 'FEATURES',
-  //   group: false,
-  // },
   {
     title: 'Store',
     icon: 'browser-outline',
@@ -24,10 +20,6 @@ export const MAINTNANCE_MENU_ITEMS: NbMenuItem[] = [
         title: 'Issue',
         link: '/pages/store/issue',
       },
-      // {
-      //   title: 'Indent',
-      //   link: '/pages/store/indent',
-      // },
     ],
   },
 ]

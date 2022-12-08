@@ -7,19 +7,11 @@ export const ACCOUNT_MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     home: false,
   },
-  // {
-  //   title: 'FEATURES',
-  //   group: false,
-  // },
+
   {
     title: 'Store',
     icon: 'browser-outline',
     children: [
-
-      // {
-      //   title: 'Indent',
-      //   link: '/pages/store/indent',
-      // },
       {
         title: 'Po',
         link: '/pages/store/po',

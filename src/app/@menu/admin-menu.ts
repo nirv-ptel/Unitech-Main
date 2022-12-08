@@ -1,12 +1,5 @@
 import { NbMenuItem } from "@nebular/theme";
-import decode from 'jwt-decode';
 
-// const roles = [1, 2, 3, 4, 5, 6, 7];
-// const token = localStorage.getItem('token');
-// let tokenPayload: any = [];
-// if (token) {
-//   tokenPayload = decode(token);
-// }
 export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
@@ -14,18 +7,10 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     home: false,
   },
-  // {
-  //   title: 'FEATURES',
-  //   group: false,
-  // },
   {
     title: 'HR',
     icon: 'layout-outline',
     children: [
-      // {
-      //   title: 'Role',
-      //   link: '/pages/user/role',
-      // },
       {
         title: 'Add User',
         link: '/pages/user/user/user',
@@ -70,7 +55,6 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Contract',
-        // link: '/pages/purchase/purchasedetails',
         children: [
           {
             title: 'Add Contract',
@@ -84,7 +68,6 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Po',
-        // link: '/pages/purchase/addpurchase',
         children: [
           {
             title: 'Add Po',
@@ -98,7 +81,6 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Do',
-        // link: '/pages/purchase/purchasedetails',
         children: [
           {
             title: 'Add Do',

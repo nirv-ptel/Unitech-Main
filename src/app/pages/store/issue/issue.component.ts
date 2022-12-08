@@ -407,6 +407,7 @@ export class IssueComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // role find ----------------------------------
     let role = this._auth.user.roles.find((x) => x);
     let role_id = this._auth.user.userId;
     if (role == "ROLE_ADMIN") {
@@ -421,6 +422,7 @@ export class IssueComponent implements OnInit {
 
     this.postResponce.ViewResponce().subscribe((data: any) => { });
 
+    // form -------------------------------------
     this.IssueForm = this.fb.group({
       quantity: [null, Validators.required],
       description: [null, Validators.required],
@@ -855,7 +857,6 @@ export class IssueComponent implements OnInit {
   }
 
   IndentCreate(dialog3: TemplateRef<any>) {
-    // this.total = null;
     this.tax = this.statusChangeIssue.storeItemModel.paytax;
     this.IndentForm.get("storeItem")
       .get("itemId")
@@ -1017,7 +1018,6 @@ export class IssueComponent implements OnInit {
   refreshCountries() {
     this.ViewItemPage(1);
   }
-
 
   allAlert(alertMsg, headMsg, msg) {
     const config = {

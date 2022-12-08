@@ -587,6 +587,7 @@ export class RingframeComponent implements OnInit {
       this.shiftB6 = true;
     }
 
+    // role  find ----------------------------
     let role = this._auth.user.roles.find((x => x));
     if (role == 'ROLE_ADMIN') {
       this.admin = true;
@@ -817,7 +818,7 @@ export class RingframeComponent implements OnInit {
   get RingframeParaBSixGet() {
     return this.ringframeparameterBSix.get('parareading') as FormArray;
   }
-
+// ringframe form -------------------------
   Ringframe(Data: any) {
     return this.fb.group({
       spindleRpm: ['', Validators.required],
@@ -976,7 +977,7 @@ export class RingframeComponent implements OnInit {
       })
     }
   }
-
+// excel download -------------------------------
   downloadSingle() {
     let start = this.SingleDate.value.date;
     this.MachinePara.DownloadSingleRingframe(this.dateService.format(start, 'yyyy-MM-dd')).subscribe(data => {
@@ -1011,7 +1012,7 @@ export class RingframeComponent implements OnInit {
     this.ngOnInit();
     alert("Date Submited Success Fully...");
   }
-
+// parameter -----------------------------------
   onRingframeParameterAoneSubmit() {
     let check = 1;
     for (let i = 0; i < this.ringframeparameterAOne.value.parareading.length; i++) {

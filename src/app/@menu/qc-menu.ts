@@ -7,10 +7,6 @@ export const QC_MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     home: false,
   },
-  // {
-  //   title: 'FEATURES',
-  //   group: false,
-  // },
   {
     title: 'Purchase',
     icon: 'keypad-outline',
@@ -31,10 +27,6 @@ export const QC_MENU_ITEMS: NbMenuItem[] = [
     title: 'Production',
     icon: 'edit-2-outline',
     children: [
-      // {
-      //   title: 'Add Machine',
-      //   link: '/pages/production/addmachine',
-      // },
       {
         title: 'Departments',
         children: [

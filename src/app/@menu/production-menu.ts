@@ -8,18 +8,10 @@ export const PRODUCTION_MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     home: false,
   },
-  // {
-  //   title: 'FEATURES',
-  //   group: false,
-  // },
   {
     title: 'Production',
     icon: 'edit-2-outline',
     children: [
-      // {
-      //   title: 'Add Machine',
-      //   link: '/pages/production/addmachine',
-      // },
       {
         title: 'Departments',
         children: [

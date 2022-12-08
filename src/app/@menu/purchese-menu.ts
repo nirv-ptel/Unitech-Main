@@ -7,10 +7,6 @@ export const PURCHESE_MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
     home: false,
   },
-  // {
-  //   title: 'FEATURES',
-  //   group: false,
-  // },
   {
     title: 'Purchase',
     icon: 'keypad-outline',
@@ -45,7 +41,6 @@ export const PURCHESE_MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Contract',
-        // link: '/pages/purchase/purchasedetails',
         children: [
           {
             title: 'Add Contract',
@@ -59,7 +54,6 @@ export const PURCHESE_MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Po',
-        // link: '/pages/purchase/addpurchase',
         children: [
           {
             title: 'Add Po',
@@ -73,7 +67,6 @@ export const PURCHESE_MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Do',
-        // link: '/pages/purchase/purchasedetails',
         children: [
           {
             title: 'Add Do',

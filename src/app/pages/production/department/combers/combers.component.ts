@@ -266,7 +266,7 @@ export class CombersComponent implements OnInit {
     } else if (Date2a < nowDate) {
       this.shiftB2 = true;
     }
-
+// role find-----------------
     let role = this._auth.user.roles.find((x => x));
     if (role == 'ROLE_ADMIN') {
       this.admin = true;
@@ -440,7 +440,7 @@ export class CombersComponent implements OnInit {
     return this.comberparameterBtwo.get('parareading') as FormArray;
   }
 
-
+// form---------------------------
   Comber(Data: any) {
     return this.fb.group({
       comberSpeedRpm: ['', Validators.required],
@@ -522,7 +522,7 @@ export class CombersComponent implements OnInit {
       })
     }
   }
-
+// excel download----------------------------
   downloadSingle() {
     let start = this.SingleDate.value.date;
     this.MachinePara.DownloadSingleComber(this.dateService.format(start, 'yyyy-MM-dd')).subscribe(data => {
@@ -558,6 +558,7 @@ export class CombersComponent implements OnInit {
     alert("Date Submited Success Fully...");
   }
 
+  // parameter------------------------------------
   onComberParameterAoneSubmit() {
     let check = 1;
     for (let i = 0; i < this.comberparameterAone.value.parareading.length; i++) {
