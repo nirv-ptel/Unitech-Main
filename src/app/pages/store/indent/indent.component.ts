@@ -131,21 +131,6 @@ export class IndentComponent implements OnInit {
       end: [null, Validators.required]
     })
     this.FilterForm = this.fb.group({
-      // filters: this.fb.array([
-      //   this.fb.group({
-      //     key:[null],
-      //     operator:[null],
-      //     field_type:[null],
-      //     value:[null],
-      //   })
-      // ]),
-      // filters: this.fb.array([]),
-      // sort: this.fb.array([
-      //  this.fb.group({
-      //   key: [null],
-      //   direction: [null]
-      //  })
-      // ]),
       page: [null],
       size: [null]
     })
@@ -229,7 +214,6 @@ export class IndentComponent implements OnInit {
 
   FilterDone() {
     this.FiltersStatus = null;
-    // this.FilterAdd(this.FilterField, 'LIKE', 'INTEGER', this.SearchField);
     this.AddFilterForm();
     this.FilterForm.value.filters[0].key = this.FilterField;
     this.FilterForm.value.filters[0].operator = 'LIKE';
@@ -244,7 +228,6 @@ export class IndentComponent implements OnInit {
       this.IndentSource = data.content;
       this.page = data.number;
       this.totalItems = data.totalElements;
-      // this.trees.push("Search By "+ this.FilterField +" - "+this.SearchField);
     })
   }
 

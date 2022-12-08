@@ -16,8 +16,6 @@ import { VenderService } from '../../../../@service/purchase/vender/vender.servi
 })
 export class ViewIndentComponent implements OnInit {
 
-  // IndentId: any;
-
   admin: boolean = false;
   maintanance: boolean = false;
   store: boolean = false;
@@ -226,9 +224,9 @@ export class ViewIndentComponent implements OnInit {
     } else if (this.IndentDetailsName.indentStatus == "STORE" && this.store) {
       this.IndentSatatusChange.get('indentStatus').setValue('ADMIN_LAST');
     } else if (this.IndentDetailsName.indentStatus == "ACCOUNT" && this.account) {
-      // this.IndentSatatusChange.get('indentStatus').setValue('ADMIN');
+      
     } else if (this.IndentDetailsName.indentStatus == "ADMIN_LAST" && this.admin) {
-      // this.IndentSatatusChange.get('indentStatus').setValue('ADMIN');
+
     }
     this.post.StatusUpdateIndent(this.IndentDetailsName.IndentId, this.IndentSatatusChange.value).subscribe((data: any) => {
       this.ngOnInit();

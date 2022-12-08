@@ -168,6 +168,7 @@ export class ReportComponent implements OnInit {
     });
   }
 
+  // date Validation ---------------------------
   getToday(): string {
     return new Date().toISOString().split('T')[0];
   }

@@ -394,7 +394,7 @@ export class FinisherComponent implements OnInit {
     } else if (Date2a < nowDate) {
       this.shiftB2 = true;
     }
-
+// role find --------------------------------
     let role = this._auth.user.roles.find((x => x));
     if (role == 'ROLE_ADMIN') {
       this.admin = true;
@@ -846,7 +846,7 @@ export class FinisherComponent implements OnInit {
       })
     }
   }
-
+// excel download -------------------------------------
   downloadSingle() {
     let start = this.SingleDate.value.date;
     this.MachinePara.DownloadSingleFinisherKG(this.dateService.format(start, 'yyyy-MM-dd')).subscribe(data => {
@@ -913,7 +913,7 @@ export class FinisherComponent implements OnInit {
     this.ngOnInit();
     alert("Date Submited Success Fully...");
   }
-
+// parameter-----------------------------------------
   onFinisherParameterAoneSubmit() {
     let check = 1;
     for (let i = 0; i < this.finisherparameterAone.value.parareading.length; i++) {

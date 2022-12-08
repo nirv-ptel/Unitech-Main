@@ -45,6 +45,7 @@ export class ProductCategoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // role find -------------------------
     let role = this._auth.user.roles.find((x) => x);
     if (role == "ROLE_ADMIN") {
       this.admin = true;

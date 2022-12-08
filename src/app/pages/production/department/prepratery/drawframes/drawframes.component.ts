@@ -396,7 +396,7 @@ export class DrawframesComponent implements OnInit {
     } else if (Date2a < nowDate) {
       this.shiftB2 = true;
     }
-
+// role find -------------------------------------------
     let role = this._auth.user.roles.find((x => x));
     if (role == 'ROLE_ADMIN') {
       this.admin = true;
@@ -850,7 +850,7 @@ export class DrawframesComponent implements OnInit {
       })
     }
   }
-
+// excel download --------------------------------
   downloadSingle() {
     let start = this.SingleDate.value.date;
     this.MachinePara.DownloadSingleDrawframeKG(this.dateService.format(start, 'yyyy-MM-dd')).subscribe(data => {
@@ -891,7 +891,7 @@ export class DrawframesComponent implements OnInit {
       fileSaver.saveAs(file);
     });
   }
-
+// parameter-----------------------------
   onDrawframesKgSubmit() {
     this.drawframespara.markAsDirty();
     let a = this.drawframespara.value.drawframesparaData;
