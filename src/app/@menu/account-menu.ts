@@ -16,9 +16,13 @@ export const ACCOUNT_MENU_ITEMS: NbMenuItem[] = [
     icon: 'browser-outline',
     children: [
 
+      // {
+      //   title: 'Indent',
+      //   link: '/pages/store/indent',
+      // },
       {
-        title: 'Indent',
-        link: '/pages/store/indent',
+        title: 'Po',
+        link: '/pages/store/po',
       },
     ],
   },

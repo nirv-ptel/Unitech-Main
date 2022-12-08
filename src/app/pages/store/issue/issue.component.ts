@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from "@nebular/theme";
+import { NbDateService, NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from "@nebular/theme";
 import { concat } from "rxjs";
 import { LoginService } from "../../../@service/auth/login.service";
 import { MachineService } from "../../../@service/machine/machine.service";
@@ -382,11 +382,23 @@ export class IssueComponent implements OnInit {
     },
   };
 
+  key: string = 'created';
+  reverse: boolean = false;
+  FilterOnOff: boolean = false;
+  SearchField: any = null;
+  FiltersStatus: any = null;
+  page: number = 1;
+  itemsPerPage = 5;
+  totalItems: any;
+  FilterForm: FormGroup;
+  FilterDateForm: FormGroup;
+
   constructor(
     private dialogService: NbDialogService,
     private fb: FormBuilder,
     private _auth: LoginService,
     private post: IssueService,
+    protected dateService: NbDateService<Date>,
     private postIndent: IndentService,
     private postItem: ItemService,
     private postResponce: ResponceService,
@@ -480,12 +492,21 @@ export class IssueComponent implements OnInit {
       }),
     });
 
+    this.FilterForm = this.fb.group({
+      page: [null],
+      size: [null]
+    })
+
+    this.FilterDateForm = this.fb.group({
+      start:[null, Validators.required],
+      end: [null, Validators.required]
+    })
+
     this.postItem.ViewItem().subscribe((data) => {
       this.item = data.Data;
     });
-    this.post.ViewIssue().subscribe((data) => {
-      this.IssueSource = data.Data;
-    });
+
+    this.ViewItemPage(1);
 
     this.post.ViewIssueStatus("PENDING").subscribe((data) => {
       this.PENDINGIssueSource = data.Data;
@@ -896,6 +917,107 @@ export class IssueComponent implements OnInit {
         this.allAlert('danger', `Not Created !`, `${error.error.message}`);
       });
   }
+
+
+  getToday(): string {
+    return new Date().toISOString().split('T')[0];
+  }
+  getMin(): string {
+    return new Date(this.FilterDateForm.get('start').value).toISOString().split('T')[0];
+  }
+  getMix(): string {
+    if(this.FilterDateForm.get('end').value != null) {
+      return new Date(this.FilterDateForm.get('end').value).toISOString().split('T')[0];
+    } else {
+      return new Date().toISOString().split('T')[0];
+    }
+  }
+
+  FilterClear() {
+    this.SearchField = null;
+    this.FiltersStatus = null;
+    this.ngOnInit();
+  }
+
+  FilterOn() {
+    this.FilterOnOff = !this.FilterOnOff;
+  }
+
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  FilterStatus(event) {
+    this.FilterDateForm.reset();
+    this.SearchField = null;
+    this.post.ViewIssueStatus(this.FiltersStatus).subscribe((data: any) => {
+      this.IssueSource = data.Data;
+    })
+  }
+
+  AddFilterForm() {
+    this.FilterForm.addControl('filters', this.fb.array([
+      this.fb.group({
+        key: [null],
+        operator: [null],
+        field_type: [null],
+        value: [null],
+        value_to: [null]
+      })
+    ]))
+  }
+
+  onfilterDateFormSubmit() {
+    this.FiltersStatus = null;
+    this.AddFilterForm();
+
+    this.FilterForm.value.filters[0].key = 'issueDate';
+    this.FilterForm.value.filters[0].operator = 'BETWEEN';
+    this.FilterForm.value.filters[0].field_type = 'DATE';
+    this.FilterForm.value.filters[0].value = this.dateService.format(this.FilterDateForm.get('start').value, 'dd-MM-yyyy')+" 00:00:00";
+    this.FilterForm.value.filters[0].value_to = this.dateService.format(this.FilterDateForm.get('end').value, 'dd-MM-yyyy')+" 00:00:00";
+    this.post.VIewIssueFIlter(this.FilterForm.value).subscribe((data: any) => {
+      this.IssueSource = data.content;
+      this.page = data.number;
+      this.totalItems = data.totalElements;
+    })
+  }
+
+  FilterDone() {
+    this.AddFilterForm();
+    this.FilterForm.value.filters[0].key = 'itemName';
+    this.FilterForm.value.filters[0].operator = 'LIKE';
+    this.FilterForm.value.filters[0].field_type = 'STRING';
+    this.FilterForm.value.filters[0].value = this.SearchField;
+    this.FilterForm.value.filters[0].value_to = null;
+
+    this.FilterForm.get('page').setValue(0);
+    this.FilterForm.get('size').setValue(this.itemsPerPage);
+    this.post.VIewIssueFIlter(this.FilterForm.value).subscribe((data: any) => {
+      this.IssueSource = data.content;
+      this.page = data.number;
+      this.totalItems = data.totalElements;
+    })
+  }
+
+  ViewItemPage(pages: number) {
+    this.item = null;
+    this.FilterForm.get('page').setValue(pages-1);
+    this.FilterForm.get('size').setValue(this.itemsPerPage);
+     
+    this.post.VIewIssueFIlter(this.FilterForm.value).subscribe((data: any) => {
+      this.IssueSource = data.content;
+      this.page = pages;
+      this.totalItems = data.totalElements;
+    })
+
+  }
+
+  refreshCountries() {
+    this.ViewItemPage(1);
+  }
+
 
   allAlert(alertMsg, headMsg, msg) {
     const config = {

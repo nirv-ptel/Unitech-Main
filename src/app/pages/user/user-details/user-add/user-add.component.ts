@@ -177,7 +177,6 @@ export class UserAddComponent implements OnInit {
       }
     }
 
-
     this.userProfile.CreateUserProfile(this.firstForm.value).subscribe((data1: any) => {
       let b = this.secondForm.value.userQualificationData;
       let c = this.thirdForm.value.userExperienceData;
@@ -218,7 +217,6 @@ export class UserAddComponent implements OnInit {
         }
       }
       this.userProfile.CreateUserHrConformation(this.fifthForm.value).subscribe((data: any) => {
-        // alert(this.fifthResponse.id+"CreateUserHrConformation");
         this.userProfile.userHrConformationAssign(data.id, data1.id).subscribe((data: any) => {
           alert("userHrConformationAssign");
         });
@@ -229,46 +227,4 @@ export class UserAddComponent implements OnInit {
       });
   }
 
-  // onFifthSubmit() {
-  //   this.fifthForm.markAsDirty();
-
-  //   this.userProfile.CreateUserProfile(this.firstForm.value).subscribe((data:any) => {
-  //     this.firstResponse = data;
-  //     // alert(this.firstResponse.id+"CreateUserProfile");
-
-  //     this.userProfile.CreateUserQualification(this.secondForm.value).subscribe((data:any) => {
-  //       this.secondResponse = data;
-  //       // alert(this.secondResponse.id+"CreateUserQualification");
-  //       this.userProfile.userQualificationAssign(this.secondResponse.id,this.firstResponse.id).subscribe((data:any) => {
-  //         // alert("userQualificationAssign");
-  //       });
-  //     });
-
-  //     this.userProfile.CreateUserExperience(this.thirdForm.value).subscribe((data:any) => {
-  //       this.thirdResponse = data;
-  //       // alert(this.thirdResponse.id+"CreateUserExperience");
-  //       this.userProfile.userExperienceAssign(this.thirdResponse.id,this.firstResponse.id).subscribe((data:any) => {
-  //         // alert("userExperienceAssign");
-  //       });
-  //     });
-
-  //     this.userProfile.CreateUserFamily(this.fourthForm.value).subscribe((data:any) => {
-  //       this.fourthResponse = data;
-  //       // alert(this.fourthResponse.id+"CreateUserFamily");
-  //       this.userProfile.userFamilyAssign(this.fourthResponse.id,this.firstResponse.id).subscribe((data:any) => {
-  //         // alert("userFamilyAssign");
-  //       });
-  //     });
-
-  //     this.userProfile.CreateUserHrConformation(this.fifthForm.value).subscribe((data:any) => {
-  //       this.fifthResponse = data;
-  //       // alert(this.fifthResponse.id+"CreateUserHrConformation");
-  //       this.userProfile.userHrConformationAssign(this.fifthResponse.id,this.firstResponse.id).subscribe((data:any) => {
-  //         // alert("userHrConformationAssign");
-  //       });
-  //     });
-  //   });
-
-  //   alert("Date Submited Success Fully...")
-  // }
 }

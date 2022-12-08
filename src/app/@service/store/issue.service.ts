@@ -46,4 +46,8 @@ export class IssueService {
   ViewFilterUsageItemId(departmentName: any,start:any,end:any,id:any): Observable<any> {
     return this.http.get(`${this.url}/api/v1/itemusage/bDeptname?deptname=${departmentName}&start=${start}&end=${end}&id=${id}&page=0&pagesize=1000`);
   }
+
+  VIewIssueFIlter(Filter: any): Observable<any> {
+    return this.http.post(`${this.url}/api/v1/issue/getSearchingInIssueItem`,Filter);
+  }
 }

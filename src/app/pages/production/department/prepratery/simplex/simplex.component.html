@@ -8,7 +8,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================admin========================== // -->
 <div class="row" *ngIf="admin">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -82,7 +82,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================superviser========================== // -->
 <div class="row" *ngIf="superviser">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -94,7 +94,8 @@
   <div class="col-md-12" *ngIf="!QcMachineParameterNotSetError">
     <nb-card>
       <nb-card-header>{{todayDate | date: 'dd/MM/yyyy'}}
-        <button class="btn-float" *ngIf="shiftData || shiftData1" nbButton status="danger" (click)="addParameter(dialog)">Add Parameter</button>
+        <button class="btn-float" *ngIf="shiftData || shiftData1" nbButton status="danger"
+          (click)="addParameter(dialog)">Add Parameter</button>
       </nb-card-header>
       <nb-card-body>
         <ng2-smart-table [settings]="superviserViewData" [source]="source">
@@ -103,7 +104,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================qc========================== // -->
 <div class="row" *ngIf="qc">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -201,15 +202,14 @@
       <div *ngIf="shiftA1">
         <form [formGroup]="simplexparameterAone" (ngSubmit)="onSimplexParameterAoneSubmit(); clicked = true;">
           <div formArrayName="parareading">
-            <div  *ngFor="let cost of SimplexParaAoneGet.controls; let i = index" [formGroupName]="i">
+            <div *ngFor="let cost of SimplexParaAoneGet.controls; let i = index" [formGroupName]="i">
               <div class="row">
                 <div class="col-md-12" *ngIf="shiftData">
                   <div class="form-group">
                     <label for="parameter-{{i}}"
-                    class="label">{{cost.controls.description._pendingValue.simplex.name}}</label>
+                      class="label">{{cost.controls.description._pendingValue.simplex.name}}</label>
                     <input type="tel1" nbInput fullWidth id="parameter-{{i}}" pattern="[0-9]{3}"
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursOne"
-                      (keydown)="NumberOnly($event)"
+                      placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursOne" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_sixHoursOne == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_sixHoursOne"
                       [status]="cost.get('shift_a_sixHoursOne').touched ? (cost.get('shift_a_sixHoursOne').invalid  ? 'danger' : 'success') : 'basic'">
@@ -233,8 +233,8 @@
               <div class="row">
                 <div class="col-md-12" *ngIf="shiftData">
                   <div class="form-group">
-                    <label for="parameter-{{i}}"
-                      class="label">{{cost.controls.description._pendingValue.simplex.name}} aa</label>
+                    <label for="parameter-{{i}}" class="label">{{cost.controls.description._pendingValue.simplex.name}}
+                      aa</label>
                     <input type="tel1" nbInput fullWidth id="parameter-{{i}}" pattern="[0-9]{3}"
                       placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursTwo" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_sixHoursTwo == 0) ? false : true"

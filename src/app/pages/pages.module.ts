@@ -17,13 +17,11 @@ import { ProductCategoryComponent } from './store/product-category/product-categ
     NbMenuModule,
     DashboardModule,
     HttpClientModule
-
   ],
   declarations: [
     PagesComponent,
     UserComponent,
     ProductionComponent,
-
   ],
 })
 export class PagesModule {

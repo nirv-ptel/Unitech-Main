@@ -1,0 +1,66 @@
+<div class="row" *ngIf="store || admin || account">
+    <div class="col-md-12">
+        <nb-card>
+            <nb-card-header>
+                <div class="row float">
+                    <button nbButton class="mr-10" (click)="FilterClear()">clear</button>
+                    <input type="text" class="mr-10" nbInput [(ngModel)]="SearchField"
+                        (keyup.enter)="FilterDone()" placeholder="Search PO Number">
+                    <button nbButton status="primary" (click)="FilterOn()"><i class="fa-solid fa-filter"></i></button>
+                </div>
+                <div *ngIf="FilterOnOff" class="row">
+                    <form [formGroup]="FilterDateForm" (ngSubmit)="onfilterDateFormSubmit()">
+                        <input nbInput type="date" [max]="getMix()" class="mr-10" formControlName="start" placeholder="Pick Start Date">
+                        <input nbInput type="date" [max]="getToday()" [min]="getMin()" class="mr-10" formControlName="end" placeholder="Pick Stop Date">
+                        <button nbButton [disabled]="FilterDateForm.invalid">Submit</button>
+                    </form>
+  
+                </div>
+  
+            </nb-card-header>
+        </nb-card>
+    </div>
+  </div>
+
+<nb-card>
+    <nb-card-header>Po List</nb-card-header>
+    <nb-card-body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" (click)="sort('poNumber')">PO Number &nbsp; <i class="fa fa-sort"></i></th>
+                    <th scope="col" (click)="sort('amount')">Ammount &nbsp; <i class="fa fa-sort"></i></th>
+                    <th scope="col" (click)="sort('vendorName')">Vender Name &nbsp; <i class="fa fa-sort"></i></th>
+                    <th scope="col" (click)="sort('createdDate')">Po Date &nbsp; <i class="fa fa-sort"></i></th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of poSource | paginate : 
+                {
+                  itemsPerPage: itemsPerPage,
+                  currentPage: page,
+                  totalItems: totalItems
+                } | orderBy: key: reverse">
+                    <th scope="row"> {{ item.poNumber}}</th>
+                    <td>{{item.amount}}</td>
+                    <td>{{item.listOfpO[0].vendorModelData.vendorName}}</td>
+                    <td ng-controller="datCtrl">{{item.createdDate | date : "MMM dd, y - hh:mm:ss a"}}</td>
+                    <td>
+                        <i class="fa-solid fa-eye" (click)="openPoDetails(item.poId)" title="View"></i>
+                        <i class="fa-solid fa-download" (click)="downloadAsPo(item)" title="Download"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls class="pagi" (pageChange)="ViewPoPage((page = $event))"></pagination-controls>
+        <div class="float">
+            <nb-select class="form-select" [selected]="5" [(ngModel)]="itemsPerPage"
+                (ngModelChange)="refreshCountries()">
+                <nb-option [value]="5">5 items per page</nb-option>
+                <nb-option [value]="10">10 items per page</nb-option>
+                <nb-option [value]="25">25 items per page</nb-option>
+            </nb-select>
+        </div>
+    </nb-card-body>
+</nb-card>

@@ -16,7 +16,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================admin========================== // -->
 <div class="row" *ngIf="admin">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -90,7 +90,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================superviser========================== // -->
 <div class="row" *ngIf="superviser">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -112,8 +112,7 @@
     </nb-card>
   </div>
 </div>
-
-
+<!-- // =================qc========================== // -->
 <div class="row" *ngIf="qc">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -174,7 +173,6 @@
                     <div class="col-md-2">
                       <div class="form-group">
                         <label for="para2-{{i}}" class="label">TM</label>
-                        <!-- pattern="([0-9]{1})+\.([0-9]{3})" -->
                         <input type="text" nbInput fullWidth id="para2-{{i}}" placeholder="ENTER TM"
                           formControlName="tm"
                           [status]="party.get('tm').touched ? (party.get('tm').invalid  ? 'danger' : 'success') : 'basic'">
@@ -182,47 +180,6 @@
                           required</small>
                       </div>
                     </div>
-                    <!-- <div class="col-md-2">
-                      <div class="form-group">
-                        <label for="para3-{{i}}" class="label">MACHINE EFFICIENCY</label>
-                        <input type="text" nbInput fullWidth id="para3-{{i}}" placeholder="ENTER MACHINE EFFICIENCY"
-                          formControlName="machineEfficiency"
-                          [status]="party.get('machineEfficiency').touched ? (party.get('machineEfficiency').invalid  ? 'danger' : 'success') : 'basic'">
-                        <small *ngIf="party.get('machineEfficiency').invalid && party.get('machineEfficiency').touched"
-                          class="red">Machine Efficiency is required</small>
-                      </div>
-                    </div>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-2">
-                      <div class="form-group">
-                        <label for="para5-{{i}}" class="label">PNEUMAFIIL WASTE</label>
-                        <input type="text" nbInput fullWidth id="para5-{{i}}" placeholder="ENTER PNEUMAFIIL WASTE"
-                          formControlName="pneumafilWaste"
-                          [status]="party.get('pneumafilWaste').touched ? (party.get('pneumafilWaste').invalid  ? 'danger' : 'success') : 'basic'">
-                        <small *ngIf="party.get('pneumafilWaste').invalid && party.get('pneumafilWaste').touched"
-                          class="red">Pneumafil Waste is required</small>
-                      </div>
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-group">
-                        <label for="para6-{{i}}" class="label">IDLE SPINDLE</label>
-                        <input type="text" nbInput fullWidth id="para6-{{i}}" placeholder="ENTER IDLE SPINDLE"
-                          formControlName="idleSpindle"
-                          [status]="party.get('idleSpindle').touched ? (party.get('idleSpindle').invalid  ? 'danger' : 'success') : 'basic'">
-                        <small *ngIf="party.get('idleSpindle').invalid && party.get('idleSpindle').touched"
-                          class="red">Idle Spindle is required</small>
-                      </div>
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-group">
-                        <label for="para7-{{i}}" class="label">DOFFING LOSS</label>
-                        <input type="text" nbInput fullWidth id="para7-{{i}}" placeholder="ENTER DOFFING LOSS"
-                          formControlName="doffingLoss"
-                          [status]="party.get('doffingLoss').touched ? (party.get('doffingLoss').invalid  ? 'danger' : 'success') : 'basic'">
-                        <small *ngIf="party.get('doffingLoss').invalid && party.get('doffingLoss').touched"
-                          class="red">Doffing Loss is required</small>
-                      </div>
-                    </div> -->
                   </div>
                 </div>
                 <hr>

@@ -10,7 +10,7 @@ import { AddDoComponent } from './do/add-do/add-do.component';
 import { DoDetailsComponent } from './do/do-details/do-details.component';
 import { PoDetailsComponent } from './po/po-details/po-details.component';
 import { AddPoComponent } from './po/add-po/add-po.component';
-import { NbActionsModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDatepickerModule, NbIconModule, NbInputModule, NbRadioModule, NbSelectModule, NbStepperModule } from '@nebular/theme';
+import { NbActionsModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDatepickerModule, NbIconModule, NbInputModule, NbRadioModule, NbSelectModule, NbStepperModule, NbToggleModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
@@ -40,6 +40,7 @@ import { ItemDetailsComponent } from './item/item-details/item-details.component
     NbCardModule,
     NbButtonModule,
     NbActionsModule,
+    NbToggleModule,
     NbSelectModule,
     NbIconModule,
     NbCheckboxModule,

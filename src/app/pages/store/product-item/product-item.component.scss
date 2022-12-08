@@ -46,3 +46,99 @@
 .margin {
   margin-bottom: 10px;
 }
+@import "./../../../@theme/styles/themes";
+
+.cancel {
+  margin: 0.5rem;
+}
+.scroll-bar {
+  max-height: 100%;
+  overflow-y: hidden;
+}
+.red {
+  color: red;
+}
+:host ::ng-deep ng2-st-tbody-edit-delete {
+  display: flex !important;
+  height: 0 !important;
+}
+
+:host ::ng-deep
+  ng2-st-tbody-custom
+  a.ng2-smart-action.ng2-smart-action-custom-custom {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  font-size: 1.1em;
+  text-decoration: none;
+}
+
+:host ::ng-deep
+  ng2-st-tbody-custom
+  a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
+  color: #ff3d71;
+}
+
+:host ::ng-deep 
+nb-card-header a {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  font-size: 3em;
+  text-decoration: none;
+}
+
+:host ::ng-deep .cell_right {
+  color: white;
+  text-align: center;
+  background-color: #ff3d71;
+  padding: 4px 8px;
+  border-radius: 12%;
+}
+
+:host td i {
+  // display: inline-block;
+  // width: 50px;
+  text-align: center;
+  font-size: 1.2em;
+  margin-right: 20px;
+  margin-bottom: 10px;
+
+}
+
+:host ::ng-deep .cell_right1 {
+  color: white;
+  text-align: center;
+  background-color: #16cb5f;
+  padding: 4px 8px;
+  border-radius: 12%;
+}
+.scroll-bar {
+  max-width: 100%;
+  overflow-y: hidden;
+}
+
+.float {
+  float: right;
+ }
+ .float-l {
+  float: left;
+ }
+.pagi {
+  float: left;
+  font-family: "Segoe UI";
+}
+pagination-controls ul {
+  font-family: "Segoe UI";
+  font-size: 300px;
+}
+.scroll-card-bar {
+  max-height: 100%;
+  overflow-y: hidden;
+}
+span {
+  font-size: 15px;
+}
+.mr-10 {
+  margin-right: 10px;
+}

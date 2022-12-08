@@ -32,12 +32,16 @@ export const STORE_MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/store/issue',
       },
       {
+        title: 'Issue Report',
+        link: '/pages/store/report',
+      },
+      {
         title: 'Indent',
         link: '/pages/store/indent',
       },
       {
-        title: 'Issue Report',
-        link: '/pages/store/report',
+        title: 'Po',
+        link: '/pages/store/po',
       },
     ],
   },

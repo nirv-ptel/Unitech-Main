@@ -9,14 +9,14 @@ import { MachineService } from '../../../../@service/machine/machine.service';
 })
 export class PackingComponent implements OnInit {
 
-  demo:any;
+  demo: any;
 
   constructor(private post: MachineService) {
   }
 
   ngOnInit(): void {
     this.post.ViewAllPacking().subscribe(data => {
-       this.demo = data;
+      this.demo = data;
     });
   }
 }

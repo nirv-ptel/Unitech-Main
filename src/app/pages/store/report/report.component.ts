@@ -40,6 +40,16 @@ export class ReportComponent implements OnInit {
   SourceItemFilter: any = [];
   MachineName: any = [];
 
+  key: string = 'created';
+  reverse: boolean = false;
+  FilterOnOff: boolean = false;
+  SearchField: any = null;
+  FiltersStatus: any = null;
+  page: number = 1;
+  itemsPerPage = 5;
+  totalItems: any;
+  FilterForm: FormGroup;
+
   settings = {
     actions: false,
     columns: {
@@ -71,10 +81,6 @@ export class ReportComponent implements OnInit {
           return row.issuedItem.quantity;
         },
       },
-      // requiredDays: {
-      //   title: "Required Days",
-      //   type: "number",
-      // },
       issueDate: {
         title: "Issue Date",
         type: "date",
@@ -115,10 +121,6 @@ export class ReportComponent implements OnInit {
         title: "Quantity",
         type: "number",
       },
-      // requiredDays: {
-      //   title: "Required Days",
-      //   type: "number",
-      // },
       issueDate: {
         title: "Issue Date",
         type: "date",
@@ -168,6 +170,26 @@ export class ReportComponent implements OnInit {
 
   getToday(): string {
     return new Date().toISOString().split('T')[0];
+  }
+  getMin(): string {
+    return new Date(this.TwoDate.get('start').value).toISOString().split('T')[0];
+  }
+  getMix(): string {
+    if(this.TwoDate.get('end').value != null) {
+      return new Date(this.TwoDate.get('end').value).toISOString().split('T')[0];
+    } else {
+      return new Date().toISOString().split('T')[0];
+    }
+  }
+  getMinItem(): string {
+    return new Date(this.TwoDateItem.get('start').value).toISOString().split('T')[0];
+  }
+  getMixItem(): string {
+    if(this.TwoDateItem.get('end').value != null) {
+      return new Date(this.TwoDateItem.get('end').value).toISOString().split('T')[0];
+    } else {
+      return new Date().toISOString().split('T')[0];
+    }
   }
 
   chengeDepartmentName(event) {
@@ -263,5 +285,28 @@ export class ReportComponent implements OnInit {
         this.MachineName = data;
       });
     }
+  }
+
+  
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+  refreshCountries() {
+    this.ViewItemPage(1);
+  }
+
+  ViewItemPage(pages: number) {
+    this.item = null;
+    this.FilterForm.get('page').setValue(pages-1);
+    this.FilterForm.get('size').setValue(this.itemsPerPage);
+     
+    this.post.VIewIssueFIlter(this.FilterForm.value).subscribe((data: any) => {
+      this.MachineName = data.content;
+      this.page = pages;
+      this.totalItems = data.totalElements;
+    })
+
   }
 }

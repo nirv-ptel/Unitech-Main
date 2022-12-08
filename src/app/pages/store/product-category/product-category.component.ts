@@ -19,18 +19,7 @@ export class ProductCategoryComponent implements OnInit {
 
   settings = {
     actions: false,
-    // {
-    //   delete: false,
-    //   add: false,
-    //   edit: false,
-    //   custom: [
-    //     {
-    //       name: 'Button',
-    //       title: '<i class="nb-edit" title="View"></i>',
-    //     }],
-    //   position: 'right'
-    // },
-
+  
     columns: {
       pid: {
         title: "ID",
@@ -41,18 +30,6 @@ export class ProductCategoryComponent implements OnInit {
         type: "string",
       },
 
-      // address: {
-      //   title: 'Status',
-      //   type: 'html',
-      //   valuePrepareFunction: (cell, row) => {
-      //     if(cell == 'Rajkot') {
-      //       return '<span class="cell_right">' + cell + '</span>';
-      //     } if (cell == 'ahmedabad') {
-      //       return '<span class="cell_right1">' + cell + '</span>';
-      //     }
-
-      //   }
-      // }
     },
   };
 

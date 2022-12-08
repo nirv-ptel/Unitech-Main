@@ -448,7 +448,7 @@ export class FinisherComponent implements OnInit {
     this.post.ViewAllFinisher().subscribe(data => {
       this.demo = data;
       let a = this.demo.length;
-      if(a <= 0) {
+      if (a <= 0) {
         this.MachineNotFounderror = true;
       }
       for (let i = 0; i < a; i++) {
@@ -459,7 +459,7 @@ export class FinisherComponent implements OnInit {
     this.MachinePara.DateSingleFinisherKG(this.dateService.format(this.todayDate, 'yyyy-MM-dd')).subscribe(data => {
       this.source = data.Data;
       let a = data.Data.length;
-      if(a <= 0) {
+      if (a <= 0) {
         this.QcMachineParameterNotSetError = true;
       }
       for (let i = 0; i < a; i++) {
@@ -568,7 +568,7 @@ export class FinisherComponent implements OnInit {
     this.MachinePara.DateSingleFinisherHANK(this.dateService.format(this.todayDate, 'yyyy-MM-dd')).subscribe(data => {
       this.source1 = data.Data;
       let a = data.Data.length;
-      if(a <= 0) {
+      if (a <= 0) {
         this.QcMachineParameterNotSetError1 = true;
       }
       for (let i = 0; i < a; i++) {

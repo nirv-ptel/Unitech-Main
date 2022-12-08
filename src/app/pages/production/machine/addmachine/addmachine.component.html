@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-md-12">
     <nb-card>
@@ -7,8 +6,7 @@
         <form>
           <div class="form-group">
             <label for="roleName" class="label">Department Name</label>
-            <!-- <input type="text" nbInput fullWidth id="roleName" placeholder="Enter Role Name"> -->
-            <nb-select fullWidth selected="bloowroom" (selectedChange)="onFormChange($event)" >
+            <nb-select fullWidth selected="bloowroom" (selectedChange)="onFormChange($event)">
               <nb-option value="bloowroom">Bloow Room</nb-option>
               <nb-option value="carding">Carding</nb-option>
               <nb-option value="drawframes">Draw Frames</nb-option>
@@ -23,7 +21,6 @@
               <nb-option value="lapformer">Lap Former</nb-option>
             </nb-select>
           </div>
-        <!-- <button type="submit" nbButton status="danger">Submit</button> -->
         </form>
       </nb-card-body>
     </nb-card>
@@ -42,9 +39,11 @@
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="bloowroom.get('name').invalid || bloowroom.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="bloowroom.get('name').invalid || bloowroom.get('descrption').invalid"
+            nbButton status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -59,9 +58,11 @@
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="carding.get('name').invalid || carding.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="carding.get('name').invalid || carding.get('descrption').invalid" nbButton
+            status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -76,9 +77,11 @@
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="drawframes.get('name').invalid || drawframes.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="drawframes.get('name').invalid || drawframes.get('descrption').invalid"
+            nbButton status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -93,9 +96,11 @@
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="finisher.get('name').invalid || finisher.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="finisher.get('name').invalid || finisher.get('descrption').invalid" nbButton
+            status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -110,9 +115,11 @@
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="simplex.get('name').invalid || simplex.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="simplex.get('name').invalid || simplex.get('descrption').invalid" nbButton
+            status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -127,9 +134,11 @@
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="ringframe.get('name').invalid || ringframe.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="ringframe.get('name').invalid || ringframe.get('descrption').invalid"
+            nbButton status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -144,9 +153,11 @@
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="winding.get('name').invalid || winding.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="winding.get('name').invalid || winding.get('descrption').invalid" nbButton
+            status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -161,9 +172,11 @@
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="packing.get('name').invalid || packing.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="packing.get('name').invalid || packing.get('descrption').invalid" nbButton
+            status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -171,16 +184,18 @@
     <nb-card *ngIf="utility1">
       <nb-card-header>utility</nb-card-header>
       <nb-card-body>
-        <form [formGroup]="utility" (ngSubmit)="onUtilitySubmit()" >
+        <form [formGroup]="utility" (ngSubmit)="onUtilitySubmit()">
           <div class="form-group">
             <label for="name" class="label">Name</label>
             <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="utility.get('name').invalid || utility.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="utility.get('name').invalid || utility.get('descrption').invalid" nbButton
+            status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -188,16 +203,18 @@
     <nb-card *ngIf="wasteroom1">
       <nb-card-header>wasteroom</nb-card-header>
       <nb-card-body>
-        <form [formGroup]="wasteroom" (ngSubmit)="onWasteroomSubmit()" >
+        <form [formGroup]="wasteroom" (ngSubmit)="onWasteroomSubmit()">
           <div class="form-group">
             <label for="name" class="label">Name</label>
             <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="wasteroom.get('name').invalid || wasteroom.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="wasteroom.get('name').invalid || wasteroom.get('descrption').invalid"
+            nbButton status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -205,16 +222,18 @@
     <nb-card *ngIf="combers1">
       <nb-card-header>combers</nb-card-header>
       <nb-card-body>
-        <form [formGroup]="combers" (ngSubmit)="onCombersSubmit()" >
+        <form [formGroup]="combers" (ngSubmit)="onCombersSubmit()">
           <div class="form-group">
             <label for="name" class="label">Name</label>
             <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="combers.get('name').invalid || combers.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="combers.get('name').invalid || combers.get('descrption').invalid" nbButton
+            status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>
@@ -222,16 +241,18 @@
     <nb-card *ngIf="lapformer1">
       <nb-card-header>lapformer</nb-card-header>
       <nb-card-body>
-        <form [formGroup]="lapformer" (ngSubmit)="onLapformerSubmit()" >
+        <form [formGroup]="lapformer" (ngSubmit)="onLapformerSubmit()">
           <div class="form-group">
             <label for="name" class="label">Name</label>
             <input type="text" nbInput fullWidth id="name" placeholder="Enter Machine Name" formControlName="name">
           </div>
           <div class="form-group">
             <label for="descrption" class="label">Descrption</label>
-            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption" formControlName="descrption">
+            <input type="text" nbInput fullWidth id="descrption" placeholder="Enter Machine Descrption"
+              formControlName="descrption">
           </div>
-        <button type="submit" [disabled]="lapformer.get('name').invalid || lapformer.get('descrption').invalid" nbButton status="danger">Submit</button>
+          <button type="submit" [disabled]="lapformer.get('name').invalid || lapformer.get('descrption').invalid"
+            nbButton status="danger">Submit</button>
         </form>
       </nb-card-body>
     </nb-card>

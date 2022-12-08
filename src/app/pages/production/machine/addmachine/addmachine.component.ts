@@ -48,52 +48,52 @@ export class AddmachineComponent implements OnInit {
   ngOnInit(): void {
     this.bloowroom1 = true;
     this.bloowroom = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
     this.carding = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
     this.drawframes = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
     this.finisher = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
     this.simplex = this.fb.group({
       name: [''],
-      descrption: ['',Validators.required],
+      descrption: ['', Validators.required],
     });
     this.ringframe = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
     this.winding = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
     this.packing = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
     this.utility = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
     this.wasteroom = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
     this.combers = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
     this.lapformer = this.fb.group({
-      name: ['',Validators.required],
-      descrption: ['',Validators.required],
+      name: ['', Validators.required],
+      descrption: ['', Validators.required],
     });
   }
   onFormChange(a: string) {
@@ -166,108 +166,108 @@ export class AddmachineComponent implements OnInit {
       this.bloowroom.reset();
       this.allAlert('success', `${data.Data.name} Created !`, 'Successfully Create Bloowroom');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onCardingSubmit() {
     this.MachineProfile.CreateCarding(this.carding.value).subscribe((data: any) => {
       this.carding.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Carding');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onDrawframesSubmit() {
     this.MachineProfile.CreateDrawframes(this.drawframes.value).subscribe((data: any) => {
       this.drawframes.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Drawframes');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onFinisherSubmit() {
     this.MachineProfile.CreateFinisher(this.finisher.value).subscribe((data: any) => {
       this.finisher.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Finisher');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onSimplexSubmit() {
     this.MachineProfile.CreateSimplex(this.simplex.value).subscribe((data: any) => {
       this.simplex.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Simplex');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onRingframeSubmit() {
     this.MachineProfile.CreateRingframe(this.ringframe.value).subscribe((data: any) => {
       this.ringframe.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Ringframes');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onWindingSubmit() {
     this.MachineProfile.CreateWinding(this.winding.value).subscribe((data: any) => {
       this.winding.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Winding');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onPackingSubmit() {
     this.MachineProfile.CreatePacking(this.packing.value).subscribe((data: any) => {
       this.packing.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Packing');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onUtilitySubmit() {
     this.MachineProfile.CreateUtility(this.utility.value).subscribe((data: any) => {
       this.utility.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Utility');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onWasteroomSubmit() {
     this.MachineProfile.CreateWasteroom(this.wasteroom.value).subscribe((data: any) => {
       this.wasteroom.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Wasteroom');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onCombersSubmit() {
     this.MachineProfile.CreateCombers(this.combers.value).subscribe((data: any) => {
       this.combers.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Combers');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
   onLapformerSubmit() {
     this.MachineProfile.CreateLapformer(this.lapformer.value).subscribe((data: any) => {
       this.lapformer.reset();
       this.allAlert('success', `${data.name} Created !`, 'Successfully Create Lapformer');
     },
-    (error: any) => {
-      this.allAlert('danger', `Not Created !`, `something wrong`);
-    });
+      (error: any) => {
+        this.allAlert('danger', `Not Created !`, `something wrong`);
+      });
   }
 
   allAlert(alertMsg, nameMachine, typeMachine) {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
 import { VenderService } from '../../../../@service/purchase/vender/vender.service';
 import { ItemService } from '../../../../@service/store/item.service';
@@ -14,6 +14,7 @@ export class AddVenderComponent implements OnInit {
   venderForm: FormGroup;
   item: any;
   DataTransfer = [];
+  toggleNgModel = true;
 
   constructor(
     private fb: FormBuilder,
@@ -30,28 +31,66 @@ export class AddVenderComponent implements OnInit {
 
     this.venderForm = this.fb.group({
       vendorName: ['', Validators.required],
-      vendorAddress: ['', Validators.required],
-      vendorcode: ['', [Validators.required, Validators.pattern]],
       paymentTermsConditions: [null, Validators.required],
       paymentDays:[''],
-      city: [''],
-      pincode: [''],
       gstno: [''],
       panno: [''],
-      itemDemo: [null]
+      gstStatus: [''],
+      msmeType: [''],
+      factory: [''],
+      msgmeRegisterDate: [''],
+      gstForm: [''],
+      gstTo: [''],
+      centralgst: [''],
+      stategst: [''],
+      integratedgst: [''],
+      sezNumber: [''],
+      refrencesBy: [''],
+      bankName: [''],
+      branchName: [''],
+      bankCityName: [''],
+      bankAccountNumber: [''],
+      ifscCode: [''],
+      micrCode: [''],
+      cancelChequeNumber: [''],
+      supplierscode: [''],
+      accountGroupHead: [''],
+      natureOfBussiness: [''],
+      officePhoneNumber: [''],
+      ResidentPhoneNumber: [''],
+      vendorEmail: [''],
+      webSite: [''],
+      faxNumber: [''],
+      dateOfIncorporation: [''],
+      vendorAddressModels: this.fb.array([this.AddAddress()])
     });
   }
 
-  changeItem(event) {
-    this.DataTransfer.length = 0;
-    for (let i = 0; i < event.length; i++) {
-      this.DataTransfer.push({ 'itemId': event[i] })
+  AddressAdd() {
+    this.AddVenterAddressGet.push(this.AddAddress());
+  }
+
+  get AddVenterAddressGet() {
+    return this.venderForm.get('vendorAddressModels') as FormArray;
+  }
+  AddAddressRemove(i: number) {
+    if (i >= 1) {
+      this.AddVenterAddressGet.removeAt(i);
     }
   }
-  onVenderSubmit() {
-    this.venderForm.removeControl('itemDemo');
-    this.venderForm.addControl('itemData', this.fb.control(this.DataTransfer));
 
+  AddAddress() {
+    return this.fb.group({
+      state: [null, Validators.required],
+      city: [null, Validators.required],
+      pincode: [null],
+      vendorAddressType: [null],
+      address: [null]
+    });
+  }
+
+
+  onVenderSubmit() {
     this.venderService.CreateVender(this.venderForm.value).subscribe((data: any) => {
       this.allAlert('success', `Vender Created !`, 'Successfully Vender Created');
       this.ngOnInit();

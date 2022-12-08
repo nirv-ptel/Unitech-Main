@@ -363,7 +363,7 @@ export class SimplexComponent implements OnInit {
     this.MachinePara.DateSingleSimplex(this.dateService.format(this.todayDate, 'yyyy-MM-dd')).subscribe(data => {
       this.source = data.Data;
       let a = data.Data.length;
-      if(a <= 0) {
+      if (a <= 0) {
         this.QcMachineParameterNotSetError = true;
       }
       for (let i = 0; i < a; i++) {
@@ -664,31 +664,4 @@ export class SimplexComponent implements OnInit {
     }
   }
 
-
-  // demodd(event: any) {
-  //   let Mid = event.value.description.machineId;
-  //   let Paravalue;
-  //   if(this.shiftA1) {
-  //     Paravalue = {'shift_a_sixHoursOne':event.value.shift_a_sixHoursOne}
-  //     this.simplexAllPara.SimplexParameterShiftAOne(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('A1 paraset');
-  //     });
-  //   } else if(this.shiftA2) {
-  //     Paravalue = {'shift_a_sixHoursTwo':event.value.shift_a_sixHoursTwo}
-  //     this.simplexAllPara.SimplexParameterShiftATwo(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('A2 paraset');
-  //     });
-  //   } else if(this.shiftB1) {
-  //     Paravalue = {'shift_b_sixHoursOne':event.value.shift_b_sixHoursOne}
-  //     this.simplexAllPara.SimplexParameterShiftBOne(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('B1 paraset');
-  //     });
-  //   } else if(this.shiftB2) {
-  //     Paravalue = {'shift_b_sixHoursTwo':event.value.shift_b_sixHoursTwo}
-  //     this.simplexAllPara.SimplexParameterShiftBTwo(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('B2 paraset');
-  //     });
-  //   }
-  //   this.ngOnInit();
-  // }
 }

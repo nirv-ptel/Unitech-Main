@@ -8,7 +8,6 @@ import { DrawframesComponent } from './drawframes/drawframes.component';
 import { FinisherComponent } from './finisher/finisher.component';
 import { SimplexComponent } from './simplex/simplex.component';
 import { NbActionsModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDatepickerModule, NbIconModule, NbInputModule, NbRadioModule, NbSelectModule, NbTabsetModule, NbToggleModule } from '@nebular/theme';
-import { StrictNumberOnlyDirective } from '../../../../@core/utils/StrictNumberOnlyDirective';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { TimeResolve } from '../../TimeResolve';

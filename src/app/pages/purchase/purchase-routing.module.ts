@@ -17,11 +17,6 @@ const routes: Routes = [
     redirectTo: 'addvender',
     pathMatch: 'full',
   },
-  // {
-  //   path: 'user',
-  //   loadChildren: () => import('./user-details/user-details.module')
-  //     .then(m => m.UserDetailsModule),
-  // },
   {
     path: 'addvender',
     component: AddVenderComponent

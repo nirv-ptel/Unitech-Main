@@ -22,10 +22,10 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
     title: 'HR',
     icon: 'layout-outline',
     children: [
-      {
-        title: 'Role',
-        link: '/pages/user/role',
-      },
+      // {
+      //   title: 'Role',
+      //   link: '/pages/user/role',
+      // },
       {
         title: 'Add User',
         link: '/pages/user/user/user',
@@ -211,12 +211,16 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/store/issue',
       },
       {
+        title: 'Issue Report',
+        link: '/pages/store/report',
+      },
+      {
         title: 'Indent',
         link: '/pages/store/indent',
       },
       {
-        title: 'Issue Report',
-        link: '/pages/store/report',
+        title: 'Po',
+        link: '/pages/store/po',
       },
     ],
   },

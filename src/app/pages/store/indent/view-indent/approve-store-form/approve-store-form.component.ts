@@ -49,7 +49,7 @@ export class ApproveStoreFormComponent implements OnInit {
     } else if (role == 'ROLE_ACCOUNT') {
       this.account = true;
     }
-    
+
     this.IndentStatusChangeData = this.fb.group({
       indentStatus: ['ADMIN_LAST'],
       comment: ['Vender Select And Price Set', Validators.required],
@@ -66,14 +66,13 @@ export class ApproveStoreFormComponent implements OnInit {
     this._vender.ViewVender().subscribe((data: any) => {
       this.VenderSource = data.Data;
     });
-    console.warn(this.IndentStatusChange.value);
     this.vendorWisePriceSetAdd();
   }
 
   vendorWisePriceSetAdd() {
     this.AddvendorWiseGet.push(this.AddvendorWisePriceSet());
-    for(let i = 0; i< this.itemData.length; i++) {
-      this.AddPriceGet(this.AddvendorWiseGet.length-1).push(this.Price(this.itemData[i].storeItemIndentQuantityData.itemId));
+    for (let i = 0; i < this.itemData.length; i++) {
+      this.AddPriceGet(this.AddvendorWiseGet.length - 1).push(this.Price(this.itemData[i].storeItemIndentQuantityData.itemId));
     }
   }
 
@@ -95,8 +94,8 @@ export class ApproveStoreFormComponent implements OnInit {
 
   Price(event: number) {
     return this.fb.group({
-      item:[event, Validators.required],
-      price:[null, Validators.required]
+      item: [event, Validators.required],
+      price: [null, Validators.required]
     })
   }
 
@@ -122,19 +121,12 @@ export class ApproveStoreFormComponent implements OnInit {
     return this.AddvendorWiseGet.at(i).get('priceItem') as FormArray;
   }
 
-  // getPriceGet(i: number,j: number) {
-  //   console.warn(i +"  "+j);
-  //   console.warn((<FormArray>(<FormArray>this.IndentStatusChange.controls.vendorWisePriceSet).controls[i].get('priceItem')).controls[j].value)
-  // }
-
   onSubmitData() {
     let MainData: any = [];
     let a = this.IndentStatusChange.value.vendorWisePriceSet;
-       console.warn(this.IndentStatusChange.get('vendorWisePriceSet').value);
-    console.warn();
-    for(let i = 0; i < a.length; i++) {
+    for (let i = 0; i < a.length; i++) {
       let b = this.IndentStatusChange.value.vendorWisePriceSet[i].priceItem;
-      for(let j = 0; j < b.length; j++) {
+      for (let j = 0; j < b.length; j++) {
         let z = this.fb.group({
           itemModelPrice: this.fb.group({
             itemId: [b[j].item]
@@ -149,13 +141,10 @@ export class ApproveStoreFormComponent implements OnInit {
         (this.IndentStatusChangeData.get('vendorWisePriceSet') as FormArray).push(z);
       }
     }
-    console.warn(this.IndentStatusChangeData.value);
     this._indent.StatusUpdateIndent(this.indentId, this.IndentStatusChangeData.value).subscribe((data: any) => {
-        this.ngOnInit();
-        this.ref.close();
-      });
+      this.ngOnInit();
+      this.ref.close();
+    });
   }
-
-
 
 }

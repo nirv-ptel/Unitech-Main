@@ -15,8 +15,6 @@ export class WindingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.post.ViewAllWinding().subscribe(data => {
-    //    this.demo = data;
-    // });
+
   }
 }

@@ -20,7 +20,6 @@ export class SetParameterComponent implements OnInit {
 
   constructor(protected dateService: NbDateService<Date>, private datePipe: DatePipe) {
     this.shiftToday = this.dateService.addHours(this.dateService.today(),-8);
-    // this.A1shiftToday = this.dateService.setHours(this.dateService.today(),14);
 
     this.currentDate = this.dateService.format(this.dateService.today(),'dd-MM-yyyy');
     let date = this.dateService.today();

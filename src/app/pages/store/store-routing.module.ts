@@ -4,6 +4,7 @@ import { AddIndentComponent } from './indent/add-indent/add-indent.component';
 import { IndentComponent } from './indent/indent.component';
 import { ViewIndentComponent } from './indent/view-indent/view-indent.component';
 import { IssueComponent } from './issue/issue.component';
+import { PoComponent } from './po/po.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductUnitComponent } from './product-unit/product-unit.component';
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'report',
     component: ReportComponent
+  },
+  {
+    path: 'po',
+    component: PoComponent
   },
 ];
 

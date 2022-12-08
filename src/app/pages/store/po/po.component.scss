@@ -7,7 +7,6 @@
   max-height: 100%;
   overflow-y: hidden;
 }
-
 .red {
   color: red;
 }
@@ -16,8 +15,7 @@
   height: 0 !important;
 }
 
-:host
-  ::ng-deep
+:host ::ng-deep
   ng2-st-tbody-custom
   a.ng2-smart-action.ng2-smart-action-custom-custom {
   display: inline-block;
@@ -27,11 +25,19 @@
   text-decoration: none;
 }
 
-:host
-  ::ng-deep
+:host ::ng-deep
   ng2-st-tbody-custom
   a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
   color: #ff3d71;
+}
+
+:host ::ng-deep 
+nb-card-header a {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  font-size: 3em;
+  text-decoration: none;
 }
 
 :host ::ng-deep .cell_right {
@@ -42,6 +48,16 @@
   border-radius: 12%;
 }
 
+:host td i {
+  // display: inline-block;
+  // width: 50px;
+  text-align: center;
+  font-size: 1.2em;
+  margin-right: 20px;
+  margin-bottom: 10px;
+
+}
+
 :host ::ng-deep .cell_right1 {
   color: white;
   text-align: center;
@@ -49,11 +65,13 @@
   padding: 4px 8px;
   border-radius: 12%;
 }
+.scroll-bar {
+  max-width: 100%;
+  overflow-y: hidden;
+}
+
 .float {
   float: right;
- }
- .float-l {
-  float: left;
  }
 .pagi {
   float: left;
