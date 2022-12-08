@@ -16,7 +16,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================admin========================== // -->
 <div class="row" *ngIf="admin">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -24,7 +24,7 @@
         <h2>DrawFrames Machine Not Found</h2>
       </nb-card-body>
     </nb-card>
-   
+
   </div>
   <div class="col-md-12" *ngIf="!MachineNotFounderror">
     <nb-card>
@@ -108,7 +108,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================superviser========================== // -->
 <div class="row" *ngIf="superviser">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -145,7 +145,7 @@
   </div>
 
 </div>
-
+<!-- // =================qc========================== // -->
 <div class="row" *ngIf="qc">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -287,9 +287,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.drawFramesMachine.name}}</label>
-                      <input type="tel1" nbInput fullWidth id="parameter-{{i}}" pattern="[0-9]{4}"
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursOne"
-                      (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" pattern="[0-9]{4}"
+                      placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursOne" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_sixHoursOne == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_sixHoursOne"
                       [status]="cost.get('shift_a_sixHoursOne').touched ? (cost.get('shift_a_sixHoursOne').invalid  ? 'danger' : 'success') : 'basic'">
@@ -408,7 +407,7 @@
 
       <div *ngIf="shiftA1">
         <form [formGroup]="drawframesparameterHankAone"
-            (ngSubmit)="onDrawframesParameterAoneHankSubmit(); clicked = true;">
+          (ngSubmit)="onDrawframesParameterAoneHankSubmit(); clicked = true;">
           <div formArrayName="parareading">
             <div *ngFor="let cost of DrawframesHankParaAoneGet.controls; let i = index" [formGroupName]="i">
               <div class="row">
@@ -435,7 +434,8 @@
       </div>
 
       <div *ngIf="shiftA2">
-        <form [formGroup]="drawframesparameterHankAtwo" (ngSubmit)="onDrawframesParameterAtwoHankSubmit(); clicked = true;">
+        <form [formGroup]="drawframesparameterHankAtwo"
+          (ngSubmit)="onDrawframesParameterAtwoHankSubmit(); clicked = true;">
           <div formArrayName="parareading">
             <div *ngFor="let cost of DrawframesHankParaAtwoGet.controls; let i = index" [formGroupName]="i">
               <div class="row">
@@ -462,7 +462,8 @@
       </div>
 
       <div *ngIf="shiftB1">
-        <form [formGroup]="drawframesparameterHankBone" (ngSubmit)="onDrawframesParameterBoneHankSubmit(); clicked = true;">
+        <form [formGroup]="drawframesparameterHankBone"
+          (ngSubmit)="onDrawframesParameterBoneHankSubmit(); clicked = true;">
           <div formArrayName="parareading">
             <div *ngFor="let cost of DrawframesHankParaBoneGet.controls; let i = index" [formGroupName]="i">
               <div class="row">
@@ -489,7 +490,8 @@
       </div>
 
       <div *ngIf="shiftB2">
-        <form [formGroup]="drawframesparameterHankBtwo" (ngSubmit)="onDrawframesParameterBtwoHankSubmit(); clicked = true;">
+        <form [formGroup]="drawframesparameterHankBtwo"
+          (ngSubmit)="onDrawframesParameterBtwoHankSubmit(); clicked = true;">
           <div formArrayName="parareading">
             <div *ngFor="let cost of DrawframesHankParaBtwoGet.controls; let i = index" [formGroupName]="i">
               <div class="row">

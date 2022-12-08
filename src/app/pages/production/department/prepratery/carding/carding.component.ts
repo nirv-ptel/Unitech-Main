@@ -467,11 +467,6 @@ export class CardingComponent implements OnInit {
       });
   }
 
-  // NumberOnly(event) {
-  //   if (event.key.length === 1 && ((event.which < 48 || event.which > 57) && (event.which < 96 || event.which > 105))) {
-  //     event.preventDefault();
-  //   }
-  // }
   NumberOnly(event) {
     if (!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 110 && event.which != 190 && event.which != 8)) {
       event.preventDefault();

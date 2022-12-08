@@ -918,10 +918,7 @@ export class RingframeComponent implements OnInit {
       event.preventDefault();
     }
   }
-  // hideshiftchart() {
-  //   this.chart.data.datasets.pop(6);
-  //   this.chart.update();
-  // }
+
   onSingleDateChartSubmit() {
     this.MachinePara.DateSingleRingframe(this.SingleDatechart.value.date).subscribe(data => {
       let a = data.Data.length;
@@ -1181,71 +1178,5 @@ export class RingframeComponent implements OnInit {
       });
     }
   }
-  // demodd(event: any) {
-  //   let Mid = event.value.description.machineId;
-  //   let Paravalue;
-  //   if (this.shiftA1) {
-  //     Paravalue = { 'shift_a_twoHoursOne': event.value.shift_a_twoHoursOne }
-  //     this.ringframeAllPara.RingframeParameterShiftAOne(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('A1 paraset');
-  //     });
-  //   } else if (this.shiftA2) {
-  //     Paravalue = { 'shift_a_twoHoursTwo': event.value.shift_a_twoHoursTwo }
-  //     this.ringframeAllPara.RingframeParameterShiftATwo(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('A2 paraset');
-  //     });
-  //   } else if (this.shiftA3) {
-  //     Paravalue = { 'shift_a_twoHoursThree': event.value.shift_a_twoHoursThree }
-  //     this.ringframeAllPara.RingframeParameterShiftAThree(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('A3 paraset');
-  //     });
-  //   } else if (this.shiftA4) {
-  //     Paravalue = { 'shift_a_twoHoursFour': event.value.shift_a_twoHoursFour }
-  //     this.ringframeAllPara.RingframerParameterShiftAFour(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('A4 paraset');
-  //     });
-  //   } else if (this.shiftA5) {
-  //     Paravalue = { 'shift_a_twoHoursFive': event.value.shift_a_twoHoursFive }
-  //     this.ringframeAllPara.RingframeParameterShiftAFive(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('A5 paraset');
-  //     });
-  //   } else if (this.shiftA6) {
-  //     Paravalue = { 'shift_a_twoHoursSix': event.value.shift_a_twoHoursSix }
-  //     this.ringframeAllPara.RingframeParameterShiftASix(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('A6 paraset');
-  //     });
-  //   } else if (this.shiftB1) {
-  //     Paravalue = { 'shift_b_twoHoursOne': event.value.shift_b_twoHoursOne }
-  //     this.ringframeAllPara.RingframeParameterShiftBOne(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('B1 paraset');
-  //     });
-  //   } else if (this.shiftB2) {
-  //     Paravalue = { 'shift_b_twoHoursTwo': event.value.shift_b_twoHoursTwo }
-  //     this.ringframeAllPara.RingframeParameterShiftBTwo(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('B2 paraset');
-  //     });
-  //   } else if (this.shiftB3) {
-  //     Paravalue = { 'shift_b_twoHoursThree': event.value.shift_b_twoHoursThree }
-  //     this.ringframeAllPara.RingframeParameterShiftBThree(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('B3 paraset');
-  //     });
-  //   } else if (this.shiftB4) {
-  //     Paravalue = { 'shift_b_twoHoursFour': event.value.shift_b_twoHoursFour }
-  //     this.ringframeAllPara.RingframeParameterShiftBFour(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('B4 paraset');
-  //     });
-  //   } else if (this.shiftB5) {
-  //     Paravalue = { 'shift_b_twoHoursFive': event.value.shift_b_twoHoursFive }
-  //     this.ringframeAllPara.RingframeParameterShiftBFive(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('B5 paraset');
-  //     });
-  //   } else if (this.shiftB6) {
-  //     Paravalue = { 'shift_b_twoHoursSix': event.value.shift_b_twoHoursSix }
-  //     this.ringframeAllPara.RingframeParameterShiftBSix(Mid, Paravalue).subscribe((data: any) => {
-  //       alert('B6 paraset');
-  //     });
-  //   }
-  //   this.ngOnInit();
-  // }
 
 }

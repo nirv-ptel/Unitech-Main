@@ -1,24 +1,3 @@
-<!-- <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Select Vender</th>
-            <th scope="col">Item Name</th>
-            <th scope="col">Item Price</th>
-            <th scope="col">Vender Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of ItemVenderSorce">
-            <td>
-                <nb-checkbox></nb-checkbox>
-            </td>
-            <td>{{item.itemModelPrice.itemName}}</td>
-            <td>{{item.priceItem}}</td>
-            <td>{{item.vendorModelData.vendorName}}</td>
-        </tr>
-    </tbody>
-</table> -->
-
 
 <form [formGroup]="FinalForm">
     <table class="table">
@@ -32,11 +11,9 @@
         </thead>
         <tbody formArrayName="A">
             <tr *ngFor="let party of Arow.controls; let i = index" [formGroupName]="i">
-                <!-- <input type="text" nbInput formControlName="venderName" nbPopover="sssssss" nbPopoverTrigger="hint"  readonly > -->
                 <h6 scope="col" nbPopover="paymentTermsConditions -  {{VenderData[i].paymentTermsConditions}}" nbPopoverTrigger="hint" nbPopoverPlacement="right"> {{VenderData[i].vendorName}}</h6>
                 <td formArrayName="B" *ngFor="let price of BCol(i).controls; let j = index">
                     <div [formGroupName]="j">
-                        <!-- <input nbInput type="tel" formControlName="VenderDetail" placeholder="Enter Vender"> -->
                         <nb-checkbox formControlName="final"></nb-checkbox>
                         <input nbInput type="tel" formControlName="priceId" placeholder="Enter priceId" readonly>
                     </div>

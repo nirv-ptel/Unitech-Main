@@ -81,10 +81,6 @@ export class ReportComponent implements OnInit {
           return row.issuedItem.quantity;
         },
       },
-      // requiredDays: {
-      //   title: "Required Days",
-      //   type: "number",
-      // },
       issueDate: {
         title: "Issue Date",
         type: "date",
@@ -125,10 +121,6 @@ export class ReportComponent implements OnInit {
         title: "Quantity",
         type: "number",
       },
-      // requiredDays: {
-      //   title: "Required Days",
-      //   type: "number",
-      // },
       issueDate: {
         title: "Issue Date",
         type: "date",

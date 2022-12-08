@@ -17,65 +17,9 @@
             </form>
           </div>
           <div class="col-md-6">
-            <!-- <button nbButton status="danger">
-              Submit
-            </button> -->
           </div>
         </div>
 
-        <!-- <table class="table">
-          <thead>
-            <tr>
-              <th scope="col" (click)="sort('itemName')">Item Name &nbsp; <i class="fa fa-sort"></i></th>
-              <th scope="col" (click)="sort('description')">Item Description &nbsp; <i class="fa fa-sort"></i></th>
-              <th scope="col" (click)="sort('quantity')">quantity &nbsp; <i class="fa fa-sort"></i></th>
-              <th scope="col" (click)="sort('requiredDays')">requiredDays &nbsp; <i class="fa fa-sort"></i></th>
-              <th scope="col" (click)="sort('issueDate')">issueDate &nbsp; <i class="fa fa-sort"></i></th>
-              <th scope="col" (click)="sort('quantity')">Quantity &nbsp; <i class="fa fa-sort"></i></th>
-              <th scope="col">Status</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of MachineName | paginate : 
-              {
-                itemsPerPage: itemsPerPage,
-                currentPage: page,
-                totalItems: totalItems
-              } | orderBy: key: reverse">
-              <td>{{item.storeItemModel.itemName}}</td>
-              <td>{{item.description}}</td>
-              <td>{{item.quantity}}</td>
-              <td>{{item.requiredDays}}</td>
-              <td ng-controller="datCtrl">{{item.issueDate| date : "MMM dd, y - hh:mm:ss a"}}</td>
-              <td *ngIf="admin || store || gm">{{item.quantity}}</td>
-              <td *ngIf="item.status == 'PENDING'">
-                <span class="badge badge-warning">{{item.status}}</span>
-              </td>
-              <td *ngIf="item.status == 'DONE'">
-                <span class="badge badge-success">{{item.status}}</span>
-              </td>
-              <td *ngIf="item.status == 'REJECT'">
-                <span class="badge badge-danger">{{item.status}}</span>
-              </td>
-              <td *ngIf="item.status == 'CANCEL'">
-                <span class="badge badge-primary">{{item.status}}</span>
-              </td>
-            
-              <td *ngIf="maintanance || store">
-                <i class="fa-solid fa-eye" *ngIf="(item.status == 'PENDING' || maintanance)" (click)="onChangeIssueStatus(item, dialog1)" title="View"></i>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <pagination-controls class="pagi" (pageChange)="ViewItemPage((page = $event))"></pagination-controls>
-        <div class="float">
-          <nb-select class="form-select" [selected]="5" [(ngModel)]="itemsPerPage" (ngModelChange)="refreshCountries()">
-            <nb-option [value]="5">5 items per page</nb-option>
-            <nb-option [value]="10">10 items per page</nb-option>
-            <nb-option [value]="25">25 items per page</nb-option>
-          </nb-select>
-          </div> -->
         <ng2-smart-table [settings]="settings" [source]="Source">
         </ng2-smart-table>
       </nb-tab>

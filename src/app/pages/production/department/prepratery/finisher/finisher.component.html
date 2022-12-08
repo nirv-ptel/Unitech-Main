@@ -16,7 +16,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================admin========================== // -->
 <div class="row" *ngIf="admin">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -107,7 +107,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================superviser========================== // -->
 <div class="row" *ngIf="superviser">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -144,7 +144,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================qc========================== // -->
 <div class="row" *ngIf="qc">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -286,9 +286,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.finisherMachine.name}}</label>
-                      <input type="tel1" nbInput fullWidth id="parameter-{{i}}" pattern="[0-9]{3}"
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursOne"
-                      (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" pattern="[0-9]{3}"
+                      placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursOne" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_sixHoursOne == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_sixHoursOne"
                       [status]="cost.get('shift_a_sixHoursOne').touched ? (cost.get('shift_a_sixHoursOne').invalid  ? 'danger' : 'success') : 'basic'">
@@ -393,7 +392,6 @@
   </nb-card>
 </ng-template>
 
-
 <ng-template #dialog1 let-ref="dialogRef">
   <nb-card class="scroll-bar">
     <nb-card-header>
@@ -406,8 +404,7 @@
     <nb-card-body>
 
       <div *ngIf="shiftA1">
-        <form [formGroup]="finisherparameterHankAone"
-            (ngSubmit)="onFinisherParameterAoneHankSubmit(); clicked = true;">
+        <form [formGroup]="finisherparameterHankAone" (ngSubmit)="onFinisherParameterAoneHankSubmit(); clicked = true;">
           <div formArrayName="parareading">
             <div *ngFor="let cost of FinisherHankParaAoneGet.controls; let i = index" [formGroupName]="i">
               <div class="row">

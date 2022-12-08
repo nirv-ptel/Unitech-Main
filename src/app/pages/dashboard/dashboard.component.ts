@@ -128,6 +128,7 @@ export class DashboardComponent implements OnInit {
       date: [this.dateService.format(new Date(), 'yyyy-MM-dd')]
     })
 
+     // ================= chart ========================== //
     this.chart = new Chart('canvas', {
       type: 'doughnut',
       data: {
@@ -170,24 +171,6 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    // this.chart = new Chart('canvas2',{
-    //   type: 'radar',
-    //   data: {
-    //     labels: ['Red','Green','Yellow','Grey','Blue'],
-    //     datasets: [
-    //       {
-    //       label: 'First',
-    //       data: [11, 16, 7, 3, 14],
-    //       backgroundColor: 'rgba(255, 99, 132, 0.2)',
-    //       borderColor: 'rgb(255, 99, 132)',
-    //       pointBackgroundColor: 'rgb(255, 99, 132)',
-    //       pointBorderColor: '#fff',
-    //       pointHoverBackgroundColor: '#fff',
-    //       pointHoverBorderColor: 'rgb(255, 99, 132)',
-    //       fill: true,
-    //       }]
-    //   }
-    // });
     this.MachinePara.DateSingleRingframe(this.SingleDate.value.date).subscribe(data => {
 
       let a = data.Data.length;
@@ -248,8 +231,6 @@ export class DashboardComponent implements OnInit {
     this.MachinePara.DateSingleRingframe(this.SingleDate.value.date).subscribe(data => {
       let a = data.Data.length;
       for (let i = 0; i < a; i++) {
-        // this.labels.push(data.Data[i].ringframe.name);
-        // this.reding0[i].push(data.Data[i].productionSpindle2HoursKg);
         this.reding0[i] = data.Data[i].productionSpindle2HoursKg;
         this.redingA1[i] = data.Data[i].averageshift_a_HankOne;
         this.redingA2[i] = data.Data[i].averageshift_a_HankTwo;
@@ -265,10 +246,6 @@ export class DashboardComponent implements OnInit {
         this.redingB5[i] = data.Data[i].averageshift_a_HankEleven;
         this.redingB6[i] = data.Data[i].averageshift_a_HankTwo;
         if (i + 1 == a) {
-          // this.chart.data.datasets = [];
-          // for (let j = 0; j < this.datasets1.length; j++) {
-          //   this.chart.data.datasets.push(this.datasets1[j]);
-          // }
           this.chart.update();
         }
       }

@@ -72,22 +72,6 @@ export class AddContractComponent implements OnInit {
     this.contractService.CreateContract(venconData).subscribe((data:any) => {
       let a = data.partyLotModels;
 
-    //   this.contractService.ContractVender(data.Data.id,venconData.vendorData).subscribe((data:any) => {
-    //   });
-    //   this.contractService.ContractItem(data.Data.id,venconData.itemdata).subscribe((data:any) => {
-    //   });
-
-    //   let a = this.contractForm.value.partyplotNumber;
-    //   for(let i = 0; i < a.length;i++) {
-    //     var b= {};
-    //     var c = {'id':data.Data.id};
-    //     b['partyNumber'] = a[i];
-    //     b['contract'] = c;
-    //     this.partyLotService.CreateParty(b).subscribe((data:any) => {
-    //     });
-    //   }
-    //   this.contractForm.reset();
-
       alert("data successfully uploaded");
     },
     (Error: any) => {

@@ -16,7 +16,7 @@ export class MachineDetailsComponent implements OnInit {
 
   source: any = [];
   settings = {
-    actions:{
+    actions: {
       delete: false,
       add: false,
       edit: false,
@@ -68,9 +68,9 @@ export class MachineDetailsComponent implements OnInit {
       this.id = params.id;
     });
 
-   this.post.ViewOneBloowRoom(this.id).subscribe(data => {
-     this.source = data.bloowroomReading;
-   });
+    this.post.ViewOneBloowRoom(this.id).subscribe(data => {
+      this.source = data.bloowroomReading;
+    });
   }
 
   ngOnDestroy(): void { }

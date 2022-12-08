@@ -281,13 +281,6 @@ export class BloowroomComponent implements OnInit {
       }
     });
 
-    // this.post.StatusAllBloowRoom(true).subscribe(data => {
-    //   let a = data.Data.length;
-    //   for (let i = 0; i < a; i++) {
-    //     this.BloowroomGet.push(this.Bloowroom(data.Data[i]));
-    //   }
-    // });
-
     this.MachinePara.DateSingleBloowRoom(this.dateService.format(this.todayDate, 'yyyy-MM-dd')).subscribe(data => {
       this.source = data.Data;
       let a = data.Data.length;
@@ -485,11 +478,6 @@ export class BloowroomComponent implements OnInit {
     });
   }
 
-  // NumberOnly(event) {
-  //   if (event.key.length === 1 && ((event.which < 48 || event.which > 57) && (event.which < 96 || event.which > 105))) {
-  //     event.preventDefault();
-  //   }
-  // }
   NumberOnly(event) {
     if (!(event.which >= 48 && event.which <= 57) && !(event.which >= 96 && event.which <= 105) && (event.which != 110 && event.which != 190 && event.which != 8)) {
       event.preventDefault();
@@ -555,11 +543,7 @@ export class BloowroomComponent implements OnInit {
     for (let i = 0; i < a.length; i++) {
       this.MachinePara.AddBloowRoomParameter(a[i]).subscribe((data: any) => {
         this.bloowroompara.reset();
-        // this.allAlert("success","","");
-        // this.intervalId = setInterval(() => {
           this.ngOnInit();
-        // }, 3000);
-
       });
     }
     alert("Date Submited Success Fully...");

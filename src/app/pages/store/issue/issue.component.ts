@@ -505,9 +505,7 @@ export class IssueComponent implements OnInit {
     this.postItem.ViewItem().subscribe((data) => {
       this.item = data.Data;
     });
-    // this.post.ViewIssue().subscribe((data) => {
-    //   this.IssueSource = data.Data;
-    // });
+
     this.ViewItemPage(1);
 
     this.post.ViewIssueStatus("PENDING").subscribe((data) => {

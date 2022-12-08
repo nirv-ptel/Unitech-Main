@@ -6,13 +6,6 @@
                     <button nbButton class="mr-10" (click)="FilterClear()">clear</button>
                     <input type="text" class="mr-10" nbInput [(ngModel)]="SearchField"
                         (keyup.enter)="FilterDone()" placeholder="Search PO Number">
-                    <!-- <nb-select id="status" class="mr-10" placeholder="Select Status" [(ngModel)]="FiltersStatus"
-                        (selectedChange)="FilterStatus($event)">
-                        <nb-option value="PENDING">Pending</nb-option>
-                        <nb-option value="CANCEL">Cancel</nb-option>
-                        <nb-option value="DONE">Done</nb-option>
-                        <nb-option value="REJECT">Reject</nb-option>
-                    </nb-select> -->
                     <button nbButton status="primary" (click)="FilterOn()"><i class="fa-solid fa-filter"></i></button>
                 </div>
                 <div *ngIf="FilterOnOff" class="row">
@@ -55,8 +48,6 @@
                     <td ng-controller="datCtrl">{{item.createdDate | date : "MMM dd, y - hh:mm:ss a"}}</td>
                     <td>
                         <i class="fa-solid fa-eye" (click)="openPoDetails(item.poId)" title="View"></i>
-                        <!-- <i class="fa-solid fa-pen" (click)="openIndentDetails(item.indentId,dialog)" title="Edit"></i> -->
-                        <!-- <i class="fa-solid fa-trash" title="Delete"></i> -->
                         <i class="fa-solid fa-download" (click)="downloadAsPo(item)" title="Download"></i>
                     </td>
                 </tr>

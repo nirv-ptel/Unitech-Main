@@ -24,7 +24,6 @@ export let webTime: any;
   styleUrls: ['pages.component.scss'],
   template: `
     <ngx-one-column-layout>
-      <!-- <nb-menu [items]="menu"></nb-menu> -->
       <nb-menu tag="menu" [items]="menuItems" autoCollapse="true"></nb-menu>
       <router-outlet></router-outlet>
     </ngx-one-column-layout>
@@ -45,6 +44,8 @@ export class PagesComponent implements OnInit {
     this.menuService.navigateHome('menu');
     let role = this._auth.user.roles.find((x => x));
 
+    // =================sidebar role base========================== //
+    
     if (role == 'ROLE_ADMIN') {
       this.menuService.addItems(ADMIN_MENU_ITEMS, 'menu');
 

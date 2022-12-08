@@ -10,16 +10,7 @@
 
           <button nbButton status="primary" (click)="FilterOn()"><i class="fa-solid fa-filter"></i></button>
         </div>
-        <!-- <nb-tag-list (tagRemove)="onFilterRemove($event)">
-                  <nb-tag removable *ngFor="let tree of trees" [text]="tree"></nb-tag>
-                </nb-tag-list> -->
         <div *ngIf="FilterOnOff" class="row">
-          <!-- <form [formGroup]="FilterDateForm" (ngSubmit)="onfilterDateFormSubmit()">
-                      <input nbInput type="date" class="mr-10" formControlName="start" placeholder="Pick Start Date">
-                      <input nbInput type="date" class="mr-10" formControlName="end" placeholder="Pick Stop Date">
-                      <button nbButton [disabled]="FilterDateForm.invalid">Submit</button>
-                  </form> -->
-          <!-- <p>filters</p> -->
         </div>
 
       </nb-card-header>
@@ -76,93 +67,7 @@
           </nb-select>
         </div>
       </nb-tab>
-      <!-- <nb-tab *ngIf="store || admin" tabTitle="View Item">
-        <ng2-smart-table [settings]="settings" [source]="item" (custom)="EditItem($event.data, dialog1)">
-        </ng2-smart-table>
-      </nb-tab>
-      <nb-tab *ngIf="gm" tabTitle="View Item">
-        <ng2-smart-table [settings]="settingRead" [source]="item">
-        </ng2-smart-table>
-      </nb-tab>
-      <nb-tab *ngIf="maintanance" tabTitle="View Item">
-        <ng2-smart-table [settings]="settingsMain" [source]="item" (custom)="createIssue($event.data, dialog)">
-        </ng2-smart-table>
-      </nb-tab> -->
-      <!-- <nb-tab tabTitle="Add Stock" *ngIf="store || admin">
-        <form [formGroup]="AddStockForm" (ngSubmit)="onStockUpdateFormSubmit()">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="Select_Item" class="label">Select Item</label>
-                <nb-select
-                  placeholder="Select Product Item"
-                  fullWidth
-                  formControlName="itemId"
-                  (ngModelChange)="ViewItemGet($event)"
-                >
-                  <nb-option *ngFor="let item of item" value="{{ item.itemId }}"
-                    >{{ item.itemName }}
-                  </nb-option>
-                </nb-select>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="AddStockFormView">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="oldquantity" class="label">Old quantity</label>
-                  <input
-                    type="text"
-                    nbInput
-                    fullWidth
-                    id="oldquantity"
-                    placeholder="Old Quantity"
-                    readonly
-                    value="{{ oldquantity }}"
-                  />
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="aquantity" class="label">Add Quantity</label>
-                  <input
-                    type="text"
-                    nbInput
-                    fullWidth
-                    id="aquantity"
-                    placeholder="Quantity"
-                    (keyup)="keyFunc($event)"
-                    formControlName="quantity"
-                  />
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="total" class="label">Total</label>
-                  <input
-                    type="text"
-                    nbInput
-                    readonly
-                    fullWidth
-                    id="total"
-                    placeholder="Total Quantity"
-                    value="{{ total }}"
-                  />
-                </div>
-              </div>
-            </div>
-            <button
-              type="submit"
-              [disabled]="AddStockForm.get('quantity').invalid"
-              nbButton
-              status="danger"
-            >
-              submit
-            </button>
-          </div>
-        </form>
-      </nb-tab> -->
+  
       <nb-tab tabTitle="Create Item" *ngIf="store || admin">
         <form [formGroup]="ItemForm" (ngSubmit)="onItemFormSubmit()">
           <div class="row">
@@ -261,11 +166,7 @@
               </div>
             </div>
           </div>
-          <!-- <div class="row">
-            <div class="col-md-4 margin">
-              <nb-checkbox formControlName="activation" status="success">Activation</nb-checkbox>
-            </div>
-          </div> -->
+      
           <button type="submit" [disabled]="ItemForm.invalid" nbButton status="danger">submit</button>
         </form>
       </nb-tab>
@@ -405,10 +306,7 @@
           <input type="text" nbInput fullWidth id="paytax" placeholder="Tax" formControlName="paytax"
             (keydown)="NumberOnly($event)" />
         </div>
-        <!-- <div class="form-group">
-          <nb-checkbox formControlName="activation" status="success">Activation</nb-checkbox>
-        </div> -->
-
+      
         <button nbButton status="success" [disabled]="ItemFormUpdate.invalid" type="submit">Submit</button>
       </form>
     </nb-card-body>

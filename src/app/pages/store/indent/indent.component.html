@@ -16,9 +16,6 @@
             <nb-card-header>
                 <div class="row float">
 
-                    <!-- <button nbButton>
-            <i class="fa-solid fa-arrow-up-wide-short"></i><i class="fa-solid fa-arrow-down-wide-short"></i>
-        </button> -->
                     <button nbButton class="mr-10" (click)="FilterClear()">clear</button>
                     <input type="text" class="mr-10" *ngIf="!StatusOnOff" nbInput [(ngModel)]="SearchField"
                         (keyup.enter)="FilterDone()" placeholder="Search Indent Number">
@@ -38,9 +35,7 @@
                     </nb-select>
                     <button nbButton status="primary" (click)="FilterOn()"><i class="fa-solid fa-filter"></i></button>
                 </div>
-                <!-- <nb-tag-list (tagRemove)="onFilterRemove($event)">
-                    <nb-tag removable *ngFor="let tree of trees" [text]="tree"></nb-tag>
-                  </nb-tag-list> -->
+
                 <div *ngIf="FilterOnOff" class="row">
                     <form [formGroup]="FilterDateForm" (ngSubmit)="onfilterDateFormSubmit()">
                         <input nbInput type="date" [max]="getMix()" class="mr-10" formControlName="start" placeholder="Pick Start Date">
@@ -112,8 +107,6 @@
                     </td>
                     <td>
                         <i class="fa-solid fa-eye" (click)="openIndentDetails(item.indentId,dialog)" title="View"></i>
-                        <!-- <i class="fa-solid fa-pen" (click)="openIndentDetails(item.indentId,dialog)" title="Edit"></i> -->
-                        <!-- <i class="fa-solid fa-trash" title="Delete"></i> -->
                     </td>
                 </tr>
             </tbody>

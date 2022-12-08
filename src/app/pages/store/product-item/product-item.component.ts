@@ -345,10 +345,6 @@ export class ProductItemComponent implements OnInit {
       this.unit = data.Data;
     });
 
-    // this.postItem.ViewItem().subscribe((data) => {
-    //   this.item = data.Data;
-    // });
-
     this.ViewItemPage(1);
   }
 

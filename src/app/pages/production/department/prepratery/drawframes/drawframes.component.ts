@@ -449,7 +449,7 @@ export class DrawframesComponent implements OnInit {
     this.post.ViewAllDrawframes().subscribe(data => {
       this.demo = data;
       let a = this.demo.length;
-      if(a <= 0) {
+      if (a <= 0) {
         this.MachineNotFounderror = true;
       }
       for (let i = 0; i < a; i++) {
@@ -461,7 +461,7 @@ export class DrawframesComponent implements OnInit {
     this.MachinePara.DateSingleDrawframesKG(this.dateService.format(this.todayDate, 'yyyy-MM-dd')).subscribe(data => {
       this.source = data.Data;
       let a = data.Data.length;
-      if(a <= 0) {
+      if (a <= 0) {
         this.QcMachineParameterNotSetError = true;
       }
       for (let i = 0; i < a; i++) {
@@ -571,7 +571,7 @@ export class DrawframesComponent implements OnInit {
     this.MachinePara.DateSingleDrawframesHANK(this.dateService.format(this.todayDate, 'yyyy-MM-dd')).subscribe(data => {
       this.source1 = data.Data;
       let a = data.Data.length;
-      if(a <= 0) {
+      if (a <= 0) {
         this.QcMachineParameterNotSetError1 = true;
       }
       for (let i = 0; i < a; i++) {
@@ -1034,57 +1034,5 @@ export class DrawframesComponent implements OnInit {
       });
     }
   }
-  // demodd(event: any) {
-  //   let Mid = event.value.description.machineId;
-  //   let Paravalue;
-  //   if(this.shiftA1) {
-  //     Paravalue = {'shift_a_sixHoursOne':event.value.shift_a_sixHoursOne}
-  //     this.drawframesAllPara.DrawframesParameterShiftAOne(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('A1 paraset');
-  //     });
-  //   } else if(this.shiftA2) {
-  //     Paravalue = {'shift_a_sixHoursTwo':event.value.shift_a_sixHoursTwo}
-  //     this.drawframesAllPara.DrawframesParameterShiftATwo(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('A2 paraset');
-  //     });
-  //   } else if(this.shiftB1) {
-  //     Paravalue = {'shift_b_sixHoursOne':event.value.shift_b_sixHoursOne}
-  //     this.drawframesAllPara.DrawframesParameterShiftBOne(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('B1 paraset');
-  //     });
-  //   } else if(this.shiftB2) {
-  //     Paravalue = {'shift_b_sixHoursTwo':event.value.shift_b_sixHoursTwo}
-  //     this.drawframesAllPara.DrawframesParameterShiftBTwo(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('B2 paraset');
-  //     });
-  //   }
-  //   this.ngOnInit();
-  // }
-  // demodd1(event: any) {
-  //   let Mid = event.value.description.machineId;
-  //   let Paravalue;
-  //   if(this.shiftA1) {
-  //     Paravalue = {'shift_a_sixHoursOne':event.value.shift_a_sixHoursOne}
-  //     this.drawframesAllPara.DrawframesParameterHankShiftAOne(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('A1 paraset');
-  //     });
-  //   } else if(this.shiftA2) {
-  //     Paravalue = {'shift_a_sixHoursTwo':event.value.shift_a_sixHoursTwo}
-  //     this.drawframesAllPara.DrawframesParameterHankShiftATwo(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('A2 paraset');
-  //     });
-  //   } else if(this.shiftB1) {
-  //     Paravalue = {'shift_b_sixHoursOne':event.value.shift_b_sixHoursOne}
-  //     this.drawframesAllPara.DrawframesParameterHankShiftBOne(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('B1 paraset');
-  //     });
-  //   } else if(this.shiftB2) {
-  //     Paravalue = {'shift_b_sixHoursTwo':event.value.shift_b_sixHoursTwo}
-  //     this.drawframesAllPara.DrawframesParameterHankShiftBTwo(Mid,Paravalue).subscribe((data: any) => {
-  //       alert('B2 paraset');
-  //     });
-  //   }
-  //   this.ngOnInit();
-  // }
 
 }

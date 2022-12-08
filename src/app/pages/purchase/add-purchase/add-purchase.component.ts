@@ -11,7 +11,7 @@ export class AddPurchaseComponent implements OnInit {
 
   purchase: FormGroup;
 
-  constructor(private fb: FormBuilder,private purcharData: PurchaseService) { }
+  constructor(private fb: FormBuilder, private purcharData: PurchaseService) { }
 
   ngOnInit(): void {
     this.purchase = this.fb.group({
@@ -35,7 +35,7 @@ export class AddPurchaseComponent implements OnInit {
   }
 
   onPurchaseSubmit() {
-    this.purcharData.CreatePurchase(this.purchase.value).subscribe((data:any) => {
+    this.purcharData.CreatePurchase(this.purchase.value).subscribe((data: any) => {
       alert("Date Submited Success Fully...");
       this.purchase.reset();
     });

@@ -9,7 +9,7 @@
   </div>
 </div>
 
-
+<!-- // =================admin========================== // -->
 <div class="row" *ngIf="admin">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -18,7 +18,7 @@
       </nb-card-body>
     </nb-card>
   </div>
-  
+  <!-- // =================machine not found========================== // -->
   <div class="col-md-12" *ngIf="!MachineNotFounderror">
     <nb-card>
       <nb-card-body>
@@ -84,7 +84,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================superviser========================== // -->
 <div class="row" *ngIf="superviser">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -106,7 +106,7 @@
     </nb-card>
   </div>
 </div>
-
+<!-- // =================qc========================== // -->
 <div class="row" *ngIf="qc">
   <div *ngIf="MachineNotFounderror">
     <nb-card class="text-center">
@@ -199,8 +199,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.cardingMachine.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}"
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursOne" (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_a_sixHoursOne" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_sixHoursOne == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_sixHoursOne"
                       [status]="cost.get('shift_a_sixHoursOne').touched ? (cost.get('shift_a_sixHoursOne').invalid  ? 'danger' : 'success') : 'basic'">
@@ -226,8 +226,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.cardingMachine.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}"
-                      placeholder="ENTER PARAMETER" formControlName="shift_a_sixHoursTwo" (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_a_sixHoursTwo" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_a_sixHoursTwo == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_a_sixHoursTwo"
                       [status]="cost.get('shift_a_sixHoursTwo').touched ? (cost.get('shift_a_sixHoursTwo').invalid  ? 'danger' : 'success') : 'basic'">
@@ -253,8 +253,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.cardingMachine.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}"
-                      placeholder="ENTER PARAMETER" formControlName="shift_b_sixHoursOne" (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_b_sixHoursOne" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_b_sixHoursOne == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_b_sixHoursOne"
                       [status]="cost.get('shift_b_sixHoursOne').touched ? (cost.get('shift_b_sixHoursOne').invalid  ? 'danger' : 'success') : 'basic'">
@@ -280,8 +280,8 @@
                   <div class="form-group">
                     <label for="parameter-{{i}}"
                       class="label">{{cost.controls.description._pendingValue.cardingMachine.name}}</label>
-                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}"
-                      placeholder="ENTER PARAMETER" formControlName="shift_b_sixHoursTwo" (keydown)="NumberOnly($event)"
+                    <input type="tel1" nbInput fullWidth id="parameter-{{i}}" placeholder="ENTER PARAMETER"
+                      formControlName="shift_b_sixHoursTwo" (keydown)="NumberOnly($event)"
                       [readonly]="(cost.controls.description._pendingValue.shift_b_sixHoursTwo == 0) ? false : true"
                       [value]="cost.controls.description._pendingValue.shift_b_sixHoursTwo"
                       [status]="cost.get('shift_b_sixHoursTwo').touched ? (cost.get('shift_b_sixHoursTwo').invalid  ? 'danger' : 'success') : 'basic'">

@@ -183,14 +183,6 @@ export class AddIndentComponent implements OnInit {
     })
   }
 
-  // changeVender(event) {
-  //   this.DataTransferVender.length = 0;
-  //   for (let i = 0; i < event.length; i++) {
-  //     this.DataTransferVender.push({ 'id': event[i] });
-  //   }
-  // }
-
-
   taxToatalQantity(i: number) {
     let quantity = this.IndentForm.value.indentQuantityList[i].quantity;
     let estimatedPrice = this.IndentForm.value.indentQuantityList[i].estimatedPrice;

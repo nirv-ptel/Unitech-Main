@@ -271,10 +271,6 @@ export class IndentComponent implements OnInit {
 
   ViewIndentPage(pages: number) {
     this.IndentSource = null;
-   
-    // this.FilterForm.value.filters[0].key = this.FilterField;
-    // this.FilterForm.value.filters = null;
-    // this.FilterForm.removeControl('filters');
     this.FilterForm.get('page').setValue(pages - 1);
     this.FilterForm.get('size').setValue(this.itemsPerPage);
     this.post.ViewIndentWithFilter(this.FilterForm.value).subscribe((data: any) => {
@@ -282,11 +278,6 @@ export class IndentComponent implements OnInit {
       this.page = pages;
       this.totalItems = data.totalElements;
     })
-    // this.post.ViewIndentPaginasion(pages - 1, this.itemsPerPage).subscribe(data => {
-    //   this.IndentSource = data.Data;
-    //   this.page = pages;
-    //   this.totalItems = data.Pagination.rowcount;
-    // })
   }
 
   refreshCountries() {

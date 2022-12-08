@@ -47,10 +47,6 @@ export class UserOneComponent implements OnInit {
         this.UserHr = this.UserDetails.hrModel;
         this.Hr = true;
         }
-        // this.UserHr = Object.assign({},this.UserHr[0]);
-        // alert(this.UserQualification.length);
-        // alert();
-        // Object.fromEntries(array);
       });
     });
   }
